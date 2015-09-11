@@ -1,0 +1,61 @@
+server {
+	listen   80;  #listen for ipv4; this line is default and implied
+	#listen   [::]:80  #default ipv6only=on;  listen for ipv6
+	server_name  v2.tuonews.my;
+	root /php/tuonews.com/;
+	autoindex on;
+	index index.html index.php index.htm;
+	
+	## set the access logs and error logs
+	access_log  logs/juke123.my/access.log;
+	error_log  logs/juke123.my/error.log;
+	
+	error_page 404  /404.html;
+
+	location ~ .*\.(php|php5)?$
+	{
+		#fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_pass fastcgi_backend;
+		fastcgi_keep_conn on; #开启长连接
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
+	}	
+	
+	## close the logs for resource file
+	location ~ .*\.(css|js|swf|ttf|wof)$ {
+		
+		access_log off;
+		error_log off;
+	}
+
+	#configure static file cache time
+	location ~ .*\.(gif|jpg|jpeg|png|bmp)$
+	{	
+		access_log off;
+		error_log off;
+
+
+		#动态生成缩略图
+		if (!-f $request_filename) {
+           rewrite ^/.*\.\d+x\d+\.(gif|jpg|jpeg|png)$ /thumb.php last;
+           break;
+		}
+
+	}
+	
+	#URL rewrite
+	location ~ .*(\.php|/.*)$
+	{
+
+		if (!-f $request_filename) {
+			rewrite ^/.*$ /index.php last;
+			break;
+		}
+	}	
+	
+	location ~ /\.ht {
+		deny all;
+	}
+}
+

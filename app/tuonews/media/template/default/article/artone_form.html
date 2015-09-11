@@ -1,0 +1,74 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--动态-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">关于我们</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>内容管理 / 关于我们</div>
+                    <form class="module_form article_form" id="content_add_form" method="post">
+                        <div class="input_wrap">
+                            <label class="input_head" for="title"><span class="red_star">*</span>文章标题:</label>
+                            <input class="input m_input" type="text" name="data[title]" min-length="5" max-length="30" tip-text="文章标题" value="{$item[title]}" id="title" required autofocus/>
+                            <p style="margin-left: 138px;">5-30个字以内，支持中英文和数字</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="kwords">关键字:</label>
+                            <input class="input m_input" type="text" name="data[kwords]" value="{$item[kwords]}" tip-text="关键字"  required maxlength="60" id="kwords" autofocus/>
+                            <p style="margin-left: 138px;">请输入60个以内的字符</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="abstract">文章摘要:</label>
+                            <textarea class="textarea m5_textarea" name="data[bcontent]" tip-text="文章简介" required maxlength="60" id="abstract">{$item[bcontent]}</textarea>
+                            <p style="margin-left: 138px;">请输入60个以内的字符</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head"><span class="red_star">*</span>文章内容:</label>
+                            <span class="editor_box">
+                                <textarea name="data[content]" tip-text="文章内容" required id="editor" style="max-width: 550px; height: 300px;">{$item[content]}</textarea>
+                            </span>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="kwords">排序数字:</label>
+                            <input class="input m_input" type="text" name="data[sort_num]" value="{$item[sort_num]}" id="sort_num" autofocus/>
+                        </div>
+                        <div class="input_nohead_wrap">
+                            {if empty($item)}
+                            <button href="{url /media_artone_insert}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_artone_index}"}'>保存</button>
+                            {else}
+                            <input type="hidden" name="id" value="{$item[id]}" />
+                            <button href="{url /media_artone_update}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_artone_index}"}'>保存</button>
+                            {/if}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+<!-- 引入编辑器 -->
+{cres:js ueditor/tuonews.config.min.js}
+{cres:js ueditor/ueditor.all.min.js}
+
+<!-- 注册全局变量 -->
+<script lang="javascript">
+
+    //实例化编辑器
+    var __UE = UE.getEditor('editor');
+</script>
+
+<!--footer end-->
+{include user.footer}
+

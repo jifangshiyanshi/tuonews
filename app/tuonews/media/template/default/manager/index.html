@@ -1,0 +1,87 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">用户列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <div class="role_head">
+                        <span class="role_name">当前用户：用户名  </span>
+                        <span class="role_role">权限：管理员</span>
+                    </div>
+                    <!--nav list-->
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>邮箱</th>
+                                <th width="120">状态</th>
+                                <th width="80">角色</th>
+                                <th width="80">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {loop $items $val}
+                            {if $val[role_id]==0} {run continue} {/if}
+                            <tr>
+                                <td>{$val[username]}</td>
+                                <td>{$val[email]}</td>
+                                <td>
+                                    {if $val[status] == 0}
+                                    未授权,<a href="{url /common_authcode_sendEmailCode/?email=$val[email]&template=manager_invitation_email&_id=$val[id]&_role=$val[role]}" class="ajaxproxy"
+                                           proxy='{"method":"get", "callBefore":"before_send_mail(data);", "callBack":"after_send_mail(data);"}'>重发邀请</a>
+                                    {elseif $val[status] == 1}
+                                    授权中
+                                    {elseif $val[status] == -1}
+                                    已禁用
+                                    {/if}
+                                </td>
+                                <td>{$val[role]}</td>
+                                <td>
+                                    <a href="{url /media_manager_edit/?id=$val[id]}">修改</a>
+                                    <a href="{url /media_manager_delete/?id=$val[id]}" class="delone">删除</a>
+                                </td>
+                            </tr>
+                            {/loop}
+                        </tbody>
+                    </table>
+                    <div class="table_operation">
+                        <a href="{url /media_manager_add}" class="add_red_btn">新增管理员</a>
+                    </div>
+                    <!--nav list-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+
+<script>
+    //发送邮件之前回调
+    function before_send_mail(data) {
+
+        JDialog.lock.work();
+        JDialog.tip.work({type:'loading', content:"正在发送邮件，请稍后……"});
+        return true;
+
+    }
+    //发送邮件之后回调
+    function after_send_mail(data) {
+
+        JDialog.lock.hide();
+        JDialog.tip.hide();
+        JDialog.tip.work({type:data.state, content:data.message, timer:3000});
+
+    }
+
+</script>
+<!--content end-->
+{include user.footer}

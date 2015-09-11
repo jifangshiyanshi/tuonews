@@ -1,0 +1,34 @@
+<!--list start-->
+<section class="article_list">
+    <!--注意和首页的图片大小不一样
+    牛眼 牛头 牛推 620x203  class="article_list"
+    首页 其他列表 180x126 class="article_list small_img_list"
+     -->
+    <ul class="list">
+        {loop $items $value}
+        <li class="item">
+            <div class="img_box">
+                <a href="{url /article_article_detail/?id=$value[id]}">
+                    <img class="lazy" src="{$appConfigs[image_block]}"
+                         data-original="{$value[thumb]}" alt="{$value[title]}"/>
+                </a>
+            </div>
+            <div class="text_box">
+                <h1 class="head"><a href="{url /article_article_detail/?id=$value[id]}">{$value[title]}</a></h1>
+                <div class="info">
+                    <div class="tag">
+                        {loop $value[__tags] $val}
+                        <a href="{$val[tag_url]}">{$val[name]}</a>
+                        {/loop}
+                    </div>
+                    <a href="{$value[media_url]}">{$value[media_name]}</a>
+                    <span class="date">{date $value[add_time] Y-m-d H:i}</span>
+                    <a href="{$value[chanel_url]}">{$value[chanel_name]}</a>
+                </div>
+                <div class="dec">{$value[bcontent]}</div>
+            </div>
+        </li>
+        {/loop}
+    </ul>
+</section>
+<!--list end-->

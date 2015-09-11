@@ -1,0 +1,34 @@
+��ţ������ֵ�
+һ���ܸ�
+	���е���������������֪�⣬����ʹ��Ӣ�ĵ��ʣ�û�к��ʵ�Ӣ�ĵ��ʾ�ʹ��ƴ����
+
+Action �����������
+	��ҳ index
+	�б�ҳ items,��̨��index
+	����ҳdetail
+	��½ҳ login
+	��½���� signin
+	��ȫ�˳� logout
+	�޸��û���Ϣ profile
+	�޸����� password
+	������֤ҳ�� email
+	������֤����bindEmail
+	�ֻ���֤ҳ�� mobile
+	�ֻ���֤���� bindMobile
+	�һ����� findPass
+	�������� passReset
+	���ҳ�� add
+	��Ӳ��� insert
+	�޸�ҳ�� edit
+	�޸Ĳ��� update
+	������פ apply
+
+����Լ��
+	�б?{prefix}Items���磺
+	articleItems�����б�
+	chanelItems Ƶ���б�
+	tagItems ���±�ǩ�б� 
+	�����ĳ��ģ��ֻ���һ���б�ı�������ֱ����items
+
+	����ҳ��Ĭ���� $item����ע�ᣬ���Բ��컯���
+	������������ $articleItem, $tagItem

@@ -1,0 +1,59 @@
+<?php include $this->getIncludePath('user.header')?>
+<!--content start-->
+<section class="content">
+    <?php include $this->getIncludePath('user.module_info_top')?>
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 密码修改-->
+            <div class="user_right_layout">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">密码修改</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--module-form -->
+                    <div class="module_form">
+                        <form action="" id="content_add_form">
+                            <div class="input_wrap">
+                                <label class="input_head" for="oldpass">原密码:</label>
+                                <input class="input" type="password" name="oldpass" id="oldpass" autofocus/>
+                                <span class="tips">通过社交帐号注册未填写密码请留空</span>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="pass">新密码:</label>
+                                <input class="input" type="password" name="newpass" id="pass" dtype="password" min-length="6" dtype="password" tip-text="新密码" required/>
+                                <span class="tips">字母、数字或者英文符号，最短6位，区分大小写</span>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="notpass">确认密码:</label>
+                                <input class="input" type="password" name="repass" id="notpass" dtype="password" min_length="6" dtype="password" tip-text="确认密码" required/>
+                                <span class="tips"></span>
+                            </div>
+                            <div class="input_nohead_wrap">
+                                <button class="red_btn ajaxproxy"
+                                        href="<?php echo url("/user_ucenter_updatePass") ?>"
+                                        proxy='{"formId":"content_add_form", "method":"post", "callBack":"checkBack(data);"}'>提交
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            <?php include $this->getIncludePath('user.module_aside')?>
+        </div>
+    </div>
+</section>
+<!--content end-->
+<script>
+    function  checkBack(data){
+        if(data.state === 'success'){
+            document.getElementById('content_add_form').reset();
+            JDialog.tip.work({type:"ok", content:"提交成功", timer:2000});
+        } else {
+            JDialog.tip.work({type:"error", content:data.message, timer:2000});
+        }
+    }
+</script>
+<?php include $this->getIncludePath('user.footer')?>

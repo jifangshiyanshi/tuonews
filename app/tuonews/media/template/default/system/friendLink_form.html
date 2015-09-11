@@ -1,0 +1,57 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">友情链接列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>友情链接列表 / 链接编辑</div>
+                    <form class="module_form" id="content_add_form" method="post">
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="title">链接名称：</label>
+                            <input type="text" name="data[name]" value="{$item[name]}" maxlength="10" tip-text="友链名称" required  class="input m_input" id="title"/>
+                            <p style="margin-left: 110px;">请输入10个字符以内</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="url">链接地址：</label>
+                            <input type="url" name="data[url]" class="input m_input" value="{$item[url]}" tip-text="友链地址" required dtype="url" id="url"/>
+                            <p style="margin-left: 110px;">例如：http://v2.tuonews.com/article_article_index</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="sort_num">排序：</label>
+                            <input type="text" name="data[sort_num]" class="input small_input" value="{$item[sort_num]}"  dtype="number" id="sort_num"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s">是否启用：</label>
+                            <label class="checkbox"><input type="radio" name="data[ishow]" {if $item[ishow]==1}checked{/if} value="1" />启用</label>
+                            <label class="checkbox"><input type="radio" name="data[ishow]" {if $item[ishow]==0}checked{/if} value="0" />不启用</label>
+                        </div>
+                        <div class="input_nohead_wrap_s">
+                            {if empty($item)}
+                            <button href="{url /media_friendLink_insert}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_friendLink_index}"}'>保存</button>
+                            {else}
+                            <input type="hidden" name="id" value="{$item[id]}" />
+                            <button href="{url /media_friendLink_update}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_friendLink_index}"}'>保存</button>
+                            {/if}
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

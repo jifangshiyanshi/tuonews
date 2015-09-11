@@ -1,0 +1,26 @@
+{include common.header}
+    <!--content start-->
+    <section class="content">
+        <div class="login_tab account_manage">
+            <ul class="tab_menu">
+                <li class="current">
+                    激活您的邮箱
+                    <div class="border_top"></div>
+                    <div class="border_bottom"></div>
+                </li>
+            </ul>
+            <div class="tab_content">
+                <ul class="tab_con resetPass">
+                    <li class="tab_conItem changePass_text_from">
+                        <div>
+                            <a href="{url /common_authcode_sendEmailCode/?email=$email&template=$template}" class="red_btn" id="email-active">发送激活邮件</a>
+                            <a class="link_resend" href="#" id="sending" style="display: none;">正在发送……</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--content end-->
+
+{include common.footer}

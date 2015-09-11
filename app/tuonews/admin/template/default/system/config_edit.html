@@ -1,0 +1,70 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{url /admin_config_index}"><em class="glyphicon glyphicon-th-list"></em> 配置列表</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="fui-new"></em> 配置信息修改</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 所属分组</label>
+                        <div class="col-sm-10">
+                            <select name="data[groupkey]" data-toggle="select" class="form-control select select-default">
+                                {loop $groups $key $value}
+                                <option value="{$key}" {if $key == $item[groupkey]}selected{/if}>{$value}</option>
+                                {/loop}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 变量名</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[varname]" class="form-control" value="{$item[varname]}" placeholder="变量名">
+                            <p class="help-block">同一个组的变量名必须保持唯一性,长度在30以内。</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 变量值</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[varval]" class="form-control" placeholder="变量值">{$item[varval]}</textarea>
+                            <p class="help-block">长度在500以内,不区分中英文。</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注说明</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[bak]" class="form-control" placeholder="变量值">{$item[bak]}</textarea>
+                            <p class="help-block">长度在100以内，不区分中英文。</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="hidden" name="id" value="{$item[id]}">
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{url /admin_config_index}"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

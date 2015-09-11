@@ -1,0 +1,40 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--动态-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="{url /user_article_index}">文章</a></li>
+                    <!--<li><a href="{url /user_article_comment}">评论</a></li>-->
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!-- list start-->
+                    <div class="list_hdc">
+                        {loop $articles $value}
+                        <dl class="item">
+                            <dt class="head">
+                            <div class="date">{date $value[add_time] m-d H：i}</div>
+                            <a href="{url /user_article_edit/?id=$value[id]}">{$value[title]}</a>
+                            </dt>
+                            <dd class="context">
+                                {$value[bcontent]}
+                            </dd>
+                        </dl>
+                        {/loop}
+                    </div>
+                    <!-- list end-->
+                    {include common.module_page}
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

@@ -1,0 +1,23 @@
+<!--aside_recommend start-->
+<div class="aside_recommend aside_module">
+    <div class="module_head">
+        <!--<a href="" class="module_more">更多</a>-->
+        编辑推荐
+    </div>
+    <div class="list">
+        {loop $editorRec $value}
+        <dl class="item">
+            <!-- 66x58-->
+            <dd class="img">
+                <a href="{url /article_article_detail/?id=$value[id]}">
+                    <img class="lazy" src="{$appConfigs[image_block]}"  data-original="{expr getImageThumb($value[thumb], '66x58')}" alt="{$value[title]}"/>
+                </a>
+            </dd>
+            <dt class="head">
+                <a href="{url /article_article_detail/?id=$value[id]}">{$value[title]}</a>
+            </dt>
+        </dl>
+        {/loop}
+    </div>
+</div>
+<!--aside_recommend end-->

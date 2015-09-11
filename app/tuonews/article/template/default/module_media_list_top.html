@@ -1,0 +1,29 @@
+<!--media_list_top start-->
+<div class="media_list_top">
+    <div class="item_box">
+        {loop $medias[recommends] $value}
+        <dl class="item">
+            <dd class="face">
+                <a href="{url /article_media_detail/?id=$value[id]}">
+                    <img class="lazy" src="{$appConfigs[image_block]}" data-original="{expr getImageThumb($value[logo], '137x137')}" alt="{$value[name]}"/>
+                </a>
+            </dd>
+            <dt class="name"><a href="{url /article_media_detail/?id=$value[id]}">{$value[name]}</a></dt>
+            <dd class="des">{$value[intro]}</dd>
+            <dd class="operation">
+                <button class="subscribe_btn subscribe_ajax_btn {if $value[order]} subscribe_remove {else} subscribe_add {/if}"
+                        data-ajax-data='{"id":{$value[id]}}'
+                        data-ajax-url="{if $value[order]}{url /article_media_unorder}{else}{url /article_media_order}{/if}">
+                    <span class="on">
+                        <span class="icon icon_wadd"></span>订阅
+                    </span>
+                    <span class="off">
+                        <span class="icon icon_gminus"></span>取消订阅
+                    </span>
+                    </button>
+            </dd>
+        </dl>
+        {/loop}
+    </div>
+</div>
+<!--media_list_top end-->

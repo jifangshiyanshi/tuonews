@@ -1,0 +1,142 @@
+{include admin.top}
+
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!-- 搜索表单 -->
+            <form class="search-form" action="{$index_url}" method="get">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <select name="chanel_id" data-toggle="select" class="form-control input-sm select select-default">
+                            <option value="" >全部频道</option>
+                            {loop $subChanels $value}
+                            <option value="{$value[id]}" {if $params[chanel_id] == $value[id]}selected{/if}>{$value[name]}</option>
+                            {/loop}
+                        </select>
+                    </div>
+
+                    <div class="pull-left">
+                        <select name="order" data-toggle="select" class="form-control input-sm select select-default">
+                            <option value="" >默认排序</option>
+                            {loop $appConfigs['article.orderway'] $key $value}
+                            <option value="{$key}" {if $params[order]==$key}selected{/if}>{$value}</option>
+                            {/loop}
+                        </select>
+                    </div>
+
+                    <div class="pull-left">
+                        <select name="time" data-toggle="select" class="form-control input-sm select select-default">
+                            <option value="" >全部时间</option>
+                            {loop $appConfigs['article.statistics.time'] $key $value}
+                            <option value="{$key}" {if $params[time]==$key}selected{/if}>{$value}</option>
+                            {/loop}
+                        </select>
+                    </div>
+
+                    <div class="pull-right sbtn-addon">
+                        <div class="input-group">
+                            <input type="text" name="title" class="form-control input-sm" value="{$params[title]}" placeholder="请输入文章标题">
+                            <span class="input-group-addon fui-search input-sm">
+                                <button class="submit" type="submit"></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form><!-- 搜索表单 -->
+
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="20">
+                                <label class="checkbox primary">
+                                    <input type="checkbox" data-toggle="checkbox" id="check-all">
+                                </label>
+                            </th>
+                            <th>频道</th>
+                            <th>文章标题</th>
+                            <th>发布时间</th>
+                            <th>阅读数</th>
+                            <th>评论</th>
+                            <th>分享</th>
+                            <th>收藏</th>
+                            <th>喜欢</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+
+                        {loop $items $value}
+                        <tr>
+                            <td>
+                                <label class="checkbox default">
+                                    <input type="checkbox" data-toggle="checkbox" name="ids[]" value="{$value[id]}">
+                                </label>
+                            </td>
+                            <td><span class="badge">{$chanels[$value[chanel_id]][name]}</span></td>
+                            <td>
+                                {$value[title]}
+                                {if $value[rec_position] != ''}
+                                <span class="label label-success label-icon" data-toggle="tooltip" title="推荐文章">荐</span>
+                                {/if}
+                            </td>
+                            <td>{date $value[add_time]}</td>
+                            <td>{$value[hits]}</td>
+                            <td>{$value[share_times]}</td>
+                            <td>{$value[comment_times]}</td>
+                            <td>{$value[collect_times]}</td>
+                            <td>{$value[zan_times]}</td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container row">
+                    <a href="{url /admin_article_doTrash/?trash=1}" class="btn btn-sm btn-warning ajaxproxy" data-loading-text="正在删除"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload", "callBefore":"multiCallbefore(\"您真的要删除记录到回收站吗？，删除后的文章可以恢复。\");"}'>
+                        <i class="glyphicon glyphicon-trash"></i> 删除到回收站</a>
+
+                    {if $opt == 'trash'}
+                    <a href="{url /admin_article_doTrash/?trash=0}" class="btn btn-sm btn-primary ajaxproxy" data-loading-text="正在还原"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload"}'>
+                        <i class="glyphicon glyphicon-share-alt"></i> 还原</a>
+                    {/if}
+
+                    {if $opt == 'index'}
+                    <a href="{url /admin_article_doCheck/?check=0}" class="btn btn-sm btn-primary ajaxproxy"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload"}'>
+                        <i class="glyphicon glyphicon-ban-circle"></i> 取消审核</a>
+                    {/if}
+
+                    {if $opt == 'check'}
+                    <a href="{url /admin_article_doCheck/?check=1}" class="btn btn-sm btn-primary ajaxproxy"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload"}'>
+                        <i class="glyphicon glyphicon-ok-circle"></i> 通过审核</a>
+                    {/if}
+
+                    <a href="{url /admin_article_deletes}" class="btn btn-sm btn-danger ajaxproxy" data-loading-text="正在删除"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload", "callBefore":"multiCallbefore(\"您真的要彻底删除文章吗，不可恢复。\");"}'>
+                        <i class="glyphicon glyphicon-remove"></i> 彻底删除</a>
+
+                </div>
+            </form>
+
+            <div class="pagination pull-right">{$pagemenu}</div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{res:js article.js}
+
+{include admin.footer}

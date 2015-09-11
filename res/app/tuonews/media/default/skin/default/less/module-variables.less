@@ -1,0 +1,310 @@
+@charset "UTF-8";
+//common var
+//默认红色
+@redFont: #e30920;
+@redBtn: #e30920;
+@redBorder: #e30920;
+@redBg: #e30920;
+//默认黑色字体
+@blackText: #000;
+//默认表单前置文字
+@blackFormHead: #000;
+//所有灰色边框
+@grayBorder: #d0d0d0;
+//输入框边框
+@grayInputBorder: #cecece;
+//图片边框
+@grayImgBorder: #f2f2f2;
+//默认灰色文本
+@grayText: #666;
+//灰色按钮
+@grayBtnBg: #c4c4c4;
+@grayBtnText: #000;
+//浅灰按钮
+@lightGrayText: #999;
+@lightGrayBtnBg: #c4c4c4;
+@lightGrayBtnText: #fff;
+@lightGrayBg: #f1f1f1 ;
+//侧栏 父级 浅灰
+@lightGrayHeader: #5e5e5e;
+//tag
+@grayTagBg: #f8f8f8;
+//tag连接
+@blueTagLink: #8193ae;
+@grayTagBorder: #e5e5e5;
+@blueLink: #4795d3;
+@bluetext: #4795d3;
+//绿色按钮
+@glassBtnBg: #9ed643;
+@glassBtnBorder: #8ac726;
+//function
+//大小定义方法
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size; @size);
+}
+//text
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//alpha
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+//css triangle 三角形
+.triangle-top-left(@topW,@topC,@leftW,@leftC) {
+  &:extend(.inline-block);
+  .square(0px);
+  border-top: @topW solid @topC;
+  border-left: @leftW solid @leftC;
+}
+.triangle-top-right(@topW,@topC,@rightW,@rightC) {
+  &:extend(.inline-block);
+  .square(0px);
+  border-top: @topW solid @topC;
+  border-right: @rightW solid @rightC;
+}
+.triangle-top-bottom-left(@topW,@topC,@bottomW,@bottomC,@leftW,@leftC) {
+  &:extend(.inline-block);
+  .square(0px);
+  border-top: @topW solid @topC;
+  border-bottom: @bottomC solid @bottomC;
+  border-left: @leftW solid @leftC;
+}
+.triangle-top-bottom-right(@topW,@topC,@bottomW,@bottomC,@rightW,@rightC) {
+  &:extend(.inline-block);
+  .square(0px);
+  border-top:@topW solid @topC;
+  border-bottom: @bottomC solid @bottomC;
+  border-right:@rightW solid @rightC;
+}
+//box shadow
+.box-shadow(@shadow) {
+  &:extend(.iecss);
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+  box-shadow: @shadow;
+}
+//border radius
+.border-radius(@radius){
+  &:extend(.iecss);
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
+}
+.transition-property(@transition-property) {
+  -webkit-transition-property: @transition-property;
+  transition-property: @transition-property;
+}
+.transition-delay(@transition-delay) {
+  -webkit-transition-delay: @transition-delay;
+  transition-delay: @transition-delay;
+}
+.transition-duration(@transition-duration) {
+  -webkit-transition-duration: @transition-duration;
+  transition-duration: @transition-duration;
+}
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+  -moz-transition: -moz-transform @transition;
+  -o-transition: -o-transform @transition;
+  transition: transform @transition;
+}
+
+// Transformations
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees); // IE9+
+  transform: rotate(@degrees);
+}
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+  -ms-transform: scale(@ratio); // IE9+
+  transform: scale(@ratio);
+}
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y); // IE9+
+  transform: translate(@x, @y);
+}
+.skew(@x; @y) {
+  -webkit-transform: skew(@x, @y);
+  -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+  transform: skew(@x, @y);
+}
+.translate3d(@x; @y; @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}
+
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+  -ms-transform: rotateX(@degrees); // IE9+
+  transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+  -ms-transform: rotateY(@degrees); // IE9+
+  transform: rotateY(@degrees);
+}
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+  -moz-perspective: @perspective;
+  perspective: @perspective;
+}
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+  -moz-perspective-origin: @perspective;
+  perspective-origin: @perspective;
+}
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+  -moz-transform-origin: @origin;
+  transform-origin: @origin;
+}
+
+// Animations
+.animation(@animation) {
+  -webkit-animation: @animation;
+  animation: @animation;
+}
+//icon 设置icon 宽高 x y 位置
+.setIcon(@width,@height,@posX,@posY){
+  .size(@width,@height);
+  background-position: @posX @posY ;
+}
+//线性过渡
+.linear-gradient(@fromC,@toC){
+  &:extend(.iecss);
+  background: @toC;
+  background:-moz-linear-gradient(@fromC,@toC);
+  background:-webkit-gradient(linear,center top,center bottom,from(@fromC),to(@toC));
+  background:-webkit-linear-gradient(@fromC,@toC);
+  background:-o-linear-gradient(@fromC,@toC);
+  background:-ms-linear-gradient(@fromC,@toC);
+  background:linear-gradient(@fromC,@toC);
+  -pie-background:linear-gradient(@fromC,@toC);
+}
+
+/* common */
+.min_width {
+  min-width: 960px;
+}
+.max_width {
+  &:extend(.min_width);
+  width: 960px;
+  margin:0 auto;
+}
+.fl{
+  float:left;
+  display:inline;
+}
+.fr{
+  float:right;
+  display:inline;
+}
+/*clearfloat*/
+.clearfix {
+  *zoom:1;
+  &:after{
+    content:".";
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both;
+  }
+}
+.hidden{
+  display: none;
+}
+/*reset*/
+/*iecss3 兼容 路径上线时候需要修改*/
+.iecss {
+  behavior: url(../htc/pie.htc);
+}
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+//默认 连接过渡
+a {
+  .transition(all 0.3s );
+}
+.btn {
+  border: 0;
+  cursor: pointer;
+  &:active,
+  &:hover {.opacity(0.8)}
+}
+.vertical_span {
+  &:extend(.inline-block);
+  height: 100%;
+  vertical-align:middle;
+}
+//延迟加载
+.lazy {
+  background: url("../images/loading.gif") no-repeat 50% 50%;
+  min-height: 16px;
+  min-width: 16px;
+}
+.gray_radius_btn {
+  @shadow: 0 1px 1px #c1c1c1 ,0 3px 1px #e3e3e3;
+  &:extend(.inline-block);
+  .linear-gradient(#f6f6f6,#d5d5d5);
+  .border-radius(35px);
+  .size(104px,35px);
+  .btn();
+  .box-shadow(@shadow);
+  line-height: 35px;
+  text-align: center;
+  border-radius: 35px;
+  color: @redFont;
+  font-size: 14px;
+}
+.red_btn {
+  .btn();
+  .size(99px,30px);
+  .border-radius(3px);
+  background: @redBtn;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.link_hover {
+  color: @redFont;
+}
+.add_red_btn {
+  .red_btn();
+  &:extend(.inline-block);
+  line-height: 30px;
+  text-align: center;
+}

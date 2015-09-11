@@ -1,0 +1,72 @@
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>移动端页面模板</title>
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="keywords" contenta="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+{res:css reset.css}
+{res:css eyes.css}
+</head>
+{gres:js jquery-1.11.2.min.js}
+<body>
+	{include mobile.chanel_header}
+	<div class='content'>
+		{loop $items $item}
+		<div class='today-news'>
+			<div class='msg'>
+				<p class='type'>{$item[chanel]}</p>
+				<p class='focus-detail'>
+                    <span class='time'>BY<span class='name'>{$item[media]}</span></span>
+                    <span class='author'>{$item[time]}</span>
+                </p>
+			</div>
+			<h3><a href="{$item[url]}">{$item[title]}</a></h3>
+			<a href="{$item[url]}">
+                <img src="{$item[thumb]}">
+			</a>
+		</div>
+		{/loop}
+	</div>
+	<div class='loading-more-wraper'>
+		<p class='loading-more'>加载更多</p>
+	</div>
+    {include mobile.module_index_up}
+    {include mobile.module_index_footer}
+</body>
+{res:js template.js}
+<script id="test" type="text/html">
+{{each data as value}}
+<div class='today-news'>
+    <div class='msg'>
+        <p class='type'>{{value.chanel}}</p>
+        <p class='focus-detail'><span class='time'>BY<span class='name'>{{value.media}}</span></span><span class='author'>{{value.time}}</span></p>
+    </div>
+    <h3><a href="{{value.url}}">{{value.title}}</a></h3>
+    <a href="{{value.url}}">
+        <img src="{{value.thumb}}">
+        <p class='msg'>{{value.bcontent}}</p>
+    </a>
+</div>
+{{/each}}
+</script>
+<script type="text/javascript">
+    var pn = 2;
+    var id = {$id};
+    var sid = {$sid};
+    $('.loading-more').on('touchend',function (e) {
+        e.preventDefault();
+        $.ajax({url:"{url /mobile_index_chanelJson}",type:"get",dataType:"json",data:{page:pn,id:id,sid:sid},success:function(data){
+            if (data.state == 1) {
+                pn++;
+                var html = template('test', data);
+                $('.content').append(html);
+            } else {
+                $('.loading-more').hide();
+            }
+        }});
+    })
+</script>
+</html>

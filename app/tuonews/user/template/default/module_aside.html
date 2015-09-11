@@ -1,0 +1,32 @@
+<!--user_aside start-->
+<ul class="user_aside">
+    <li class="item {if $currentOpt == 'ucenter@index'}current{/if}">
+        <a href="{url /user_ucenter_index}">后台管理中心</a>
+    </li>
+    <li class="item {if $currentOpt == 'ucenter@profile'}current{/if}">
+        <a href="{url /user_ucenter_profile}">编辑资料</a>
+    </li>
+    <li class="item {if $currentOpt == 'ucenter@password'}current{/if}">
+        <a href="{url /user_ucenter_password}">密码修改</a>
+    </li>
+    <li class="item {if $currentOpt == 'ucenter@subscribe' || $currentOpt == 'ucenter@collection'}current{/if}">
+        <a href="{url /user_ucenter_subscribe}">订阅收藏</a>
+    </li>
+    <li class="item {if $currentOpt == 'article@add'}current{/if}">
+        <a href="{url /user_article_add}">发稿</a>
+    </li>
+    <li class="item {if $currentOpt == 'tipoff@index' || $currentOpt == 'tipoff@lists'}current{/if}">
+        <a href="{url /user_tipoff_index}">爆料</a>
+    </li>
+    <li class="item {if $currentOpt == 'article@index'}current{/if}">
+        <a href="{url /user_article_index}">动态</a>
+    </li>
+    <li class="item {if $currentOpt == 'message@index'}current{/if}">
+        <a href="{url /user_message_index}">消息</a>
+    </li>
+    <li class="item enter_item {if $currentOpt == 'ucenter@mediaApply' || $currentOpt == 'ucenter@mediaApplyList'}current{/if}">
+        <a href="{url /user_ucenter_mediaApply}" class="mediaApply_popup_btn"><span class="icon icon_enter_small"></span>申请入驻</a>
+    </li>
+</ul>
+<!--user_aside end-->
+{include user.module_mediaApply_popup}

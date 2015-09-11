@@ -1,0 +1,227 @@
+{include common.header}
+<!--content end-->
+<section class="content">
+    <div class="reg_tab account_manage">
+        <ul class="tab_menu">
+            <li class="current">
+                初次登录
+                <div class="border_top"></div>
+                <div class="border_bottom"></div>
+            </li>
+            <li>
+                已有帐号
+                <div class="border_top"></div>
+                <div class="border_bottom"></div>
+            </li>
+        </ul>
+        <div class="tab_content">
+            <ul class="tab_con">
+                <!-- 初次登录 -->
+                <li class="tab_conItem">
+                    <div class="binding_form">
+                        <form action="{url /user_register_thirdRegister}" method="post" id="binding_form" autocomplete="off">
+                            <div class="input_wrap">
+                                <label class="input_head" for="tname"></label>
+                                {if $qqsign}
+                                    {if !empty($userqqInfo[figureurl_qq_1])}
+                                        <img class="face" src="{$userqqInfo[figureurl_qq_1]}" alt="{$userqqInfo[nickname]}"/>
+                                        <input type="hidden" name="data[head]" value="{$userqqInfo[figureurl_qq_1]}" />
+                                    {else}
+                                        {if !empty($userqqInfo[figureurl_qq_2])}
+                                            <img class="face" src="{$userqqInfo[figureurl_qq_2]}" alt="{$userqqInfo[nickname]}"/>
+                                            <input type="hidden" name="data[head]" value="{$userqqInfo[figureurl_qq_2]}" />
+                                        {else}
+                                            <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                            <input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />
+                                        {/if}
+                                    {/if}
+                                {/if}
+                                {if $wxsign}
+                                    {if !empty($userwxInfo[headimgurl])}
+                                        <img class="face" src="{$userwxInfo[headimgurl]}" alt="{$userwxInfo[nickname]}"/>
+                                        <input type="hidden" name="data[head]" value="{$userwxInfo[headimgurl]}" />
+                                    {else}
+                                        <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                        <input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />
+                                    {/if}
+                                {/if}
+                                {if $wbsign}
+                                    {if !empty($userwbInfo[avatar_large])}
+                                        <img class="face" src="{$userwbInfo[avatar_large]}" alt="{if !empty($userwbInfo[screen_name])}{$userwbInfo[screen_name]}{else}{$userwbInfo[name]}{/if}"/>
+                                        <input type="hidden" name="data[head]" value="{$userwbInfo[avatar_large]}" />
+                                    {else}
+                                        <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                        <input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />
+                                    {/if}
+                                {/if}
+                            </div>
+                            <h1 class="input_nohead user_name">
+                                {if $userqqInfo}
+                                    {$userqqInfo[nickname]}
+                                    <input type="hidden" name="data[nickname]" value="{$userqqInfo[nickname]}" />
+                                {/if}
+                                {if $userwxInfo}
+                                    {$userwxInfo[nickname]}
+                                    <input type="hidden" name="data[nickname]" value="{$userwxInfo[nickname]}" />
+                                {/if}
+                                {if $userwbInfo}
+                                    {if !empty($userwbInfo[screen_name])}{$userwbInfo[screen_name]}{else}{$userwbInfo[name]}{/if}
+                                    <input type="hidden" name="data[nickname]" value="{if $userwbInfo[screen_name]}{$userwbInfo[screen_name]}{else}{$userwbInfo[name]}{/if}" />
+                                {/if}
+                            </h1>
+                            <div class="input_nohead user_tips">请填写用户名确保账号不会丢失</div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="tname">用户名:</label>
+                                <input class="input" type="text" name="data[username]" tiptxt="用户名" dtype="usname" value="" id="tname" />
+                                <span class="tips">6-20位，英文字母、下划线或数字的组合</span>
+                            </div>
+
+                            <div class="input_wrap">
+                                <label class="input_head" for="tpass">密码:</label>
+                                <input class="input" type="password" name="data[password]" tiptxt="密码" value="" id="tpass"/>
+                                <span class="tips">6-20位字母、数字或英文符号，区分大小写</span>
+                            </div>
+
+                            <div class="input_wrap">
+                                <label class="input_head" for="email">邮箱:</label>
+                                <input class="input" type="text" name="data[email]" tiptxt="邮箱" dtype="email" value="" id="email" />
+                            </div>
+
+                            <!-- hidden-->
+                            {if !empty($userqqInfo)}
+                                <input type="hidden" name="data[qq_openid]" value="{$userqqInfo[openid]}"/>
+                                <input type="hidden" name="data[sex]" value="{if $userqqInfo[gender] == '男'}0{else}1{/if}" />
+                            {/if}
+                            {if !empty($userwxInfo)}
+                                <input type="hidden" name="data[wx_openid]" value="{$userwxInfo[openid]}"/>
+                                <input type="hidden" name="data[sex]" value="{if $userwxInfo[sex] == 1}0{else}1{/if}" />
+                            {/if}
+                            {if !empty($userwbInfo)}
+                                <input type="hidden" name="data[wb_openid]" value="{$userwbInfo[id]}"/>
+                                <input type="hidden" name="data[sex]" value="{if $userwbInfo[gender] == 'm'}0{else}1{/if}" />
+                            {/if}
+                            <!-- hidden-->
+                            <div class="input_wrap">
+                                <label class="input_head"></label>
+                                <button class="red_btn" id="binding_btn" type="submit" data-form="binding_form" >注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <!-- 已有帐号 -->
+                <li class="tab_conItem">
+                    <div class="fill_from">
+                        <form action="{url /user_register_thirdRegister}" method="post" id="fill_from" autocomplete="off">
+                        <div class="info">
+                            <span class="fl head"></span>
+                            <span class="fl">
+                                {if $qqsign}
+                                    {if $userqqInfo}
+                                        {if $userqqInfo[figureurl_qq_1]}
+                                            <img class="face" src="{$userqqInfo[figureurl_qq_1]}" alt="{$userqqInfo[nickname]}"/>
+                                            <!--<input type="hidden" name="data[head]" value="{$userqqInfo[figureurl_qq_1]}" />-->
+                                        {else}
+                                            {if $userqqInfo[figureurl_qq_2]}
+                                                <img class="face" src="{$userqqInfo[figureurl_qq_2]}" alt="{$userqqInfo[nickname]}"/>
+                                                <!--<input type="hidden" name="data[head]" value="{$userqqInfo[figureurl_qq_2]}" />-->
+                                            {else}
+                                                <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                                <!--<input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />-->
+                                            {/if}
+                                        {/if}
+                                        <div class="text">
+                                            {$userqqInfo[nickname]}
+                                            <!--<input type="hidden" name="data[nickname]" value="{$userqqInfo[nickname]}" />-->
+                                        </div>
+                                    {/if}
+                                {/if}
+                                {if $wxsign}
+                                    {if $userwxInfo}
+                                        {if $userwxInfo[headimgurl]}
+                                            <img class="face" src="{$userwxInfo[headimgurl]}" alt="{$userwxInfo[nickname]}"/>
+                                            <!--<input type="hidden" name="data[head]" value="{$userwxInfo[headimgurl]}" />-->
+                                        {else}
+                                            <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                            <!--<input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />-->
+                                        {/if}
+                                        <div class="text">
+                                            {$userwxInfo[nickname]}
+                                            <!--<input type="hidden" name="data[nickname]" value="{$userwxInfo[nickname]}" />-->
+                                        </div>
+                                    {/if}
+                                {/if}
+                                {if $wbsign}
+                                    {if $userwbInfo}
+                                        {if $userwbInfo[avatar_large]}
+                                            <img class="face" src="{$userwbInfo[avatar_large]}" alt="第三方头像"/>
+                                            <!--<input type="hidden" name="data[head]" value="{$userwbInfo[avatar_large]}" />-->
+                                        {else}
+                                            <img src="/res/global/images/default_face.jpg.106x106.jpg" alt="第三方头像"/>
+                                            <!--<input type="hidden" name="data[head]" value="/res/global/images/default_face.jpg.106x106.jpg" />-->
+                                        {/if}
+                                        <div class="text">
+                                            {if $userwbInfo[screen_name]}{$userwbInfo[screen_name]}{else}{$userwbInfo[name]}{/if}
+                                            <!--<input type="hidden" name="data[nickname]" value="{if $userwbInfo[screen_name]}{$userwbInfo[screen_name]}{else}{$userwbInfo[name]}{/if}" />-->
+                                        </div>
+                                    {/if}
+                                {/if}
+                            </span>
+                        </div>
+                        <div class="main">
+                            <p class="head">驼牛网帐号</p>
+                                <div class="input_wrap">
+                                    <label class="input_head" for="ename"><span class="star">*</span>用户名:</label>
+                                    <input class="input" type="text" name="data[username]" tiptxt="用户名" value="" dtype="username" id="ename"/>
+                                    <span class="tips">4-20位，英文字母、下划线或数字的组合</span>
+                                </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="password"><span class="star">*</span>密码:</label>
+                                <input class="input" type="text" name="data[password]" tiptxt="密码" dtype="password" id="password" value="" autofocus/>
+                            </div>
+                            {if $userqqInfo[openid]}
+                                <input type="hidden" nam="data[qq_openid]" value="$userqqInfo[openid]" />
+                            {/if}
+                            {if $userwxInfo[openid]}
+                                <input type="hidden" nam="data[wx_openid]" value="{$userwxInfo[openid]}" />
+                            {/if}
+                            {if $userwbInfo[id]}
+                                <input type="hidden" nam="data[wb_openid]" value="{$userwbInfo[id]}" />
+                            {/if}
+                                <div class="input_wrap">
+                                    <label class="input_head"></label>
+                                    <button class="red_btn" id="fill_btn" data-form="fill_from">绑定</button>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--<script>
+    seajs.use(['jq_plugins/JDialog'],function(JDialog){
+        var JDialog = JDialog.JDialog;
+        $("#ename").change(function() {
+            $.get("{url /user_register_checkThird}",{username:$(this).val()},function(data){
+                var data = eval("("+data+")");
+                if(data.state == "error"){
+                    JDialog.tip.work({type:"error",content:data.message,timer:1000});
+                }else{
+
+                }
+            });
+        });
+        $("#tname").change(function() {
+            $.get("{url /user_register_checkThird}",{username:$(this).val()},function(data){
+                var data = eval("("+data+")");
+                if(data.state == "error"){
+                    JDialog.tip.work({type:"error",content:data.message,timer:1000});
+                }
+            });
+        });
+    });
+
+</script>-->
+<!--content end-->
+{include common.footer}

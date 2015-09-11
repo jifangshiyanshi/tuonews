@@ -1,0 +1,329 @@
+/* CSS Document */
+/*去掉IE下点击会出现虚线框*/
+a,button {outline:none; blr:expression(this.onFocus=this.blur());}
+a:active {outline:none;}
+a:visited {outline:none;}
+/* 圆角代码 */
+.cornerTop {
+	border-top-right-radius:5px; border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px; -webkit-border-top-left-radius:5px;
+	-khtml-border-top-right-radius:5px; -khtml-border-top-left-radius:5px;
+	-moz-border-top-right-radius:5px; -moz-border-top-left-radius:5px;}
+	
+#lock_panel {
+	position:absolute; z-index:2000; 
+	background-color:#000; display:none; 
+	left:0px; top:0px;}
+
+/* 普通弹出窗口样式 */
+	/*背景边框*/
+#jdialog_win_box_bg {z-index:3000;}
+#jdialog_confirm_box_bg {z-index: 3010; background-color:#000000; position:absolute;}
+	/*窗口*/	
+#jdialog_win_box {
+	z-index:3009; zoom:1; overflow:hidden;
+	background:#FFF; display:none;}
+/* 默认皮肤 */
+.jdialog_win_default {border:1px solid #DDD;}
+.jdialog_win_default #jdialog_win_title_box {
+    position: relative;
+    zoom:1; overflow:hidden; 
+    background:url(../images/jwindow_default.gif) repeat-x center -111px; 
+    border-bottom:1px solid #CCCCCC; cursor:default;}
+.jdialog_win_default #jdialog_win_title {
+    font-size:12px;
+    height:30px;
+    line-height:30px; 
+     font-weight:bold;
+     color:#393836; 
+    cursor: move;
+     text-align:left;
+     padding-left: 20px;
+     font-family:'宋体';}
+.jdialog_win_default .jdialog_win_close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width:24px; height:20px; 
+    background:url(../images/jwindow_default.gif) no-repeat -53px -36px;
+    cursor:pointer; 
+    transition: all 0.5s ease-out 0.1s; 
+    -o-transition:all 0.5s ease-out 0.1s; 
+    -webkit-transition:all 0.5s ease-out 0.1s; 
+    -moz-transition:all 0.5s ease-out 0.1s;}
+.jdialog_win_default .jdialog_win_close:hover { background-color:#B40000;}
+#jdialog_win_content {font-size:12px; overflow-x:hidden;}
+
+/* 棕色皮肤 */
+.jdialog_win_brown {border:1px solid #6E4E2B; border-top:none;}
+.jdialog_win_brown #jdialog_win_title_box {height:37px; zoom:1; overflow:hidden; background:url(../images/jdialog_win_brown.gif) repeat-x center top; cursor:default;}
+.jdialog_win_brown #jdialog_win_title {float:left; height:37px; line-height:30px; font-size:12px;  font-weight:bold; color:#FFFFFF; text-align:center; font-family:'宋体';}
+.jdialog_win_brown .jdialog_win_close {float:right; background:url(../images/jdialog_win_brown.gif) no-repeat -90px -72px; width:39px; height:21px; cursor:pointer; margin:5px 5px 0;}
+.jdialog_win_brown .jdialog_win_close:hover {background-position:-90px -43px;}
+
+
+	/* 提示框样式控制 */
+.jtip_box {position:absolute;  margin:auto; z-index:10000; display:none; height:54px; zoom:1; overflow:hidden; _height:48px;}
+.jtip_left_icon, .jtip_content, .jtip_right, .jtip_load_img {float:left; background:url(../images/gb_tips.png) no-repeat; _background:url(../images/gb_tips_ie6.gif) no-repeat; display:inline-block; height:54px; font-weight:bold; font-size:14px; color:#404040;}
+	
+.jtip_left_icon {width:46px; *width:43px;}
+.jtip_ok  {background-position:-5px 0px; _background-position:-8px 0px;}
+.jtip_error{background-position:-5px -108px; _background-position:-8px -108px;}
+.jtip_warn {background-position:-5px -54px; _background-position:-8px -54px;}
+.jtip_loading {background-position:-5px -54px; _background-position:-8px -54px; width:10px;}
+.jtip_load_img { background-position:-5px -161px; background-repeat:repeat-x; width:20px;}
+#jtip_loading_icon {display:inline-block; background:url(../images/gb_tip_loading.gif) no-repeat center right; width:20px; height:54px; _height:48px;}
+
+.jtip_content {background-position:-5px -161px; background-repeat:repeat-x; line-height:54px; _line-height:48px; font-size:14px; padding:0px 10px;}
+.jtip_right {background-position:left top; width:5px; *width:3px;}
+
+
+	/*小型确认框*/
+#jdialog_confirm {position:absolute; display:none; z-index:3999; background-color:#FFFFFF;}
+#jdialog_confirm_titleBox {font-size:14px; font-weight:bold; padding-left:10px; zoom:1; overflow:hidden; cursor:default;}
+#jdialog_confirm_titleBox a {margin-right:5px; *display:inline;}
+#jdialog_confirm_title {float:left;}
+
+#jdialog_confirm_CBOX {zoom:1; overflow:hidden; padding-left:8px;}
+#jdialog_confirm_icon {
+	float:left;
+	width:40px; height:50px;
+	background:url(../images/jdialog_confirm_icon.gif) no-repeat}
+	
+#jdialog_confirm_CBOX .jdialog_confirm_icon_warn {background-position:left 7px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_ok {background-position:left -42px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_error {background-position:left -92px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_help {background-position:left -142px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_sad {background-position:left -192px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_smile {background-position:left -245px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_laugh {background-position:left -300px;}
+#jdialog_confirm_CBOX .jdialog_confirm_icon_loader {background:url(../images/loader.gif) no-repeat center center;}
+
+
+#jdialog_confirm_content {font-size:12px; text-align:left; line-height:120%; padding:10px 10px; float:left;}
+#jdialog_confirm_button {padding-bottom:10px;}
+#jdialog_confirm_button a {
+	display:inline-block; font-size:12px; 
+	text-align:center; margin-right:15px; text-decoration:none; 
+	border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px; 
+	-moz-border-radius:4px;}
+#jdialog_confirm_buttonInner {margin:auto; text-align:center;}
+/*默认皮肤*/
+.jdialog_confirm_default {}
+.jdialog_confirm_default_shadow {box-shadow:1px 1px 2px #C4C4C4; -webkit-box-shadow:1px 1px 2px #C4C4C4; -moz-box-shadow:1px 1px 2px #C4C4C4;}
+.jdialog_confirm_default #jdialog_confirm_titleBox {
+    height:30px; line-height:30px; color:#444444;
+    background:url(../images/jwindow_default.gif) repeat-x center -111px; 
+    border-bottom:1px solid #CCCCCC; cursor:default;}
+.jdialog_confirm_default #jdialog_confirm_titleBox a {
+    float:right; width:24px; height:20px; 
+    background:url(../images/jwindow_default.gif) no-repeat -53px -36px;
+    cursor:pointer; margin:5px 5px 0; 
+    transition: all 0.5s ease-out 0.1s; 
+    -o-transition:all 0.5s ease-out 0.1s; 
+    -webkit-transition:all 0.5s ease-out 0.1s; 
+    -moz-transition:all 0.5s ease-out 0.1s;
+}
+.jdialog_confirm_default #jdialog_confirm_titleBox a:hover { background-color:#B40000;}
+.jdialog_confirm_default #jdialog_confirm_content {
+    color:#CC0000; font-weight:bold;}
+.jdialog_confirm_default #jdialog_confirm_button a {
+    padding:5px 10px;
+    background:#0E75C4; 
+    color:#FFFFFF;}
+.jdialog_confirm_default #jdialog_confirm_button a:hover {
+    padding:5px 10px;
+    background:#428BCA;}
+
+/* 上传插件样式 */
+.upload-container {
+	padding-left: 5px;
+}
+.upload-element-box {
+	position: relative; margin-top:10px;
+}
+.upload-path {
+	border: 1px solid #e1e1e1; padding:6px 3px; width: 200px;
+}
+.upload-button {
+	position: absolute; z-index: 1; left: 212px;
+}
+.file-zone {
+	position: absolute; z-index: 1; left: 292px; display:none !important;
+}
+.upload-btn-group {
+	padding:10px;
+	text-align: center;
+}
+.upload-loading {
+	display : none;
+	position : absolute;
+	top:0;
+	left:0;
+	width : 100%;
+	height : 128px;
+	z-index : 9999;
+	background:#ffffff url(../images/loader.gif) no-repeat center center;
+}
+	
+/* 按钮样式 */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active {
+  background-image: none;
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default .badge {
+  color: #fff;
+  background-color: #333;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active{
+  color: #fff;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+
+	

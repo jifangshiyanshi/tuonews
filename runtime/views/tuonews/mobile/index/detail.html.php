@@ -1,0 +1,84 @@
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title><?php echo $item[title]?>-驼牛网-产业文化与媒体影响力传播交流平台</title>
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="keywords" contenta="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<?php echo $this->importResource('res', 'css', 'reset.css')?>
+<?php echo $this->importResource('res', 'css', 'new-detail.css')?>
+
+</head>
+<?php echo $this->importResource('gres', 'js', 'jquery-1.11.2.min.js')?>
+<body>
+<header class='clearfix'>
+        <div class='logo'>
+            <a href='<?php echo url("/mobile_index_index") ?>'>
+                <img src="<?php echo $appConfigs['res_url']?>/res/global/images/reception/logo.jpg">
+            </a>
+        </div>
+        <nav>
+            <a href='<?php echo url("/mobile_index_index") ?>'>
+                <span class='nav-btn' id='nav-btn'></span>
+            </a>
+        </nav>
+    </header>
+    <div class='content'>
+        <div class='focus-img-wraper'>
+            <h2 class='focus-side-tittle'><?php echo $item[title]?></h2>
+            <p class="author">BY <span><?php echo $item[media]?></span><?php echo $item[time]?></p>
+            <div class='text'>
+                <?php echo $item[content]?>
+            </div>
+        </div>
+        <div class='share clearfix'>
+            <!--<span>分享到：</span><a href="#">微博</a><a href="#">微信</a><a href="#">qq</a>-->
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style_32x32"><span class="jiathis_txt">分享到：</span>
+                <!--<a class="jiathis_button_weixin"></a>-->
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_yixin"></a>
+            </div>
+            <script type="text/javascript" >
+                var jiathis_config={
+                    siteNum:5,
+                    sm:"weixin,qzone,tqq,tsina,yixin",
+                    summary:"",
+                    boldNum:0,
+                    shortUrl:false,
+                    hideMore:true
+                }
+            </script>
+            <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+        </div>
+        <div class='today-news'>
+            <h3>您可能感兴趣的文章</h3>
+            <?php foreach ( $alikeArticle as $item ) { ?>
+            <a href='<?php echo url("/mobile_index_detail/?id=$item[id]") ?>'>
+                <img src="<?php echo $item[thumb]?>">
+                <p><?php echo $item[title]?></p>
+                <p class='author'>BY <span><?php echo $item[media]?></span></p>
+            </a>
+            <?php } ?>
+        </div>
+    </div>
+    <footer>
+        <a href="/topic/apply/activity_hone.html"><img src='<?php echo $appConfigs['res_url']?>/res/global/images/reception/ad.jpg'></a>
+    </footer>
+    <a class='up' href='#'></a>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?09911ff282f4012ce5a7afd27dd73ecf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

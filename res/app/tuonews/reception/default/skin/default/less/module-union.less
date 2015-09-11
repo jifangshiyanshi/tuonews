@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*aside_union*/
+.aside_union {
+  &:extend(.aside_module_frame);
+  padding-bottom: 5px;
+  .item {
+    .size(133px,78px);
+    &:extend(.inline-block);
+    border: 1px solid @grayBorder;
+    margin-bottom: 12px;
+    img {
+      .square(100%);
+    }
+  }
+}

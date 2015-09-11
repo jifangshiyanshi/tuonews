@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/*aside_search*/
+.aside_search {
+  .size(300-2px,38px);
+  position: relative;
+  border: 1px solid @grayBorder;
+  background: @grayBtn;
+  input {
+    .size(250px,38px);
+    border: 0;
+    background: #fff;
+    text-indent: 13px;
+    font-size: 14px;
+    line-height: 38px\9;
+  }
+  button {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: @grayBtn;
+    .size(300-250-1px,40px);
+  }
+}
+.aside_search_hot {
+  padding: 0 5px;
+  font-size: 13px;
+  line-height: 42px;
+  height: 42px;
+  overflow: hidden;
+  .head {
+    &:extend(.inline-block);
+    color: @grayLink;
+  }
+  .link {
+    &:extend(.inline-block);
+    color: @blackSideHeadLink;
+    margin: 0 2px;
+    cursor: pointer;
+    &:active,
+    &:hover{
+      color: @redFont;
+    }
+  }
+}

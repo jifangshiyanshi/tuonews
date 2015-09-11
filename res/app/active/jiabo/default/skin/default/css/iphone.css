@@ -1,0 +1,319 @@
+
+/*iPhone 6 and iPhone 6+ portrait*/
+@media only screen and (max-device-width: 640px), only screen and (max-device-width: 667px), only screen and (max-width: 480px) and (orientation : portrait){
+    .index-slogan:before{
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+    }
+    .index-slogan:after{
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+    }
+    .index-slogan span{
+        font-size: 2.5rem;
+        padding-left: 80px;
+    }
+    .index-slogan span.md-bird {
+        background:url(../images/index_text_short.png) left center no-repeat;
+        background-size: 72px 23px;
+    }
+    .index-slogan span.md-benifit {
+        background:url(../images/hasfuli.png) left center no-repeat;
+        background-size: 72px 23px;
+    }
+    .index_logo{
+        width: 130px;
+        height: 130px;
+        margin-left: -65px;
+    }
+    .index_logo img{
+        width: 101px;
+        height: 101px;
+    }
+    .arrow-down {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+    }
+    .index-arrow-down {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+    }
+    .company-slogan{
+        font-size: 2.6rem;
+        line-height: 2;
+    }
+
+    .intro-title {
+        font-size: 3rem;
+        line-height: 3.6rem;
+    }
+    .intro-title img{
+        width: 107px;
+        height: 18px;
+    }
+    .content{
+        font-size: 2rem;
+        line-height: 1.9;
+    }
+    .position_name a{
+        font-size: 2rem;
+        line-height: 2.4;
+    }
+    .position_name span{
+        background-size: 20px 20px;
+        padding-left: 25px;
+    }
+    .more_positions{
+        font-size: 2rem;
+        padding: 13px 0;
+    }
+    .end-h1 h1{
+        font-size: 2.2rem;
+    }
+    .nothing-logo{
+        width: 65px;
+        height: 56px;
+        margin: 35px 0 0 33px;
+    }
+    .lagou-btn{
+        font-size: 2rem;
+        padding: 13px 0;
+    }
+    .company-tri {
+        top: 43.2%;
+    }
+    .intro-tri {
+        top: 22.2%;
+    }
+    .share-to-moments{
+        background-size: 300px 154px;
+    }
+
+    .joinme {
+        padding-top: 15%;
+    }
+    .joinme .companyinfo {
+        font-size: 2.2rem;
+    }
+}
+
+@media only screen and (min-device-width: 720px) and (orientation : portrait){
+    .index-slogan:before{
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+    }
+    .index-slogan:after{
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+    }
+    .index-slogan span{
+        font-size: 4rem;
+        padding-left: 110px;
+    }
+    .index-slogan span.md-bird {
+        background:url(../images/index_text_short.png) left center no-repeat;
+        background-size: 100px 33px;
+    }
+    .index-slogan span.md-benifit {
+        background:url(../images/hasfuli.png) left center no-repeat;
+        background-size: 100px 33px;
+    }
+    .index_logo{
+        width: 170px;
+        height: 170px;
+        margin-left: -85px;
+    }
+    .index_logo img{
+        width: 130px;
+        height: 130px;
+        margin: 20px 0 0 20px;
+    }
+    .music {
+        position: fixed;
+        bottom: 5%;
+        left: 5%;
+        height: 50px;
+        width: 50px;
+        background: url(../images/music_open.png) no-repeat;
+        background-size: cover;
+        z-index: 99;
+    }
+    .music.stop {
+        background: url(../images/music_stop.png) no-repeat;
+        background-size: cover;
+    }
+    .index_logo {
+        bottom: 20%;
+    }
+    .arrow-down {
+        width: 84px;
+        height: 45px;
+        margin-left: -42px;
+    }
+    .index-arrow-down {
+        width: 84px;
+        height: 45px;
+        margin-left: -42px;
+    }
+    .company-slogan{
+        font-size: 4rem;
+        line-height: 2;
+    }
+    .company-slogan:before{
+        background-size: 14px 13px;
+        width: 14px;
+        height: 13px;
+    }
+    .company-slogan:after{
+        background-size: 14px 13px;
+        width: 14px;
+        height: 13px;
+        margin: 32px 0 0 10px;
+    }
+    .company-keyword{
+        font-size: 3rem;
+    }
+    .company-logo-circle{
+        width: 180px;
+        height: 180px;
+        margin-left: -90px;
+        top: -170px;
+    }
+    .company-logo-circle_last{
+        width: 180px;
+        height: 180px;
+        margin-left: -90px;
+        top: 20%;
+    }
+    .company-logo {
+        width: 180px;
+        height: 180px;
+    }
+    .company-white-block{
+        font-size: 1.8rem;
+    }
+    .company-icon1 {
+        background-size: contain;
+        width: 80px;
+        height: 83px;
+        position: absolute;
+        z-index: 10;
+        left: 10%;
+        top: -45px;
+    }
+    .company-icon1 p {
+        margin-top: 90px;
+        text-indent: -5px;
+    }
+    .company-icon2{
+        background: url("../images/icon2.png") no-repeat;
+        background-size: contain;
+        width: 110px;
+        height: 118px;
+        top: 120px;
+        left: 38%;
+    }
+    .company-icon2 p {
+        margin-top: 128px;
+        text-indent: -5px;
+    }
+    .company-icon3 {
+        background: url("../images/icon3.png") no-repeat;
+        background-size: contain;
+        width: 90px;
+        height: 97px;
+        position: absolute;
+        top: 10px;
+        right: 40px;
+    }
+    .position_name a{
+        font-size: 2.6rem;
+        line-height: 2;
+    }
+    .company-icon3 p {
+        margin-top: 100px;
+        text-indent: -5px;
+    }
+    .position_name span {
+        background-size: 25px 25px;
+        padding-left: 35px;
+    }
+    .more_positions {
+        font-size: 3rem;
+        padding: 20px 0;
+        margin: 40px 8% 0 8%;
+    }
+    .intro-title {
+        position: static;
+        font-size: 4rem;
+        line-height: 1.5;
+        margin-left: 6%;
+    }
+    .intro-title img{
+        width: 107px;
+        height: 18px;
+    }
+    .content{
+        font-size: 2rem;
+        line-height: 1.9;
+    }
+    .end-h1 h1{
+        font-size: 3.5rem;
+        padding-top: 10%;
+    }
+    .nothing-logo{
+        width: 65px;
+        height: 56px;
+        margin: 35px 0 0 33px;
+    }
+    .lagou-btn{
+        font-size: 2rem;
+        padding: 13px 0;
+    }
+    .company-tri {
+        top: 43.2%;
+    }
+    .intro-tri {
+        top: 22.2%;
+    }
+    .share-to-moments{
+        background-size: 300px 154px;
+    }
+
+    .joinme {
+        padding-top: 15%;
+    }
+    .joinme .companyinfo {
+        font-size: 3rem;
+    }
+    .joinme .joinbtn {
+        width: 65%;
+        height: 56px;
+        line-height: 56px;
+    }
+    .joinbtn i {
+        width: 27px;
+        height: 24px;
+        margin-right: 12px;
+    }
+    .joinme .joinbtn span {
+        font-size: 2.3rem;
+    }
+    .joinme .joinnumber {
+        font-size: 2rem;
+    }
+    .joinnumber strong {
+        font-size: 2rem;
+    }
+}
+.img-wraper-6 .form-box p{
+    font-size: 14px;
+}
+
+

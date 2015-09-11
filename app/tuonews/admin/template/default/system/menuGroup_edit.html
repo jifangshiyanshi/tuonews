@@ -1,0 +1,82 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 菜单分组管理</a>
+                </li>
+
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加菜单分组</a>
+                </li>
+
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="fui-new"></em> 修改菜单分组</a>
+                </li>
+            </ul>
+
+            <div class="alert alert-warning" role="alert">
+                <strong>操作说明：</strong> 菜单分组图标填写的是图标的css样式，具体样式参照bootstrap中的组件去填写。
+                <a href="http://v3.bootcss.com/components/" target="_blank">http://v3.bootcss.com/components/</a>
+                样式只要写后面的组合样式即可，通用样式不用填写！
+            </div>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 分组名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" placeholder="分组名称" value="{$item[name]}" required autofocus>
+                            <p class="help-block">中英文皆可，长度不超过20</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 分组key</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[tkey]" class="form-control" value="{$item[tkey]}" placeholder="分组key" required>
+                            <input type="hidden" name="tkey_bak" value="{$item[tkey]}">
+                            <p class="help-block">请保持唯一，并且长度不超过20</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 分组图标</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[icon]" class="form-control" value="{$item[icon]}" placeholder="分组图标">
+                            <p class="help-block">长度不超过16</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 排序数字</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" class="form-control" dtype="number" value="{$item[sort_num]}" placeholder="排序数字" required>
+                            <p class="help-block">数字越小越靠前，三位数以内</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="hidden" name="id" value="{$item[id]}">
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                            {if $pid > 0}
+                            <a href="{url /admin_blogcat_index/?pid=$pid}" class="btn btn-primary"><i class="glyphicon glyphicon-fast-backward"></i> 返回列表</a>
+                            {/if}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

@@ -1,0 +1,10 @@
+<!--aside_tag start-->
+<div class="aside_tag aside_module">
+    <div class="module_head">热门标签</div>
+    <div class="list">
+        {loop $hotTags $value}
+        <a class="item" href="{url /article_tags_detail/?id=$value[id]}">{$value[name]}</a>
+        {/loop}
+    </div>
+</div>
+<!--aside_tag end-->

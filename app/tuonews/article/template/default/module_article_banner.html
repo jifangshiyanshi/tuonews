@@ -1,0 +1,26 @@
+<!--banner start-->
+<section class="banner">
+    <div class="sliderBox">
+        <!--4个-->
+        <!--620x348-->
+        <ul class="slider">
+            {loop $indexRecommend $value}
+            <li>
+                <a href="{url /article_article_detail/?id=$value[id]}">
+                    <img class="lazy" src="{$value[thumb]}"/>
+                    <p>{$value[title]}</p>
+                </a>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+    <ul class="control">
+        {loop $indexRecommend $value}
+        <li>
+            <img class="lazy" src="{$appConfigs['res_url']}/res/global/images/reception/block.gif"  data-original="{$value[thumb]}"/>
+            <p>{$value[title]}</p>
+        </li>
+        {/loop}
+    </ul>
+</section>
+<!--banner end-->

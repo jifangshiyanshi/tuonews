@@ -1,0 +1,56 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 角色列表</a>
+                </li>
+                <li class="active">
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加角色</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 角色名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" max-length="20" placeholder="角色名称" required autofocus>
+                            <p class="help-block">20个字符之内，不区分中英文</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 排序数字</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" dtype="number" class="form-control" placeholder="排序数字" required>
+                            <p class="help-block">数字小的排序靠前，三位数以内</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">角色简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[summary]" class="form-control"></textarea>
+                            <p class="help-block">100个字符以内，不区分中英文</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$insert_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

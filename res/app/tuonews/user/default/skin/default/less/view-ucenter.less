@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/*ucenter*/
+.ucenter {
+  .face_img {
+    vertical-align: top;
+  }
+  .ucenter_edit_box {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .edit_btn {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    cursor: pointer;
+    .icon{
+      margin-left: 8px;
+    }
+  }
+  .bind_btn_box {
+    font-size: 0;
+    margin-bottom: 10px;
+    .bind_btn {
+      .size(100px,30px);
+      .border-radius(3px);
+      margin-left: 10px;
+      font-size: 14px;
+      color: #fff;
+      background: #209dc1;
+      vertical-align: middle;
+    }
+    .unbind_btn {
+      background: #c4c4c4;
+      cursor: default;
+    }
+  }
+  .edit_form {
+    padding: 0 100px 20px;
+    border-bottom: 1px dotted @grayBorder;
+    .input_head {
+      width: 120px;
+    }
+    .input_head_user {
+      width: 50px;
+    }
+    .input_nohead_wrap {
+      padding-left: 130px;
+    }
+    .des {
+      margin-bottom: 15px;
+      line-height: 32px;
+    }
+    .red_btn_user {
+      margin-left: 60px;
+    }
+    .textarea {
+      .size(412px,164px)
+    }
+    .w_textarea {
+      width: 100%;
+    }
+  }
+}
+
+.user_list {
+  .top_goback_link {
+    font-size: 14px;
+    height: 40px;
+    a{
+      color: @blueTagLink
+    }
+  }
+}
+/*media_apply*/
+.media_apply_text,
+.media_apply_textarea,
+.media_apply_head {
+  color: @blackText;
+  font-size: 14px;
+}
+.media_apply_head {
+  line-height: 40px;
+}
+.media_apply_textarea,
+.media_apply_text {
+  border: 1px solid @grayBorder;
+  line-height: 30px;
+  padding: 0 11px;
+}
+.media_apply_text {
+  margin-bottom: 30px;
+}
+.media_apply_textarea {
+  min-height: 162px;
+  margin-bottom: 35px;
+}
+.mediaApply {
+  .input_head {
+    width: 155px;
+  }
+  .input_tips_wrap {
+    margin-top: -15px;
+    padding-left: 165px;
+  }
+  .input_nohead_wrap {
+    padding-left: 165px;
+  }
+}
+/*mediaApply_popup*/
+.jdialog_win_mediaApply_popup {
+  #jdialog_win_title_box {
+    height: 40px;
+    position: relative;
+  }
+  .jdialog_win_close {
+    .icon();
+    .setIcon(12px,12px,-59px,-124px);
+    position: absolute;
+    right: 12px;
+    top: 12px;
+  }
+}
+.mediaApply_popup {
+  .clearfix();
+  padding: 50px 0 100px 50px;
+  .item {
+    &:extend(.fl);
+    margin: 0 40px;
+    width: 104px;
+    text-align: center;
+    .icon {
+      margin-bottom: 18px;
+    }
+  }
+}

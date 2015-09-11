@@ -1,0 +1,72 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="/media_config_index/">基本配置</a></li>
+                    <!--<li><a href="/media_config_template/">网站模板</a></li>-->
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!-- form -->
+                    <form class="module_form" id="content_add_form" action="">
+                        <div class="input_wrap">
+                            <label for="sitename" class="input_head input_head_s">网站名称：</label>
+                            <input type="text" class="input m_input" id="sitename" name="data[sitename]" value="{$siteInfo[sitename]}"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="sitetitle" class="input_head input_head_s">网站标题：</label>
+                            <input type="text" class="input m_input" id="sitetitle" name="data[sitetitle]" value="{$siteInfo[sitetitle]}"/>
+                        </div>
+
+                        <!--<div class="input_wrap">-->
+                            <!--<label for="num" class="input_head input_head_s">图片水印：</label>-->
+                            <!--<input type="text" class="input m_input"  name="data[water_picture]" value="{$siteInfo[water_picture]}"/>-->
+                        <!--</div>-->
+                        <!--<div class="input_wrap">-->
+                            <!--<label for="num" class="input_head input_head_s">水印透明度：</label>-->
+                            <!--<input type="text" class="input m_input" name="data[waterfall]" placeholder="0-100" value="{$siteInfo[waterfall]}"/>-->
+                        <!--</div>-->
+                        <div class="input_wrap">
+                            <label for="seo" class="input_head input_head_s">SEO关键字：</label>
+                            <input type="text" class="input m_input" id="seo" name="data[siteseo]" value="{$siteInfo[siteseo]}"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="sitecopy" class="input_head input_head_s">版权信息：</label>
+                            <input type="text" class="input m_input" id="sitecopy" name="data[sitecopy]" value="{$siteInfo[sitecopy]}"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="num" class="input_head input_head_s">备案号：</label>
+                            <input type="text" class="input m_input" id="num" name="data[siteicp]" value="{$siteInfo[siteicp]}"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="des" class="input_head input_head_s">网站描述：</label>
+                            <textarea class="textarea m_textarea" id="des" name="data[sitedescription]">{$siteInfo[sitedescription]}</textarea>
+                        </div>
+                        <div class="input_nohead_wrap">
+                            <button href="{url /media_config_update}"  class=" ajaxproxy red_btn" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_config_index}", "callBack":"checkBack(data);"}'>保存修改</button>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+    <script>
+        function  checkBack(data){
+            if(data.state == "ok"){
+                JDialog.tip.work({type:"ok", content:"修改成功", timer:2000});
+            }
+        }
+    </script>
+<!--content end-->
+{include user.footer}

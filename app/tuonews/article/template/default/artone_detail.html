@@ -1,0 +1,23 @@
+{include common.header}
+<!--content start-->
+<section class="content">
+    <div class="about_article_box">
+        <aside class="about_aside">
+            <ul class="list">
+                {loop $footNavis $value}
+                    {run echo $value[id]==$item[id] ? '<li class="current">' : '<li>';}<a href="{url /article_artone_service/?id=$value[id]}">{$value.title}</a></li>
+                {/loop}
+            </ul>
+        </aside>
+        <article class="about_article">
+            <h1 class="head">
+                <span class="text">{$item.title}</span>
+            </h1>
+            <div class="main">
+                {$item.content}
+            </div>
+        </article>
+    </div>
+</section>
+<!--content end-->
+{include common.footer}

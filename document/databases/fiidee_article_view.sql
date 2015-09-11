@@ -1,0 +1,1 @@
+drop view if exists `fiidee_article_view`;CREATE  VIEW fiidee_article_view AS   select a.aid AS id, a.tagid,  b.userid, b.thumb, b.chanel_id, b.media_id, b.title, b.bcontent, b.author,  b.add_time , b.update_time, b.hits, b.tags   from fiidee_article_tags_assoc as a   INNER JOIN fiidee_article as b on (a.aid = b.id AND b.ischeck=1 AND b.trash=0);

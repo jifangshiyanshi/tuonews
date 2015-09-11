@@ -1,0 +1,23 @@
+<!--aside_publish_detail start-->
+{if $mediaInfo}
+<div class="aside_module {$circleClass} aside_publish">
+
+    <div class="{$imageClass}">
+        <!--215x126-->
+        <img class="lazy" src="{$appConfigs[image_block]}" data-original="{expr getImageThumb($mediaInfo[logo], '126x126')}" alt="{$mediaInfo[name]}"/>
+    </div>
+    <div class="title">{$mediaInfo[name]}</div>
+    <div class="info">
+        {$mediaInfo[intro]}
+    </div>
+    <div class="about">
+        <div class="head"><div class="more"><a href="{url /article_media_detail/?id=$mediaInfo[id]}">更多</a></div><div class="head_text">相关报道</div></div>
+        <ul class="list">
+            {loop $mediaArticles $value}
+            <li class="item"><a href="{url /article_article_detail/?id=$value[id]}">{$value[title]}</a></li>
+            {/loop}
+        </ul>
+    </div>
+</div>
+{/if}
+<!--aside_publish_detail end-->

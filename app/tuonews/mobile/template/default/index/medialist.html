@@ -1,0 +1,83 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>移动端页面模板</title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" contenta="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {res:css reset.css}
+    {res:css zimeii.css}
+</head>
+{gres:js jquery-1.11.2.min.js}
+
+{if $css}
+<style>
+    .meiti img{width: 100%;height: 100px;margin: 0 auto;display: block; }
+    .meiti li a h3 {     padding: 10px 10px 0;}
+</style>
+{/if}
+
+<body >
+<header class='clearfix'>
+    <div class='top-title'>
+        <a href="/mobile_index_index.shtml">
+                <span class='logo'>驼牛网</span><span class='detail'>媒体第一开放平台</span>
+        </a>
+    </div>
+    <nav class='seconde-muni'>
+        {loop $mediaType $item}
+        <a class="{$item[current]}" href="{$item[url]}">{$item[name]}</a>
+        {/loop}
+    </nav>
+</header>
+<div class='content-wrap'>
+    <div class='content'>
+        <ul class='meiti'>
+            {loop $items $item}
+            <li>
+                <a href="{$item[url]}">
+                    <img src="{$item[logo]}">
+                    <h3>{$item[name]}</h3>
+                    <p>{$item[intro]}</p>
+                </a>
+            </li>
+            {/loop}
+        </ul>
+        <div class='loading-more-wraper'>
+            <p class='loading-more'>加载更多</p>
+        </div>
+    </div>
+</div>
+{include mobile.module_index_footer}
+</body>
+{res:js template.js}
+<script id="test" type="text/html">
+    {{each data as value}}
+    <li>
+        <img src="{{value.logo}}">
+        <a href="{{value.url}}">
+            <h3>{{value.name}}</h3>
+            <p>{{value.intro}}</p>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script type="text/javascript">
+    var pn = 2;
+    var id = {$id};
+    $('.loading-more').on('touchend',function (e) {
+        e.preventDefault();
+        $.ajax({url:"{url /mobile_index_medialist}",type:"get",dataType:"json",data:{page:pn,id:id},success:function(data){
+            if (data.state == 1) {
+                pn++;
+                var html = template('test', data);
+                $('.meiti').append(html);
+            } else {
+                $('.loading-more').hide();
+            }
+        }});
+    })
+</script>
+</html>

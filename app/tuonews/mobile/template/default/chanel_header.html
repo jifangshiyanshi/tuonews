@@ -1,0 +1,18 @@
+<header class='clearfix'>
+    <div class='top-title'><span class='logo'>驼牛网</span><span class='detail'>媒体第一开放平台</span></div>
+    <nav >
+        <ul id='menu'>
+            <li ><a href="{url /mobile_index_index}">首页</a></li>
+            {loop $levelOne $item}
+            <li class='{$item[current]}'><a href="{$item[url]}">{$item[name]}</a></li>
+            {/loop}
+        </ul>
+    </nav>
+    <nav>
+        <ul class='seconde-muni'>
+            {loop $levelTwo $item}
+            <li class='{$item[current]}'><a href="{$item[url]}">{$item[name]}</a></li>
+            {/loop}
+        </ul>
+    </nav>
+</header>

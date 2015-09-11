@@ -1,0 +1,65 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li {if $method=="index"}class="current"{/if}><a href="{url /media_nav_index/media_id-$media_id}">顶部导航</a></li>
+                    <!--<li {if $method=="bottom"}class="current"{/if}><a href="{url /media_nav_bottom/media_id-$media_id}">底部导航</a></li>-->
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav list-->
+                    <form class="module_form" id="content_add_form" name="">
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th >导航名称</th>
+                                <th>排序</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {else}
+                        {loop $items $val}
+                        <input type="hidden" name="ids[]" value="{$val[id]}" />
+                            <tr>
+                                <td>{$val[name]}</td>
+                                <td><input type="text" class="input small_input" name="data[{$val[id]}][sort_num]"  value="{$val[sort_num]}" /></td>
+                                <td>{date $val[add_time]}</td>
+                                <td>
+                                    <a href="{url /media_nav_navdetail/?id=$val[id]}">查看内容</a>
+                                    <a href="{url /media_nav_navEdit/?id=$val[id]}">修改</a>
+                                    <a href="{url /media_nav_delete/?id=$val[id]}" class="delone">删除</a>
+                                </td>
+                            </tr>
+                        {/loop}
+                        {/if}
+                        </tbody>
+                    </table>
+
+                    <div class="table_operation">
+                        <a href="{url /media_nav_navAdd}" class="add_red_btn">添加频道</a>
+                        <button href="{url /media_nav_update}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_nav_index}"}'>快速保存</button>
+                    </div>
+                    </form>
+                    <!--nav list-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

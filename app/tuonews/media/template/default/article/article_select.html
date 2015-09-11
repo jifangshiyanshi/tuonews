@@ -1,0 +1,47 @@
+{cres:css /app/tuonews/user/default/skin/default/css/tuonews_user_center.min.css}
+<table class="table_list" style="background: #ffffff;">
+    <thead>
+    <tr>
+        <th width="50">文章ID</th>
+        <th>文章标题</th>
+        <th width="150">操作</th>
+    </tr>
+    </thead>
+    <tbody id="content-tbody">
+
+    {if empty($items)}
+    <tr>
+        <td colspan="4">暂时没有数据</td>
+    </tr>
+    {/if}
+
+    {loop $items $value}
+    <tr id="tr-{$value[id]}">
+        <td>{$value[id]}</td>
+        <td style="text-align: left;">{$value[title]}</td>
+        <td>
+            <span style="color:#999999; {if !in_array($value[id], $selected)}display: none;{/if}">已添加</span>
+            <a href="javascript:void(0);" onclick="add(this);" {if in_array($value[id], $selected)}style="display: none;"{/if} data-id="{$value[id]}" data-title="{$value[title]}" class="add-article">添加</a>
+        </td>
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{gres:js jquery-1.11.2.min.js}
+<script>
+    //添加文章
+    function add(obj) {
+
+        //添加文章
+        var id = $(obj).attr('data-id');
+        var title = $(obj).attr('data-title');
+        if ( parent.__recommend.add(id,  title) ) {
+            //处理dom
+            $(obj).hide();
+            $(obj).prev().show();
+        }
+
+    }
+</script>
+<!-- page  menu -->
+{include common.module_page}

@@ -1,0 +1,50 @@
+{include common.header}
+<!--content end-->
+<section class="content">
+    <div class="login_tab account_manage">
+        <ul class="tab_menu">
+            <li class="current">
+                管理员邀请验证
+                <div class="border_top"></div>
+                <div class="border_bottom"></div>
+            </li>
+        </ul>
+        <div class="tab_content">
+            <ul class="tab_con">
+                <li class="tab_conItem">
+                    <p style="font-size: 16px; padding-left: 60px; padding-top: 20px; color: #0000cc">
+                        您被 <span style="color: #CC0000">{$media[name]}</span> 邀请成为其管理员，
+                        请您输入以下信息验证并激活您的管理员权限</p>
+                    <div class="login_form" style="width: 100%; margin-top: 10px;">
+                        <form method="post" autocomplete="off" id="invite_login_form">
+                            <div class="input_wrap">
+                                <label class="input_head" for="account">账号:</label>
+                                <input class="input" type="text" name="username" id="account" autofocus/>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="pass">密码:</label>
+                                <input class="input" type="password" name="password" id="pass"/>
+                            </div>
+
+                            <div class="input_wrap">
+                                <label class="input_head" for="authcode">邀请码:</label>
+                                <input class="input" type="text" name="authcode" id="authcode"/>
+                                <span class="tips">填入您在邮箱收到的邀请授权码</span>
+                            </div>
+
+                            <div class="input_wrap">
+                                <label class="input_head"></label>
+                                <input type="hidden" name="email" value="{$email}" />
+                                <input type="hidden" name="mid" value="{$mid}" />
+                                <button class="red_btn" type="button" url="{url /user_login_inviteCheck}" form-id="#invite_login_form"  id="invite_check_btn">登录验证</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include common.footer}

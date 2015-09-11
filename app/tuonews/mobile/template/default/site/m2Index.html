@@ -1,0 +1,94 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>移动端页面模板</title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" contenta="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {res:css reset.css}
+    {res:css medie-2.css}
+</head>
+{gres:js jquery-1.11.2.min.js}
+<body>
+{include mobile.site_m2header}
+<div class='focus-img-wraper'>
+    {loop $items $key $item}
+    {if $key == 0}
+    <div class='focus-img'>
+        <a href="{$item[url]}"><img src="{$item[thumb]}"></a>
+        <span class='bg'></span>
+        <a href="{$item[url]}"><span class='text'>{$item[title]}</span></a>
+    </div>
+    {/if}
+    {/loop}
+</div>
+<div class='content'>
+    <h2 class='title'>最新报道</h2>
+    {loop $items $key $item}
+    {if $key > 0}
+    <section>
+        <h3><a href="{$item[url]}">{$item[title]}</a></h3>
+        <a href="{$item[url]}">
+            <img src="{$item[thumb]}">
+            <p class='msg'>{$item[bcontent]}</p>
+        </a>
+        <p class='detail'><span class='time'>{$item[time]}</span><span class='author'>{$item[media]}</span></p>
+    </section>
+    {/if}
+    {/loop}
+</div>
+<div class='loading-more-wraper'>
+    <p class='loading-more'>加载更多</p>
+</div>
+{include mobile.site_footer}
+<a class='up' href='#'></a>
+</body>
+{res:js template.js}
+<script id="test" type="text/html">
+    {{each data as value}}
+    <section>
+        <h3><a href="{{value.url}}">{{value.title}}</a></h3>
+        <a href="{{value.url}}">
+            <img src="{{value.thumb}}">
+            <p class='msg'>{{value.bcontent}}</p>
+        </a>
+        <p class='detail'><span class='time'>{{value.time}}</span><span class='author'>{{value.media}}</span></p>
+    </section>
+    {{/each}}
+</script>
+<script type="text/javascript">
+    $('.focus-img-wraper').on('touchstart',function () {
+        var staute = $('#menu').css('display');
+        if(staute === 'block'){
+            $('#menu').hide();
+        }
+    });
+    $('#nav-btn').on('touchend',function  (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var staute = $('#menu').css('display');
+        if(staute === 'none'){
+            $('#menu').show();
+        }else{
+            $('#menu').hide();
+        }
+    });
+
+    var pn = 2;
+    var mediaId = {$mediaInfo[id]};
+    $('.loading-more').on('touchend',function (e) {
+        e.preventDefault();
+        $.ajax({url:"{url /mobile_site_indexJson}",type:"get",dataType:"json",data:{page:pn,mediaId:mediaId},success:function(data){
+            if (data.state == 1) {
+                pn++;
+                var html = template('test', data);
+                $('.content').append(html);
+            } else {
+                $('.loading-more').hide();
+            }
+        }});
+    })
+</script>
+</html>

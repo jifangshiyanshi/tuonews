@@ -1,0 +1,51 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">分类列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav list-->
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th style="width: 195px;">所属频道</th>
+                                <th style="width: 195px;">子频道名称</th>
+                                <th>排序</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>牛讯</td>
+                                <td>财经</td>
+                                <td>1</td>
+                                <td>显示</td>
+                                <td>
+                                    <a href="">编辑</a>
+                                    <a href="">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table_operation">
+                        <a href="" class="add_red_btn">添加子频道</a>
+                    </div>
+                    <!--nav list-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

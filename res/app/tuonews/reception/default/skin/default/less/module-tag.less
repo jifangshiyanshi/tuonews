@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/*aside_tag*/
+.aside_tag {
+  &:extend(.aside_module_frame);
+  margin-bottom: 0;
+  .list{
+    .clearfix();
+  }
+  .item {
+    &:extend(.inline-block);
+    padding: 0 8px;
+    margin:0 7px 7px 0;
+    border: 1px solid @grayBorder;
+    line-height: 26px;
+    height: 26px;
+    overflow: hidden;
+    color: @blackSideHead;
+    &:hover{
+      .link-hover();
+    }
+  }
+}
+/*article_tag*/
+.article_tag {
+  padding: 33px 33px 13px;
+  border: 1px solid @grayBorder;
+  margin-bottom: 25px;
+  .info_wrap {
+    .clearfix();
+  }
+  .left {
+    &:extend(.fl);
+  }
+  .main {
+    margin-left: 140px;
+  }
+  .title {
+    .size(108px,86px);
+    margin: 5px 0 11px;
+    padding: 0 5px;
+
+    border: 1px solid @grayBorder;
+    text-align: center;
+    overflow: hidden;
+
+  }
+  .title_text {
+    &:extend(.inline-block);
+    line-height: 28px;
+    vertical-align: middle;
+    font-size: 18px;
+    color: @grayText;
+  }
+  .info_box {
+    height: 88px;
+    padding-bottom: 13px;
+    border-bottom: 1px dashed @grayBorder;
+    overflow: hidden;
+  }
+  .info {
+    color: @grayText;
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 28px;
+  }
+  .operation {
+    padding-top: 9px;
+    text-align: center;
+  }
+  .operation_right {
+    text-align: right;
+  }
+  .more{
+    &:extend(.inline-block);
+    &:extend(.btn);
+    .size(86px,27px);
+    background: none;
+    color: @grayText;
+    border: 1px solid @grayBorder;
+    line-height: 27px;
+    text-align: center;
+    .icon {margin-left: 8px;}
+  }
+  .subscribe_btn {
+    .size(74px,28px);
+  }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<script type="text/javascript" src="faceEditor.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		var face = new faceEditor(
+                {
+                    "edithtml":"editorhtml.html",
+                    "dom":"editor",
+                    "facesrc":"facesrc",
+                    "facebox":"facebox"}
+        );
+	}
+</script>
+    <title></title>
+</head>
+<body>
+   <div id="editor">
+   </div>
+   <div id="facebox">
+   </div>
+   <div id="facebtn">按钮</div>
+</body>
+</html>

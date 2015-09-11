@@ -1,0 +1,27 @@
+{include site.header}
+<!-- 新闻内容区 -->
+<div class="content">
+
+    <div class="maxWidth clearfix">
+
+        <div class="re-box">
+
+            <!-- 驼牛相关页面 -->
+            <ul class="re-nav fl">
+                {loop $artoneMenu $key $value}
+                <li {if $item[id] == $value[id]}class="current"{/if}><a href="{url /site_service_index/?id=$value[id]&media_id=$loginMedia[id]}">{$value[title]}</a></li>
+                {/loop}
+            </ul>
+            <div class="re-con fl">
+                <div class="re-content">
+                    <p>{$item[content]}</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+{include site.footer}

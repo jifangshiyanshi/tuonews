@@ -1,0 +1,68 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">角色管理</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>角色列表 / 添加角色</div>
+                    <form class="module_form" id="content_add_form" action="">
+                        <div class="input_wrap">
+                            <label class="input_head_s">角色名称：</label>
+                            <input type="text" name="data[name]" class="input m_input" value="{$item[name]}" tip-text="角色名称" required/>
+                        </div>
+
+                        <div class="input_wrap">
+                            <label>请从以下权限选项中为角色设置权限：</label>
+                        </div>
+
+                        <div class="select_role">
+                            <table>
+                                <tbody>
+                                {loop $permissions $action $value}
+                                <tr>
+                                    <td class="text-right-td">{$value[name]}：</td>
+                                    <td>
+                                        {loop $value[methods] $key $val}
+                                        {run $opt = $action.'@'.$key}
+                                        <label class="checkboxwrap td-checkboxsrap">
+                                            <input class="checkbox" name="data[permission][{$opt}]" value="1" {if $item[permission][$opt] == 1}checked{/if} type="checkbox" />{$val}
+                                        </label>
+                                        {/loop}
+                                    </td>
+                                </tr>
+                                {/loop}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="input_nohead_wrap_s table_operation">
+                            {if $item[id] > 0}
+                            <input type="hidden" name="id" value="{$item[id]}" />
+                            <button  href="{url /media_managerRole_update}"  class=" ajaxproxy red_btn mobile" data-loading-text=""
+                                     proxy='{"formId":"content_add_form", "method":"post","location":"{url /media_managerRole_index}"}'>保存数据</button>
+                            {else}
+                            <button  href="{url /media_managerRole_insert}"  class=" ajaxproxy red_btn mobile" data-loading-text="正在保存……"
+                                     proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_managerRole_index}"}'>保存数据</button>
+                            {/if}
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+
+{include user.footer}

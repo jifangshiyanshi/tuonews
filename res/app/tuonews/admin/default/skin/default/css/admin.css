@@ -1,0 +1,279 @@
+/*
+ * 后台css
+ * Global add-ons
+ */
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6,a {
+    font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    font-size: 14px;
+}
+html {
+    position: relative;
+    min-height: 99.99%;
+}
+body {
+    padding-top: 50px;
+    margin-bottom: 60px;
+    line-height: 1.42857;
+}
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.navbar-fixed-top {border: 0;}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #1abc9c;
+}
+.navbar-right .dropdown .dropdown-toggle {
+    border-radius: 0 !important;
+}
+.nav-sidebar-2 {
+    padding-left: 20px;
+}
+.nav-sidebar-2 li.active
+{
+    background: #eeeeee;
+}
+.nav-sidebar-2 > li > a {
+    padding: 7px 20px;
+}
+.navbar-nav > li > a {font-size: 14px;}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+.main .container {
+    width: 100%;
+    max-width: 1600px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+.placeholders {
+    padding-top: 20px;
+    text-align: left;
+}
+
+.empty-table-td {
+    text-align: center;
+    color: #999999;
+}
+
+/*  */
+.nav-pills {
+    border-bottom: 2px solid #1abc9c;
+    margin-bottom: 10px;
+}
+.nav-pills > li > a {
+    border-radius: 0;
+    padding: 6px 15px;
+}
+
+.glyphicon-asterisk {
+    color: #dd0000;
+    font-size: 10px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+/*
+ * Footer
+ */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+}
+.footer .container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+/* 选项卡样式 */
+.tab-content .tab-pane {
+    display: none;
+}
+.tab-content .active {display: block;}
+
+/* 搜索表单样式 */
+.search-form {
+    margin: 10px 0px 10px 0;
+}
+.search-form .form-control {margin-right: 0px}
+.search-form .date {max-width: 100px;}
+/* 重置select插件样式 */
+.search-form .select {min-width: 50px;}
+.select2-choice {padding: 8px 39px 8px 15px;}
+
+.input-group .input-group-addon {position: relative;}
+.input-group .submit {
+    display:block;
+    border: 0;
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: none transparent;
+    top: 0;
+    left: 0;
+}
+.btn-group .btn-primary  a {
+    color: #ffffff;
+}
+/* 控件的宽度 */
+.calendar-addon {max-width: 350px;}
+.calendar-addon .input-group {max-width: 130px;}
+.calendar-addon .form-control {padding-right: 5px !important;}
+.calendar-addon > div {padding-right: 0}
+.sbtn-addon {max-width: 300px;}
+.pull-left {padding-right: 10px;}
+.pull-left .col-md-6 {
+    padding-left: 5px;
+}
+.pull-left .col-md-6:first-child {
+    padding-left: 0;
+}
+
+#content_add_form .form-control{
+    width: 80%;
+    display: inline-block;
+}
+#content_add_form .bootstrap-tagsinput {
+    width: 80%;
+    display: inline-block;
+    border: 2px solid #bdc3c7;
+}
+.bootstrap-tagsinput input[type="text"] {
+    vertical-align: middle;
+}
+#content_add_form .category-select {
+    width: auto;
+}
+#content_add_form .radio {
+    position: relative;
+    top: 10px;
+}
+
+/* 标签样式重置 */
+.label-icon {
+    font-size: 16px;
+    border-radius: 0;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+
+/* 分类加载样式 */
+#category-box {
+    display: inline-block;
+    width: auto;
+}
+.category-select {
+    border-radius: 6px;
+    font-size: 13px;
+    height: 35px;
+    line-height: 1.462;
+    padding: 6px 10px;
+    width: auto;
+    margin: 0px 5px;
+}
+.category-select-item {
+    display: inline-block;
+}
+
+/* 重写checkbox 和radio样式 */
+.checkbox, .radio {
+    display: inline;
+    margin-top: 0;
+}
+.radio {
+    margin: 0 10px;
+}
+
+/* 重写分页样式 */
+.pagination {overflow: hidden;}
+.pagination > ul {
+    float: left;
+}
+.pagination > .page-input {
+    float: left;
+    margin-left: 10px;
+}
+.page-input > .form-control {
+    display: inline-block;
+    max-width: 50px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+/* 编辑器样式 */
+.edui-default ,
+.edui-toolbar,
+.edui-button-body,
+.edui-combox,
+.edui-combox-body {
+    line-height: 100%;
+}
+
+/* 裁剪样式 */
+.jcrop-handle {
+    width: 10px !important;
+    height: 10px !important;
+}
+
+
+

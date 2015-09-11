@@ -1,0 +1,123 @@
+{include site.header}
+<!--content start-->
+
+<!-- 新闻内容区 -->
+<div class="content">
+
+    <div class="maxWidth">
+
+        <div class="clearfix">
+            <!-- 新闻左栏 -->
+            <div class="l-con fl">
+
+                <!-- 新闻列表 -->
+                <div class="n-list-box">
+                    <ul class="n-list">
+                        {loop $items $value}
+                        <li>
+                            <div class="nl-pic">
+                                <a title="{$value['title']}" href="{url /site_index_detail/?id=$value[id]&media_id=$loginMedia[id]}">
+                                    <img src="{$value['thumb']}" alt="{$value['title']}" /></a>
+                            </div>
+                            <div class="nl-text">
+                                <div class="nl-title">
+                                    <h3><a title="{$value['title']}" href="{url /site_index_detail/?id=$value[id]&media_id=$loginMedia[id]}"><font color="{$value['title_color']}">{$value['title']}</font></a></h3>
+                                    <span class="nl-time">{if $value['add_time']}{date $value['add_time'] m-d H:i}{/if}</span>
+                                </div>
+                                <div class="nl-brief">
+                                    <p>{cut $value['bcontent'] 75 '...'}<a href="{url /site_article_detail/?id=$value[id]&media_id=$loginMedia[id]}">[详细]</a></p>
+                                </div>
+                                <div class="nl-relate">
+                                    <div class="nl-relate-l">
+                                        <span>{$value['author']}</span>
+                                        <span>阅读（<i class="nl-num">{$value['hits']}</i>）</span>
+                                        <!-- 鼠标划上 分享图标出现 -->
+                                    </div>
+                                    <div class="nl-relate-r">
+                                        {loop $value[tags] $vTags}
+                                        <a href="{url /article_tags_detail/?id=$vTags}">{$tags[$vTags]}</a>
+                                        {/loop}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {/loop}
+                    </ul>
+                </div>
+
+                <div class="sec-con-f">
+                    <ul class="pagination">
+                        {$pagemenu}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 新闻右栏 -->
+            <div class="r-con fr">
+                <div class="r-box">
+                    <div class="box-title">
+                        <h3>热门推荐</h3>
+                    </div>
+                    <div class="r-hot-box">
+                        <ul class="r-hot-con">
+                            {loop $hotArticles $v}
+                            <li>
+                                <div class="h-photo">
+                                    <a href="{url /site_index_detail/?id=$v[id]&media_id=$loginMedia[id]}">
+                                        <img alt="{$v['title']}" src="{$v['thumb']}" /></a>
+                                </div>
+                                <div class="h-text">
+                                    <h3><a href="{url /site_index_detail/?id=$v[id]&media_id=$loginMedia[id]}">{cut $v['title'] 18 '...'}</a></h3>
+                                    <div class="h-relate">
+                                        <span class="h-read">阅读(<i>{$v['hits']}</i>)</span>
+                                        <span class="h-author">{$v[author]}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            {/loop}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 合作媒体 -->
+        {if $link_Arr}
+        <div class="f-media">
+            <h3 class="f-title">合作媒体</h3>
+            <div class="media-friends">
+                <ul class="media-list">
+                    {loop $link_Arr $v}
+                    <li><a href="{$v['url']}" title="{$v['name']}" target="_blank"><img alt="{$v['name']}" src="{$v['pic']}" /></a></li>
+                    {/loop}
+                    <span class="justify_fix">&nbsp;</span>
+                </ul>
+            </div>
+        </div>
+        {/if}
+
+        {if $link_text_Arr}
+        <!-- 友情链接 -->
+        <div class="f-link">
+            <h3 class="f-title">友情链接</h3>
+            <div class="f-link-list">
+                <ul class="link-list">+
+                    {loop $link_text_Arr $k $v}
+                    {if $k >30}
+                    <a href="/link/link/index/" target="_blank">更多>></a>
+                    {php}
+                    break;
+                    {/php}
+                    {else}
+                    <li><a href="{$v['url']}" title="{$v['name']}" {if $v['transfer']==1} rel="nofollow" {/if} target="_blank">{$v['name']}</a></li>
+                    {/if}
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+        {/if}
+    </div>
+
+</div>
+<!--content end-->
+{include site.footer}

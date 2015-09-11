@@ -1,0 +1,43 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">独立域名绑定</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!-- form -->
+                    <form class="module_form" action="" id="content_add_form">
+                        <div class="input_wrap">
+                            <label for="url" class="input_head input_head_s">独立域名：</label>
+                            <input type="text" class="input m_input" name="domain" id="url" value="{$loginMedia[domain]}" placeholder="请输入独立域名" />
+                            <p style="margin-left: 110px;">直接输入域名，如pvc123.com，不需要输入www</p>
+                        </div>
+                        <div class="input_nohead_wrap_s">
+                            <button href="{url /media_config_updateDomain}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_config_index}", "callBack":"checkBack(data);"}'>绑定</button>
+                </div>
+                    </form>
+                    <!-- form -->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<script>
+    function  checkBack(data){
+        if(data.state == "ok"){
+            JDialog.tip.work({type:"ok", content:"修改成功", timer:2000});
+        }
+    }
+</script>
+<!--content end-->
+{include user.footer}

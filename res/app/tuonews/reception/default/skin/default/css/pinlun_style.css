@@ -1,0 +1,284 @@
+*{
+	margin:0;
+	padding:0;
+}
+img{
+	border:none;
+}
+ul{
+	list-style:none;
+}
+em {font-style: normal;}
+html,body{
+	width:100%;
+	height:100%;
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+}
+div.oflow{
+	clear:both;
+}
+h3{ font-weight:normal;}
+/*发表评论区块*/
+div.pinlun_kj{
+	width:620px;
+	min-height:50px;
+	margin:0 auto;
+}
+div.pinlun_kj h3.pl_title{
+	width:620px;
+	height:27px;
+	color:#333333;
+	font-size:16px;
+	text-indent:10px;
+}
+div.pinlun_kj div.input_text{
+	width:600px;
+	height:141px;
+	border:1px solid #cccccc;
+	margin:0 auto;
+}
+div.pinlun_kj div.input_text div.text{
+	width:600px;
+	height:100px;
+}
+div.pinlun_kj div.input_text textarea{
+	width:600px;
+	height:100px;
+	resize: none;
+	border:none;
+	overflow:auto;
+}
+div.pinlun_kj div.input_text div.btn_kj{
+	width:600px;
+	height:40px;
+	border-top:1px solid #cccccc;
+}
+/*表情和提示*/
+div.pinlun_kj div.input_text div.btn_kj .biaoqin{
+	width:172px;
+	height:30px;
+	margin-top:5px;
+	font-size:12px;
+	color:#999999;
+	line-height:30px;
+	margin-left:12px;
+	float:left;
+}
+div.pinlun_kj div.input_text div.btn_kj .biaoqin a{
+	display:block;
+	width:24px;
+	height:30px;
+	float:left;
+	margin-right:7px;
+	background:red;
+}
+div.pinlun_kj div.input_text div.btn_kj .biaoqin span.otxt{
+	display:block;
+	width:141px;
+	height:30px;
+	float:left;
+}
+div.pinlun_kj div.input_text div.btn_kj .biaoqin em{
+	display:inline-block;
+	padding:0 2px;
+	color:#cc0033;
+	font-size:15px;
+	
+}
+div.pinlun_kj div.input_text div.btn_kj .pl_btn{
+	width:67px;
+	height:28px;
+	float:right;
+	background:#cc0033;
+	text-align:center;
+	line-height:28px;
+	color:#fff;
+	font-size:14px;
+	margin-top:6px;
+	margin-right:10px;
+	cursor:pointer;
+}
+div.hfmr{
+	width:100%;
+	height:20px;
+	line-height:20px;
+	color:#6699cc;
+	font-size:12px;
+}
+/*回复样式开始*/
+div.pinlun_kj div.huifu_kj{
+	width:600px;
+	height:30px;
+	border-bottom:2px solid #cccccc;
+	margin:0 auto;
+	margin-top:30px;
+}
+div.pinlun_kj div.huifu_kj h3{
+	height:30px;
+	width:70px;
+	text-align:center;
+	line-height:16px;
+	color:#333333;
+	font-size:16px;
+	border-bottom:2px solid #cc0033;
+}
+/*用户评论*/
+div.pinlun_kj div.pl_kj{
+	width:600px;
+	min-height:50px;
+	margin:0 auto;
+	margin-top:37px;
+}
+div.pinlun_kj div.pl_kj ul li{
+	width:600px;
+	min-height:75px;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:15px;
+	margin-bottom:25px;
+}
+div.pinlun_kj div.pl_kj ul li.opl_li{
+	margin-bottom:5px;
+	background:#ddd;
+}
+div.pinlun_kj div.pl_kj ul li div.img{
+	width:40px;
+	height:40px;
+	float:left;
+	margin-right:10px;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text{
+	width:550px;
+	min-height:40px;
+	float:left;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text div.pl_top{
+	width:550px;
+	height:20px;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text div.pl_top{
+	width:550px;
+	height:20px;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text div.pl_top span{
+	display:inline-block;
+	min-width:20px;
+	float:left;
+	height:20px;
+	line-height:20px;
+	font-size:12px;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text div.pl_top span.date{
+	float:right;
+	color:#999999;
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text div.pl_top span.name{
+	/*color:#6699cc;*/
+	color:rgb(51,102,204);
+}
+div.pinlun_kj div.pl_kj ul li div.pl_text p{
+	width:550px;
+	min-height:20px;
+	line-height:20px;
+	font-size:15px;
+	color:#000;
+}
+div.pinlun_kj div.pl_kj ul li div.huifu{
+	width:550px;
+	min-height:23px;
+	float:right;
+}
+div.pinlun_kj div.pl_kj ul li div.huifu div.hf2_kj{
+	width:550px;
+	min-height:36px;
+	float:right;
+	margin-top:5px;
+	display:none;
+}
+div.pinlun_kj div.pl_kj ul li div.huifu div.hf2_kj input.hf_input{
+	width:548px;
+	height:34px;
+	border:1px solid #cccccc;
+	float:right;
+}
+div.pinlun_kj div.pl_kj ul li div.huifu span.hf_btn{
+	display:inline-block;
+	width:24px;
+	height:23px;
+	color:#6699cc;
+	line-height:23px;
+	font-size:12px;
+	float:right;
+	margin-right:5px;
+	cursor:pointer;
+}
+div.pinlun_kj div.pl_kj ul li div.huifu div.hf2_kj div.fb_btn{
+	width:67px;
+	height:28px;
+	background:#cc0033;
+	margin:10px 0px;
+	float:right;
+	text-align:center;
+	line-height:28px;
+	color:#fff;
+	font-size:14px;
+	cursor:pointer;
+}
+/*加载更多按钮*/
+div.pinlun_kj div.btn_jz{
+	width:620px;
+	height:40px;
+	background:#666666;
+	font-size:14px;
+	line-height:40px;
+	text-align:center;
+	color:#fff;
+	cursor:pointer;
+	margin-top:40px;
+}
+
+/**补充**/
+.pre_comment{
+    margin-top:10px;
+	margin-bottom:10px;
+	width:100%;
+	background-color:#f2f2f2;
+	box-sizing:border-box;
+	padding:15px;
+	font-size:14px;
+	border:1px solid #cccccc;
+}
+
+.pre_name{
+	margin-bottom:10px;
+	color:rgb(51,102,204);
+	font-size:12px;
+}
+
+.pre_reply{
+	margin-bottom:10px;
+}
+
+.pre_reply span{
+	color:#6699cc;
+}
+
+.pre_comment .hf2_kj input{
+	margin-top:10px;padding-top:10px;padding-bottom: 10px;margin-bottom: 10px;box-sizing: border-box;height:34px;
+}
+
+.pre_comment .fb_btn{
+	width: 67px;
+	height: 28px;
+	background: #cc0033;
+	float: right;
+	text-align: center;
+	line-height: 28px;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.pre_comment:after{content:"";display:block;clear:both;}

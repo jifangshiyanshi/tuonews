@@ -1,0 +1,35 @@
+
+        <div class="col-sm-3 col-md-2 sidebar">
+
+            <div class="tab-content">
+                {run $i = 0}
+                {loop $systemMenu $key $group}
+                {if empty($systemMenu[$key])}
+                    {run continue}
+                {/if}
+                <!-- ul -->
+                <ul class="nav nav-sidebar tab-pane {if $key == $mgroup || ($mgroup == '' && $i==0)}active{/if}" id="menu_{$key}">
+                    {loop $group $fmenu}
+                    <li {if $mpid==$fmenu[id]}class="active"{/if}>
+
+                        <!-- 一级菜单 -->
+                        <a data-toggle="collapse" href="#collapse_{$fmenu[id]}" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="glyphicon glyphicon-th-large"></span> {$fmenu[name]}</a>
+
+                        <ul class="nav nav-sidebar-2 collapse in" id="collapse_{$fmenu[id]}">
+                            <!-- 二级菜单 -->
+                            {loop $fmenu[sub] $value}
+                            <li {if $value[url]==$currentOpt || $mid==$value[id]}class="active"{/if}>
+                                <a href="{url $value[url]/m-$value[id]}">
+                                    <i class="glyphicon glyphicon-record"></i> {$value[name]}
+                                </a>
+                            </li>
+                            {/loop}
+                        </ul><!-- 二级菜单 -->
+                    </li>
+                    {/loop}
+                </ul><!-- end ul -->
+                {run $i++}
+                {/loop}
+            </div>
+        </div>

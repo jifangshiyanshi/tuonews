@@ -1,0 +1,154 @@
+body{
+	width: 100%;
+	max-width: 600px;
+}
+header,.focus-img-wraper,footer,.loading-more-wraper{
+	width: 100%;
+	max-width: 600px;
+}
+.content{
+	margin: 0 10px;
+}
+header {
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+header .logo{float: left;width: 120px;  margin-left: 20px;}
+header img{
+	width: 100%;
+}
+
+header nav  .nav-btn{
+	float: right;
+	width: 35px;
+	height: 25px;
+	background: url(../images/nav-btn.png) no-repeat;
+	background-size: 100%;  margin: 20px 30px;
+}
+header nav ul{
+  display: none;  
+   position: absolute;
+  top: 86px;
+  right: 0px;
+  z-index: 10;
+  width: 136px;
+  text-align: center;
+}
+
+header nav ul li{
+	background: #9a9a9a;
+	height: 42px;
+	line-height: 42px;
+	border-bottom: 1px solid #adadad;
+}
+
+header nav li a{
+ color: #fff;
+}
+
+.content{
+	margin-top: 25px;
+}
+
+
+.loading-more{
+	  color: #8c8c8c;
+	  font-size: 14px;
+	  height: 32px;
+	  line-height: 23px;
+	  text-align: center;
+}
+
+
+
+.today-news h3{
+color: #252525;
+font-size: 18px;
+text-align: center;
+height: 36px;
+line-height: 36px;
+margin: -20px auto 20px;
+background-color: #fff;
+border-bottom: 1px solid #e5e5e5;
+  font-weight: bold;
+}
+
+
+.today-news .right-side{
+  margin-left: 100px;
+}
+.today-news a img{
+	width: 90px;
+	height: 63px;
+	float: left;
+	margin-right: 10px;
+}
+
+.today-news a {
+   color: #252525;
+  overflow: hidden;
+  padding-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.today-news .text{
+  line-height: 20px;
+  height: 40;
+  overflow: hidden;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+
+.today-news .focus-detail{
+  font-size: 14px;
+  color: #888;
+}
+.today-news .focus-detail .detail{
+	float: left;
+}
+
+.today-news .focus-detail .author{
+   float: right;
+   margin-right: 5px;
+}
+
+.today-news .focus-detail .name {
+	color: #8193ae;
+	margin-left: 10px;
+}
+
+.up{
+	  width: 58px;
+	  height: 58px;
+	  background: url(../images/up.png) no-repeat;
+	  background-size: 100%;
+	  position: fixed;
+	  bottom: 10px;
+	  right: 0;
+	  box-sizing: border-box;
+}
+footer{
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 25px  0 20px;
+	text-align: center;
+	background: #f7f7f7;
+	 margin-bottom: 15px;x;
+}
+footer p{
+	
+	margin-bottom: 10px;
+}
+
+
+footer a{
+	color: #8c8c8c;
+}
+
+footer .computer{
+  color: #3f3f3f;
+}

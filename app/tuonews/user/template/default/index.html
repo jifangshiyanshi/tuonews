@@ -1,0 +1,79 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 入驻列表 媒体列表-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">入驻列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_media">
+                    {if !empty($medias[qunmei])}
+                    <div class="list_itl_head">媒体列表</div>
+                    <div class="list_itl">
+                        {loop $medias[qunmei] $value}
+                        <dl class="item">
+                            <dd class="img">
+                                <a href="{url /media_media_index/?media_id=$value[id]}">
+                                    <img class="lazy" src="{$appConfigs[image_block]}" data-original="{$value[logo]}" alt="{$value[name]}"/>
+                                </a>
+                            </dd>
+                            <dt class="title_box">
+                                <a class="link" href="{url /media_media_index/?media_id=$value[id]}">进入媒体后台</a>
+                            <div class="title">{$value[name]}</div>
+                            </dt>
+                        </dl>
+                        {/loop}
+                    </div>
+                    {/if}
+
+                    {if !empty($medias[zimei])}
+                    <div class="list_itl_head">自媒体列表</div>
+                    <div class="list_itl">
+                        {loop $medias[zimei] $value}
+                        <dl class="item">
+                            <dd class="img">
+                                <a href="{url /media_media_index/?media_id=$value[id]}">
+                                    <img class="lazy" src="{$appConfigs[image_block]}" data-original="{$value[logo]}" alt="{$value[name]}"/>
+                                </a>
+                            </dd>
+                            <dt class="title_box">
+                                <a class="link" href="{url /media_media_index/?media_id=$value[id]}">进入自媒体后台</a>
+                            <div class="title">{$value[name]}</div>
+                            </dt>
+                        </dl>
+                        {/loop}
+                    </div>
+                    {/if}
+
+                    {if !empty($medias[qiye])}
+                    <div class="list_itl_head">企业列表</div>
+                    <div class="list_itl">
+                        {loop $medias[qiye] $value}
+                        <dl class="item">
+                            <dd class="img">
+                                <a href="{url /media_media_index/?media_id=$value[id]}">
+                                    <img class="lazy" src="{$appConfigs[image_block]}" data-original="{$value[logo]}" alt="{$value[name]}"/>
+                                </a>
+                            </dd>
+                            <dt class="title_box">
+                                <a class="link" href="{url /media_media_index/?media_id=$value[id]}">进入企业后台</a>
+                            <div class="title">{$value.name}</div>
+                            </dt>
+                        </dl>
+                        {/loop}
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

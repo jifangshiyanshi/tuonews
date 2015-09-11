@@ -1,0 +1,18 @@
+1. ý�嶩�ĺͱ�ǩ�����ǲ��ǿ��Է���һ�Ŷ�����ݱ���
+���ºͱ�ǩ�Ķ�Ӧ��ϵ�Ƕ�Զ�Ĺ�ϵ�������¸�ý��Ĺ�ϵ�Ƕ��һ�Ĺ�ϵ���ʱ�ǩ���ĺ�ý�嶩�ı���ֱ�洢
+
+2. ��ǩ���ı�
+	fiidee_article_tags_order
+	tagid  userid add_time
+	
+	�����û����ģ����ҵ�ǰ��ǩ�ӿ�ʼ�����Ժ��������������£� �������ºͱ�ǩ�Ƕ�Զ�Ĺ�ϵ������Ҫ������=>��ǩ��ͼ�в���
+	���Ȳ��Ҹ��û����ж��ĵı�ǩ
+	$tagIds, $orderTime = select id from fiidee_article_tags_order where userid={$userid};
+	select * from fiidee_article_view where tagid in($tagIds) AND add_time > {$orderTime} group by id;
+	
+3. ý�嶩�ı�
+	fiidee_media_order
+	���Ȳ��Ҹ��û����ж��ĵ�ý�壬
+	$mediaIds = select id from fiidee_media_order where userid={$userid};
+	���ҵ�ǰý��ӿ�ʼ�����Ժ���������������
+	select * from fiidee_article where media_id in($mediaIds) AND add_time > {$orderTime};

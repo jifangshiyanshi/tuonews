@@ -1,0 +1,77 @@
+<!-- Bootstrap core CSS -->
+{gres:css bootstrap.min.css}
+
+<!-- Custom styles for this template -->
+{gres:css flat-ui.css}
+{res:css admin.css}
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+{gres:js html5shiv.js}
+{gres:js respond.min.js}
+<![endif]-->
+<style>
+    body {padding:0}
+</style>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+            <tr>
+                <th>文章标题</th>
+                <th>发布时间</th>
+                <th>点击率</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {if empty($items)}
+            <tr>
+                <td class="empty-table-td">{$emptyRecord}</td>
+            </tr>
+            {/if}
+
+            {loop $items $value}
+            <tr>
+                <td>{$value[title]}</td>
+                <td>{date $value[add_time]}</td>
+                <td>{$value[hits]}</td>
+                <td>
+
+                    <a href="javascript:void(0);" data-id="{$value[id]}"
+                       class="btn btn-xs btn-danger del" {if !in_array($value[id], $aids)}style="display:none"{/if}>删除</a>
+
+                    <a href="javascript:javascript:void(0);" data-id="{$value[id]}" data-title="{$value[title]}"
+                       class="btn btn-xs btn-primary add" {if in_array($value[id], $aids)}style="display:none"{/if}>添加</a>
+                </td>
+            </tr>
+            {/loop}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination pull-right">{$pagemenu}</div>
+
+</div>
+{include admin.script}
+
+<script>
+
+    //绑定添加事件
+    $('.add').on('click', function(e) {
+        var id = $(this).attr('data-id');
+        var title = $(this).attr('data-title');
+        window.parent.__articles.add(id, title);
+        $(this).parent('td').find('.del').show();
+        $(this).hide();
+    });
+
+    //绑定删除事件
+    $('.del').on('click', function(e) {
+        var id = $(this).attr('data-id');
+        window.parent.__articles.remove(id);
+        $(this).parent('td').find('.add').show();
+        $(this).hide();
+    });
+
+</script>

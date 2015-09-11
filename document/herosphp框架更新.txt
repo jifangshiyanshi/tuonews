@@ -1,0 +1,12 @@
+1. 增强了res系列标签，新增了{res:less test.less}类型
+2. 增强了ModelDao 的 getItems方法的条件查询，修复了一个字段不能做多个条件的hash冲突
+	如 id > 100 and id < 200的情况，显然写成 array('id' => '>100', 'id' => '<200')是不行的，
+    这时可以写成 array('id' => '>100', '#id' => '<200')
+3. 新增了IN条件查询和FIND_IN_SET条件查询
+	array('name' => "#IN 'zhangsan','lisi','xiaoming'"); in查询格式,相当于 (where name in('zhangsan', 'lisi', 'xiaoming'))
+	array('name' => "#NI 'zhangsan','lisi','xiaoming'"); in查询格式,相当于 (where name not in('zhangsan', 'lisi', 'xiaoming'))
+	array('tags' => "#FD 'aaa', 'bbb', 'ccc'"); find_in _set查询 不过这个查询性能极差，一般情况不建议使用
+	
+4. 更新了C_Model class, 新增了 getDB 方法获取数据库连接对象，可以直接执行sql语句，获取格式化后的数据
+	$model = Loader::model('article');
+	$model->getDB()->getList("select * from airticle left join user where user.id=article.userid");

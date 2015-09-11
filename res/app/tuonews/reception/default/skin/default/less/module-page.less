@@ -1,0 +1,33 @@
+@charset "UTF-8";
+.page {
+  @height: 46px;
+  margin-top: 25px;
+  text-align: center;
+  font-size: 0;
+  >li {
+    &:extend(.inline-block);
+    .square(@height);
+    border: 1px solid @grayBorder;
+    margin: 0 3px;
+    vertical-align: top;
+    line-height: @height;
+    text-align: center;
+    font-size: 14px;
+    a {
+      display: block;
+      .square(@height);
+      color: #8b8b8b;
+    }
+    &:hover {
+      background: #f6f6f6 ;
+    }
+  }
+  .current {
+    background: #4c4c4c;
+    border-color: #4c4c4c;
+    color: #fff;
+    &:hover {
+      background: #4c4c4c ;
+    }
+  }
+}

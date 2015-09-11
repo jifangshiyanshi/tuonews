@@ -1,0 +1,113 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="20">
+                                <label class="checkbox primary">
+                                    <input type="checkbox" data-toggle="checkbox" id="check-all">
+                                </label>
+                            </th>
+                            <th>ID</th>
+                            <th>爆料简介</th>
+                            <th>联系方式</th>
+                            <th>爆料用户</th>
+                            <th>爆料时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+
+                        {loop $items $value}
+                        <tr>
+                            <input type="hidden" name="hids[{$value[id]}]" value="{$value['id']}">
+                            <td>
+                                <label class="checkbox default">
+                                    <input type="checkbox" data-toggle="checkbox" name="ids[]" value="{$value[id]}">
+                                </label>
+                            </td>
+                            <td>{$value[id]}</td>
+                            <td>{cut $value[content] 50}</td>
+                            <td>{$value[contact]}</td>
+                            <td>
+                                <span class="label label-success" data-toggle="tooltip" title="{$value[nickname]}">{$value[username]}</span>
+                            </td>
+                            <td>{date $value[add_time]}</td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-xs btn-primary"
+                                   data-toggle="modal" data-target="#tipoffDetailModal" data-id="{$value[id]}">查看详情</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container row">
+                    <a href="{url /admin_tipoff_deletes}" class="btn btn-sm btn-danger ajaxproxy" data-loading-text="正在删除"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload", "callBefore":"multiCallbefore(\"您真的要彻底删除爆料吗，不可恢复。\");"}'>
+                        <i class="glyphicon glyphicon-remove"></i> 删除爆料</a>
+                </div>
+            </form>
+
+            <nav>
+                <ul class="pagination pull-right">
+                    {$pagemenu}
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<!-- 爆料详情模态框 -->
+<div aria-hidden="false" role="dialog" class="modal fade" id="tipoffDetailModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> 爆料详情</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+{include admin.script}
+
+<script type="text/javascript">
+    $('#tipoffDetailModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+        var modal = $(this);
+
+        $.get('{url /admin_tipoff_detail}', {
+            id : id
+        }, function(res) {
+
+            if ( res.state == 'ok' ) {
+                modal.find('.modal-body').html('<p class="text-info">'+res.message+'</p>');
+            } else {
+                modal.find('.modal-body').html('<p class="text-danger">获取详情失败！</p>');
+            }
+        }, 'json');
+    })
+</script>
+
+{include admin.footer}

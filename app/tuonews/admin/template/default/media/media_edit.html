@@ -1,0 +1,239 @@
+{include admin.top}
+{cres:css global/js/uploadify/uploadify.min.css}
+{cres:css global/js/jcrop/css/jquery.Jcrop.min.css}
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 媒体列表</a>
+                </li>
+                {if $sign !=="apply"}
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加媒体</a>
+                </li>
+                {/if}
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="glyphicon glyphicon-edit"></em> 编辑媒体</a>
+                </li>
+
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" tip-text="媒体名称" value="{$item[name]}" required autofocus>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[nickname]" class="form-control" tip-text="媒体昵称" value="{$item[nickname]}" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>媒体logo</label>
+                        <div class="col-sm-10">
+                            {if $item[logo] != ''}
+                            <div class="row container" style="margin-bottom: 10px;" id="thumb-old">
+                                <img class="img-thumbnail" src="{$item[logo]}" id="logo_thumb" />
+                            </div>
+                            {/if}
+                            <input type="hidden" name="data[logo]" id="thumb_src" value="{$item[logo]}"/>
+                            <input type="file" id="thumb_upload" value="" />
+                            <input type="hidden" id="img" name="img" />
+                            <input type="hidden" id="x" name="x" />
+                            <input type="hidden" id="y" name="y" />
+                            <input type="hidden" id="w" name="w" />
+                            <input type="hidden" id="h" name="h" />
+                            <div class="row container" style="display: none">
+                                <img src="" id="crop_target" />
+                            </div>
+
+                            <div class="row container" id="preview_box" style="margin-top:10px; display: none">
+                                <div>
+                                    <img class="preview" id="preview_1" src="" />
+                                </div>
+                                <div style="border-radius: 50%;">
+                                    <img class="preview" id="preview_2" src="" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>媒体类型</label>
+                        {loop $mediaType $value}
+                        <label class="radio">
+                            <input type="radio" data-toggle="radio" name="data[media_type]" value="{$value[id]}" {if $value[id]==$item[media_type]}checked{/if} />
+                            {$value[name]}
+                        </label>
+                        {/loop}
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>登记人</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[reg_name]" class="form-control" tip-text="登记人" value="{$item[reg_name]}" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>登记人身份证号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[reg_id]" class="form-control" dtype="idnum" tip-text="登记人身份证号码" value="{$item[reg_id]}" required>
+                            <p class="help-block">输入内容长度为1到18个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>身份证照片</label>
+                        <div class="col-sm-10">
+                            {if $item[id_img] != ''}
+                            <div class="row container" style="margin-bottom: 10px;" id="thumb-old-id">
+                                <img class="img-thumbnail" src="{$item[id_img]}" />
+                            </div>
+                            {/if}
+                            <input class="form-control" type="hidden" name="data[id_img]" id="id_img" value="{$item[id_img]}"/>
+                            <input type="file" id="id_img_upload" class="btn btn-default btn-wide" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构全称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[company]" class="form-control" tip-text="媒体简介" value="{$item[company]}" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构代码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[company_code]" class="form-control" tip-text="组织机构代码" value="{$item[company_code]}" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构代码扫描件</label>
+                        <div class="col-sm-10">
+                            {if $item[company_img] != ''}
+                            <div class="row container" style="margin-bottom: 10px;" id="thumb-old-company">
+                                <img class="img-thumbnail" src="{$item[company_img]}" />
+                            </div>
+                            {/if}
+                            <input class="form-control" type="hidden" name="data[company_img]" id="company_img" tip-text="组织机构代码扫描件" value="{$item[company_img]}"/>
+                            <input type="file" id="company_img_upload" class="btn btn-default btn-wide" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>公司地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[address]" class="form-control" tip-text="公司地址" value="{$item[address]}" required>
+                            <p class="help-block">输入内容长度为1到50个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>固定电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[telephone]" class="form-control" dtype="phone" tip-text="固定电话" value="{$item[telephone]}" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>手机号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[mobile]" class="form-control" dtype="mobile" tip-text="手机号码" value="{$item[mobile]}" required>
+                            <p class="help-block">输入内容长度为1到11个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>电子邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[email]" class="form-control" dtype="email" tip-text="电子邮箱" value="{$item[email]}" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i></i>qq号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[qq]" class="form-control" tip-text="qq号码" value="{$item[qq]}">
+                            <p class="help-block">输入内容长度为1到11个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微博账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[weibo]" class="form-control" tip-text="微博账号" value="{$item[weibo]}">
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微信账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[weixin]" class="form-control" tip-text="微信账号" value="{$item[weixin]}">
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">独立域名</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[domain]" class="form-control" tip-text="网站地址" value="{$item[domain]}">
+                            <p class="help-block">直接填写域名不用写www， 如pvc123.com不用写成www.pvc123.com</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">媒体简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[intro]" class="form-control">{$item[intro]}</textarea>
+                            <p class="help-block">输入内容长度为4到60个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="hidden" value="{$item[id]}" name="id" />
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include admin.script}
+<!-- 引入裁剪js -->
+{gres:js jcrop/js/jquery.Jcrop.min.js}
+{gres:js uploadify/jquery.uploadify.min.js}
+<script>
+    var __params = {
+        userid : "{$item[userid]}",
+        media_id : "{$item[id]}"
+    }
+</script>
+{gres:js UploadCrop.js}
+{res:js media.js}
+
+{include admin.footer}

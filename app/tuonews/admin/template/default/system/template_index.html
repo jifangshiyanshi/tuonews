@@ -1,0 +1,80 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li class="active">
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 模板列表</a>
+                </li>
+
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加模板</a>
+                </li>
+            </ul>
+
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="20">
+                                <label class="checkbox primary">
+                                    <input type="checkbox" data-toggle="checkbox" id="check-all">
+                                </label>
+                            </th>
+                            <th>ID</th>
+                            <th>模板名称</th>
+                            <th>模板类型</th>
+                            <th>模板key</th>
+                            <th>排序</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+
+                        {loop $items $value}
+                        <tr>
+                            <td>
+                                <label class="checkbox default">
+                                    <input type="checkbox" data-toggle="checkbox" name="ids[]" value="{$value[id]}">
+                                </label>
+                            </td>
+                            <td>{$value[id]}</td>
+                            <td>{$value[name]}</td>
+                            <td>{$templateTypes[$value[type]]}</td>
+                            <td>{$value[tkey]}</td>
+                            <td>{$value[sort_num]}</td>
+                            <td>{date $value[add_time]}</td>
+                            <td>{date $value[update_time]}</td>
+                            <td>
+                                <a href="{url /admin_sTemplate_edit/?id=$value[id]}" class="btn btn-xs btn-primary">编辑</a>
+                                <a href="{url /admin_sTemplate_delete/?id=$value[id]}" class="btn btn-xs btn-danger delone">
+                                    <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+
+            <div class="pagination pull-right">{$pagemenu}</div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

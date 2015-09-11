@@ -1,0 +1,28 @@
+<!--article_tag start-->
+<div class="article_tag">
+    <div class="info_wrap">
+        <div class="left">
+            <div class="title_box">
+                <div class="title"><span class="title_text">{$tag[name]}</span><span class="vertical_span"></span></div>
+            </div>
+            <div class="operation">
+                <button class="subscribe_btn subscribe_ajax_btn_tag {if $ordered} subscribe_remove {else} subscribe_add {/if}"
+                        data-ajax-data='{"id":{$tag[id]}}'
+                        data-ajax-url="{if $ordered}{url /article_tags_unorder}{else}{url /article_tags_order}{/if}">
+                <span class="on">
+                    <span class="icon icon_wadd"></span>订阅
+                </span>
+                <span class="off">
+                    <span class="icon icon_gminus"></span>取消订阅
+                </span>
+            </button></div>
+        </div>
+        <div class="main">
+            <div class="info_box">
+                <div class="info">{$tag[intro]}</div>
+            </div>
+            <div class="operation operation_right"><button class="more">查看更多<span class="icon icon_down"></span></button></div>
+        </div>
+    </div>
+</div>
+<!--article_tag end-->

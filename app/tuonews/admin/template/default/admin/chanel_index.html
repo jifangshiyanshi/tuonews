@@ -1,0 +1,102 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li class="active">
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 频道列表</a>
+                </li>
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon glyphicon-plus"></em> 添加频道</a>
+                </li>
+            </ul>
+
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>频道名称</th>
+                            <th>排序数字</th>
+                            <th>添加时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+                        {loop $items $value}
+                        <tr>
+                            <td>
+                                {$value[id]}
+                                <input type="hidden" name="hids[{$value[id]}]" value="{$value[id]}" />
+                            </td>
+                            <td>
+                                <input type="text" name="data[{$value[id]}][name]" value="{$value[name]}" class="form-control input-sm" />
+                            </td>
+                            <td>
+                                <input type="text" name="data[{$value[id]}][sort_num]" value="{$value[sort_num]}" class="form-control input-sm" />
+                            </td>
+                            <td>{date $value[add_time]}</td>
+                            <td>
+                                <a href="{url /admin_chanel_add/?pid=$value[id]}" data-toggle="tooltip" title="添加子频道" class="btn btn-xs btn-inverse">添加</a>
+                                <a href="{url /admin_chanel_edit/?id=$value[id]}" class="btn btn-xs btn-primary">编辑</a>
+                                <a href="{url /admin_chanel_delete/?id=$value[id]}" class="btn btn-xs btn-danger delone">
+                                    <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                            </td>
+                        </tr>
+                        <!-- 二级菜单 -->
+                        {loop $value[sub] $key $val}
+                        <tr id="items_{$val['id']}" class="items_{$value['id']}">
+                            <td>
+                                {$val[id]}
+                                <input type="hidden" name="hids[{$val[id]}]" value="{$val[id]}" />
+                            </td>
+
+                            <td style="padding-left: 30px;">
+                                <input type="text" name="data[{$val[id]}][name]" value="{$val[name]}" class="form-control input-sm" />
+                            </td>
+                            <td>
+                                <input type="text" name="data[{$val[id]}][sort_num]" value="{$val[sort_num]}" class="form-control input-sm" />
+                            </td>
+                            <td>{date $val['add_time']}</td>
+                            <td>
+                                <a href="{url /admin_chanel_edit/?id=$val[id]}" class="btn btn-xs btn-primary">编辑</a>
+                                <a href="{url /admin_chanel_delete/?id=$val[id]}" class="btn btn-xs btn-danger delone">
+                                    <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="opt_box">
+                    <a href="{$add_url}" class="btn btn-sm btn-primary"><em class="glyphicon glyphicon-plus"></em> 添加频道</a>
+                    <a href="{url /admin_chanel_quicksave}" class="ajaxproxy btn btn-sm btn-inverse" data-loading-text="正在保存……"
+                       proxy='{"method":"post", "formId":"J_ListForm","location":"{$index_url}"}'>
+                        <em class="glyphicon glyphicon-saved"></em> 快速保存</a>
+                </div>
+            </form>
+
+            <nav>
+                <ul class="pagination pull-right">
+                    {$pagemenu}
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

@@ -1,0 +1,33 @@
+<!---media_list-->
+<!---
+	无图 class="media_list media_user_list"
+	有图 class="media_list media_company_list"
+-->
+<div class="media_list {if $showLogo}media_company_list{else}media_user_list{/if}">
+    <div class="media_list_wrap">
+        {loop $medias[items] $value}
+        <div class="item">
+            <div class="item_btn subscribe_ajax_btn {if $value[order]} subscribe_remove {else} subscribe_add {/if}"
+                 data-ajax-data='{"id":{$value[id]}}'
+                 data-ajax-url="{if $value[order]}{url /article_media_unorder}{else}{url /article_media_order}{/if}">
+                <div class="item_btn_box">
+                    <div class="btn_bg"></div>
+                    <div class="operation">
+                        <div class="icon icon_wminus_big"></div>
+                    </div>
+                </div>
+            </div>
+            {if $showLogo}
+            <div class="face_box">
+                <img class="face lazy" src="{$appConfigs[image_block]}"  data-original="{expr getImageThumb($value[logo], '218x128')}" alt="{$value[name]}"/>
+            </div>
+            {/if}
+            <div class="text">
+                <div class="name"><a href="{$value[url]}">{$value[name]}</a></div>
+                <div class="des">{$value[intro]}</div>
+                <div class="info">驼牛网收录文章 {$value[total]}</div>
+            </div>
+        </div>
+        {/loop}
+    </div>
+</div>

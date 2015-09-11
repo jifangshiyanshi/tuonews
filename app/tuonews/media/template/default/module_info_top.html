@@ -1,0 +1,27 @@
+<!--info_top--->
+<div class="info_top media_info">
+    <div class="face">
+        <img class="lazy" src="{if $loginMedia[logo]}{expr getImageThumb($loginMedia[logo], '128x128')}{else}{$appConfigs[default_logo]}{/if}" alt="{$loginUser[username]}"/>
+    </div>
+    <div class="info">
+        <p class="name">{$loginMedia[name]}</p>
+        <p class="type">会员类型：{if empty($loginUser['group_id'])}普通会员{/if}{if $loginUser['group_id']==1}普通会员{/if}{if $loginUser['group_id']==1}驼牛网认证会员{/if}</p>
+        <p class="des">{$loginMedia[intro]}</p>
+    </div>
+    <div class="media_enter">
+        {if $loginMedia[media_type] == 1}
+        <a class="gray_radius_btn" target="_blank" href="{url /site_index_index/?media_id=$loginMedia[id]}">进入媒体主页</a>
+        {/if}
+        {if $loginMedia[media_type] == 2}
+        <a class="gray_radius_btn" target="_blank" href="{url /article_media_detail/?id=$loginMedia[id]}">进入自媒体主页</a>
+        {/if}
+        {if $loginMedia[media_type] == 3}
+        <a class="gray_radius_btn" target="_blank" href="{url /article_media_detail/?id=$loginMedia[id]}">进入企业主页</a>
+        {/if}
+    </div>
+    <div class="user_enter">
+        <span class="icon icon_enter_big"></span>
+        <a class="gray_radius_btn" href="">入驻</a>
+    </div>
+</div>
+<!--info_top--->

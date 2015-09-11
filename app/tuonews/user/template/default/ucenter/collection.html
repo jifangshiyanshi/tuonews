@@ -1,0 +1,59 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 文章列表-->
+            <div class="user_right_layout">
+                <ul class="user_right_menu">
+                    <li ><a href="{url /user_ucenter_subscribe}">订阅</a></li>
+                    <li class="current"><a href="{url /user_ucenter_collection}">收藏</a></li>
+                </ul>
+                <div class="user_right_content">
+                    <div class="user_list">
+                        <div class="top_goback_link clearfix">
+                            <!--<a class="fr" href="{url /user_ucenter_subscribeMedia}">查看订阅列表</a>-->
+                        </div>
+                        <!-- 文章列表 start-->
+                        <div class="list_hidt">
+
+                            {loop $articles $value}
+                            <dl class="item">
+                                <dt class="head">
+                                    <a href="{url /article_article_detail/?id=$value[id]}">{$value.title}</a>
+                                </dt>
+                                <dd class="info">
+                                    <div class="tag">
+                                        <div class="tag">
+                                            {loop $value[tags] $vTags}
+                                            <a href="{url /article_tags_detail/?id=$vTags}">{$tags[$vTags]}</a>
+                                            {/loop}
+                                        </div>
+                                    </div>
+                                    {if $value[source_url] !== ''}
+                                    <a href="http://{$value.source_url}" target="_blank">{$value.source}</a>
+                                    {/if}
+                                    {if $value[source_url] == ''}
+                                    <a href="#">{$value.source}</a>
+                                    {/if}
+                                    <span class="date">时间：<?=date('m-d H:i', $value[add_time]);?></span>
+                                    <a href="{url /article_article_index/?id=$value[chanel_id]}">{$chanels[$value[chanel_id]]}</a>
+                                </dd>
+                                <dd class="btn_box"><a href="{url /user_ucenter_delCollection/?id=$value[id]}">删除</a></dd>
+                            </dl>
+                            {/loop}
+                        </div>
+                        <!-- 文章列表 end-->
+                    </div>
+                    {include common.module_page}
+                </div>
+            </div>
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

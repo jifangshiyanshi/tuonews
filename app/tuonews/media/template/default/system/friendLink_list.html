@@ -1,0 +1,57 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">友情链接列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav list-->
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th style="width: 300px">链接名称</th>
+                                <th>发布时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {else}
+                        {loop $items $val}
+                            <tr>
+                                <td>{$val[name]}</td>
+                                <td>{date $val[add_time]}</td>
+                                <td>{if $val[ishow]}显示{else}不显示{/if}</td>
+                                <td>
+                                    <a href="{url /media_friendLink_edit/?id=$val[id]}">修改</a>
+                                    <a href="{url /media_friendLink_delete/?id=$val[id]}" class="delone">删除</a>
+                                </td>
+                            </tr>
+                        {/loop}
+                        {/if}
+                        </tbody>
+                    </table>
+                    <div class="table_operation">
+                        <a href="{url /media_friendLink_add}" class="add_red_btn">添加链接</a>
+                    </div>
+                    <!--nav list-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

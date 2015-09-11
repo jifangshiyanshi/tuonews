@@ -1,0 +1,64 @@
+{include common.header}
+<!--content end-->
+<section class="content">
+    <div class="reg_tab account_manage">
+        <ul class="tab_menu">
+            <li class="current">
+                管理员邀请验证
+                <div class="border_top"></div>
+                <div class="border_bottom"></div>
+            </li>
+
+        </ul>
+        <div class="tab_content">
+            <ul class="tab_con">
+                <!-- 邮箱注册 -->
+                <li class="tab_conItem">
+                    <p style="font-size: 16px; padding-left: 60px; padding-top: 20px; color: #0000cc">
+                        您被 <span style="color: #CC0000">{$media[name]}</span> 邀请成为其管理员，
+                        系统检测到您还没有注册驼牛网会员，请您先注册会员</p>
+                    <div class="reg_form" style="width: 100%; margin-top: 10px;">
+                        <form action="{url /user_register_emailReg}" method="post" id="email_reg_form" autocomplete="off">
+                            <div class="input_wrap">
+                                <label class="input_head" for="email">邮箱:</label>
+                                <input class="input" type="text" name="data[email]" value="{$email}" tiptxt="邮箱" dtype="email" id="email" autofocus/>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="ename">用户名:</label>
+                                <input class="input" type="text" name="data[username]" tiptxt="用户名" dtype="username" id="ename"/>
+                                <span class="tips">4-20位，英文字母、下划线或数字的组合</span>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="ename">邀请码:</label>
+                                <input class="input" type="text" name="authcode" tiptxt="邀请码"/>
+                                <span class="tips">填入您在邮箱收到的邀请授权码</span>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="epass">密码 </label>
+                                <input class="input" type="password" id="epass" tiptxt="密码" name="data[password]"/>
+                                <span class="tips">4-20位，区分大小写</span>
+                            </div>
+                            <div class="input_wrap">
+                                <label class="input_head" for="enotpass">确认密码:</label>
+                                <input class="input" type="password" name="repass" tiptxt="确认密码" id="enotpass"/>
+                            </div>
+                            <div class="input_wrap input_code_wrap">
+                                <label class="input_head" for="ecode">验证码:</label>
+                                <input class="input small_input" type="text" name="scode" tiptxt="验证码" id="ecode"/>
+                                <img src="{url /common_vcode_show}" onclick="this.src='/common_vcode_show/?run='+Math.random();" title="点击图片更换验证码" alt="验证码"/>
+                            </div>
+                            <div class="input_wrap">
+                                <input type="hidden" name="mid" value="{$mid}" />
+                                <label class="input_head"></label>
+                                <button class="red_btn user-reg" data-form="email_reg_form" onclick="return false;">注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include common.footer}

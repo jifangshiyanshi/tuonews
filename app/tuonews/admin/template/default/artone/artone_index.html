@@ -1,0 +1,118 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li class="active">
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 文章列表</a>
+                </li>
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 发布文章</a>
+                </li>
+            </ul>
+
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="20">
+                                <label class="checkbox primary">
+                                    <input type="checkbox" data-toggle="checkbox" id="check-all">
+                                </label>
+                            </th>
+                            <th>标题</th>
+                            <th>更新时间</th>
+                            <th>查看次数</th>
+                            <th>排序</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+
+                        {loop $items $value}
+                        <tr>
+                            <input type="hidden" name="hids[{$value[id]}]" value="{$value['id']}">
+                            <td>
+                                <label class="checkbox default">
+                                    <input type="checkbox" data-toggle="checkbox" name="ids[]" value="{$value[id]}">
+                                </label>
+                            </td>
+                            <td>{$value[title]}</td>
+                            <td>{date $value[update_time]}</td>
+                            <td>{$value[hits]}</td>
+                            <td>{$value[sort_num]}</td>
+                            <td>
+                                <a href="{url /admin_artone_edit/?id=$value[id]}" class="btn btn-xs btn-primary">编辑</a>
+                                <a href="{url /admin_artone_delete/?id=$value[id]}" class="btn btn-xs btn-danger delone">
+                                    <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container row">
+                    <a href="{url /admin_artone_deletes}" class="btn btn-sm btn-danger ajaxproxy" data-loading-text="正在删除"
+                       proxy='{"formId":"J_ListForm", "method":"post", "location":"reload", "callBefore":"multiCallbefore();"}'>
+                        <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                </div>
+            </form>
+
+            <nav>
+                <ul class="pagination pull-right">
+                    {$pagemenu}
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<!-- 爆料详情模态框 -->
+<div aria-hidden="false" role="dialog" class="modal fade" id="tipoffDetailModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> 爆料详情</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+{include admin.script}
+
+<script type="text/javascript">
+    $('#tipoffDetailModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+        var modal = $(this);
+
+        $.get('{url /admin_tipoff_detail}', {
+            id : id
+        }, function(res) {
+
+            if ( res.state == 'ok' ) {
+                modal.find('.modal-body').html('<p class="text-info">'+res.message+'</p>');
+            } else {
+                modal.find('.modal-body').html('<p class="text-danger">获取详情失败！</p>');
+            }
+        }, 'json');
+    })
+</script>
+
+{include admin.footer}

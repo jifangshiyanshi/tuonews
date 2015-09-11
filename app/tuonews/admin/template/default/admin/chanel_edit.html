@@ -1,0 +1,89 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 频道列表</a>
+                </li>
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加频道</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="fui-new"></em> 编辑频道</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>所属频道</label>
+                        <div class="col-sm-10">
+                            <select name="data[pid]" data-toggle="select" class="form-control select select-default" required>
+                                <option value="0">顶级频道</option>
+                                {loop $chanels $value}
+                                <option value="{$value[id]}" {if $pid == $value[id]}selected{/if}>{$value[name]}</option>
+                                {/loop}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 频道名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" tip-text="频道名称" max-length="20" value="{$item[name]}" required>
+                            <p class="help-block">长度不超过20</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> seo标题</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[seo_title]" class="form-control" tip-text="seo标题" max-length="100" required>{$item[seo_title]}</textarea>
+                            <p class="help-block">长度不超过100</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> seo关键字</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[seo_kword]" class="form-control" tip-text="seo关键字" max-length="100" required>{$item[seo_kword]}</textarea>
+                            <p class="help-block">长度不超过100</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> seo描述</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[seo_desc]" class="form-control" tip-text="seo描述" max-length="100" required>{$item[seo_desc]}</textarea>
+                            <p class="help-block">长度不超过100</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 排序数字</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" class="form-control" tip-text="排序数字" max-length="3" dtype="number"  value="{$item[sort_num]}" required>
+                            <p class="help-block">数字小的排序靠前，三位数以内</p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{$item[id]}" />
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

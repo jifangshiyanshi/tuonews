@@ -1,0 +1,26 @@
+<!--aside_ranking start-->
+<!-- 媒体文章的阅读排行-->
+<div class="aside_module aside_ranking">
+    <ul class="tab_menu">
+        <li>
+            阅读排行
+            <div class="border_top"></div>
+            <div class="border_bottom"></div>
+        </li>
+
+    </ul>
+    <div class="tab_content">
+        <ul class="tab_con">
+            <li class="tab_conItem">
+                {loop $hotRanks $key $value}
+                <div class="item">
+                    <span class="index">{expr ++$key}</span>
+                    <a href="{url /article_article_detail/?id=$value[id]}">{$value[title]}</a>
+                </div>
+                {/loop}
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!--aside_ranking end-->

@@ -1,0 +1,7 @@
+/**
+ * 自定义的css样式
+ * added by yangjian 2015-06-10
+ */
+/* 权限表单样式 */
+.text-right-td {text-align: right; width: 120px; padding: 10px; vertical-align: top;}
+.td-checkboxsrap {line-height: 2.5; margin-right: 20px; font-weight: bold;}

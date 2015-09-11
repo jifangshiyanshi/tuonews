@@ -1,0 +1,40 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 爆料-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li><a href="{url /user_tipoff_index}">爆料</a></li>
+                    <li class="current"><a href="{url /user_tipoff_lists}">我的爆料</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!-- 爆料 start-->
+                    <div class="list_cd">
+
+                        {loop $items $value}
+                        <dl class="item">
+                            <dt class="title">
+                                <a href="{url /user_tipoff_detail/?id=$value[id]}">{$value.content}</a>
+                            </dt>
+                            <dd class="date">
+                                <?=date("Y-m-d H：i", $value[add_time])?>
+                            </dd>
+                        </dl>
+                        {/loop}
+                    </div>
+                    <!-- 爆料 end-->
+                    {include common.module_page}
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

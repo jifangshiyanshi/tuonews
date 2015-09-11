@@ -1,0 +1,133 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 文章列表-->
+            <div class="user_right_layout">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="{url /user_ucenter_subscribe}">订阅</a></li>
+                    <li><a href="{url /user_ucenter_collection}">收藏</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_media">
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>订阅/订阅列表</div>
+                    <!-- 群媒列表 start-->
+                    <div class="media_list_head">群媒列表（{run echo count($qunmei);}）</div>
+                    <div class="media_list media_user_list">
+                        <div class="media_list_wrap">
+                            {loop $qunmei $value}
+                            <div class="item">
+                                <div class="item_btn">
+                                    <div class="item_btn_box ajaxproxy"
+                                         href="{url /article_media_unorder}?id={$value[id]}"
+                                         proxy='{"method":"get","validate":"false","callBack":"reload()"}'>
+                                        <div class="btn_bg"></div>
+                                        <div class="operation">
+                                            <div class="icon icon_wminus_big"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <div class="name"><a href="{url /article_media_detail/?id=$value[id]}">{$value.name}</a></div>
+                                    <div class="des">{$value.intro}</div>
+                                    <div class="info">驼牛网收录文章 {run echo $value[sum] ? $value[sum] : 0}</div>
+                                </div>
+                            </div>
+                            {/loop}
+                        </div>
+                    </div>
+                    <!-- 群媒列表 end-->
+                    <!-- 自媒体列表 start-->
+                    <div class="media_list_head">自媒体列表（{run echo count($zimei);}）</div>
+                    <div class="media_list media_user_list">
+                        <div class="media_list_wrap">
+                            {loop $zimei $value}
+                            <div class="item">
+                                <div class="item_btn">
+                                    <div class="item_btn_box ajaxproxy"
+                                         href="{url /article_media_unorder}?id={$value[id]}"
+                                         proxy='{"method":"get","validate":"false","callBack":"reload()"}'>
+                                        <div class="btn_bg"></div>
+                                        <div class="operation">
+                                            <div class="icon icon_wminus_big"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <div class="name"><a href="{url /article_media_detail/?id=$value[id]}">{$value.name}</a></div>
+                                    <div class="des">{$value.intro}</div>
+                                    <div class="info">驼牛网收录文章 {run echo $value[sum] ? $value[sum] : 0}</div>
+                                </div>
+                            </div>
+                            {/loop}
+                        </div>
+                    </div>
+                    <!-- 自媒体列表 end-->
+                    <!-- 企业列表 start-->
+                    <div class="media_list_head">企业列表（{run echo count($qiye);}）</div>
+                    <div class="media_list media_user_list">
+                        <div class="media_list_wrap">
+                            {loop $qiye $value}
+                            <div class="item">
+                                <div class="item_btn">
+                                    <div class="item_btn_box ajaxproxy"
+                                         href="{url /article_media_unorder}?id={$value[id]}"
+                                         proxy='{"method":"get","validate":"false","callBack":"reload()"}'>
+                                        <div class="btn_bg"></div>
+                                        <div class="operation">
+                                            <div class="icon icon_wminus_big"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <div class="name"><a href="{url /article_media_detail/?id=$value[id]}">{$value.name}</a></div>
+                                    <div class="des">{$value.intro}</div>
+                                    <div class="info">驼牛网收录文章 {run echo $value[sum] ? $value[sum] : 0}</div>
+                                </div>
+                            </div>
+                            {/loop}
+                        </div>
+                    </div>
+                    <!-- 企业列表 end-->
+                    <!-- 标签列表 start-->
+                    <div class="media_list_head">标签列表（{run echo count($tags);}）</div>
+                    <div class="media_list media_user_list">
+                        <div class="media_list_wrap">
+                            {loop $tags $value}
+                            <div class="item">
+                                <div class="item_btn">
+                                    <div class="item_btn_box ajaxproxy"
+                                         href="{url /article_tags_unorder}?id={$value[id]}"
+                                         proxy='{"method":"get","validate":"false","callBack":"reload()"}'>
+                                        <div class="btn_bg"></div>
+                                        <div class="operation">
+                                            <div class="icon icon_wminus_big"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <div class="name"><a href="{url /article_tags_detail/?id=$value[id]}">{$value.name}</a></div>
+                                    <div class="des">{$value.intro}</div>
+                                </div>
+                            </div>
+                            {/loop}
+                        </div>
+                    </div>
+                    <!-- 标签列表 end-->
+
+                </div>
+            </div>
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<script>
+    function reload(){
+        location.reload();
+    }
+</script>
+<!--content end-->
+{include user.footer}

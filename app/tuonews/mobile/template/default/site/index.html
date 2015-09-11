@@ -1,0 +1,129 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>{$mediaInfo[name]}</title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" contenta="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {res:css reset.css}
+    {res:css medie-1-new.css}
+</head>
+{gres:js jquery-1.11.2.min.js}
+<body >
+{include mobile.site_header}
+<div class='scroll-wraper'>
+    <div class="scroll relative">
+        <div class="scroll_box" id="scroll_img">
+            <ul class="scroll_wrap">
+                {loop $carousel $key $item}
+                <li class='focus-img slide' >
+                    <a href='{$item[url]}'>
+                        <img src="{expr getImageThumb($item[thumb], '650x363')}">
+                        <span class='bg'></span>
+                        <span class='text'>{$item[title]}</span>
+                    </a>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+        <ul class="scroll_position" id='scroll_position'>
+            {loop $carousel $key $item}
+            {if $key == 0}<li class="on"><a href="javascript:void(0);">{$key}</a></li>{/if}
+            {if $key != 0}<li><a href="javascript:void(0);">{$key}</a></li>{/if}
+            {/loop}
+        </ul>
+    </div>
+</div>
+<div id="indicator">
+    <div id="dotty"></div>
+</div>
+<div class='content'>
+    <div class='today-news'>
+        {loop $items $key $item}
+        <a href='{$item[url]}'>
+            <img src="{expr getImageThumb($item[thumb], '90x63')}">
+            <div class='right-side'>
+                <p class='text'>{$item[title]}</p>
+                <p class='focus-detail'><span class='time'>BY<span class='name'>{$item[media]}</span></span><span class='author'>{$item[time]}</span></p>
+            </div>
+        </a>
+        {/loop}
+    </div>
+</div>
+<div class='loading-more-wraper'>
+    <p class='loading-more'>加载更多</p>
+</div>
+{include mobile.site_footer}
+<a class='up' href='#'></a>
+</body>
+<script id="test" type="text/html">
+    {{each data as value}}
+    <a href='{{value.url}}'>
+        <img src="{{value.thumb}}">
+        <div class='right-side'>
+            <p class='text'>{{value.title}}</p>
+            <p class='focus-detail'><span class='time'>BY<span class='name'>{{value.media}}</span></span><span class='author'>{{value.time}}</span></p>
+        </div>
+    </a>
+    {{/each}}
+</script>
+{res:js template.js}
+{res:js slide-mobile.js}
+<script type="text/javascript">
+    /*导航条*/
+    $('.scroll-wraper').on('touchstart',function () {
+        var staute = $('#menu').css('display');
+        if(staute === 'block'){
+            $('#menu').hide();
+        }
+    });
+    $('#nav-btn').on('touchend',function  (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var staute = $('#menu').css('display');
+        if(staute === 'none'){
+            $('#menu').show();
+        }else{
+            $('#menu').hide();
+        }
+    });
+
+    /*轮播图初始化*/
+
+    var slider = Swipe(document.getElementById('scroll_img'), {
+        auto: 3000,
+        continuous: true,
+        callback: function(pos) {
+            var i = bullets.length;
+            while (i--) {
+                bullets[i].className = ' ';
+            }
+            bullets[pos].className = 'on';
+        }
+    });
+    var bullets = document.getElementById('scroll_position').getElementsByTagName('li');
+    $(function(){
+        $('.scroll_position_bg').css({
+            width:$('#scroll_position').width()
+        });
+    });
+</script>
+<script type="text/javascript">
+    var pn = 2;
+    var mediaId = {$mediaInfo[id]};
+    $('.loading-more').on('touchend',function (e) {
+        e.preventDefault();
+        $.ajax({url:"{url /mobile_site_indexJson}",type:"get",dataType:"json",data:{page:pn,mediaId:mediaId},success:function(data){
+            if (data.state == 1) {
+                pn++;
+                var html = template('test', data);
+                $('.today-news').append(html);
+            } else {
+                $('.loading-more').hide();
+            }
+        }});
+    })
+</script>
+</html>

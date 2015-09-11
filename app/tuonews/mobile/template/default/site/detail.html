@@ -1,0 +1,78 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>{$mediaInfo[name]}</title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" contenta="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {res:css reset.css}
+    {res:css medie-2-detail.css}
+</head>
+{gres:js jquery-1.11.2.min.js}
+<body >
+{include mobile.site_header}
+<div class='content'>
+    <div class='focus-img-wraper'>
+        <h2 class='focus-side-tittle'>{$article[title]}</h2>
+        <p class="author">BY <span>{$article[media]}</span>{$article[time]}</p>
+        <p class='text'>{$article[content]}</p>
+    </div>
+    <p class='share clearfix'>
+        <!--<span>分享到：</span><a href="#">微博</a><a href="#">微信</a><a href="#">qq</a>-->
+        <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style_32x32"><span class="jiathis_txt">分享到：</span>
+        <!--<a class="jiathis_button_weixin"></a>-->
+        <a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_tqq"></a>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_yixin"></a>
+    </div>
+    <script type="text/javascript" >
+        var jiathis_config={
+            siteNum:5,
+            sm:"weixin,qzone,tqq,tsina,yixin",
+            summary:"",
+            boldNum:0,
+            shortUrl:false,
+            hideMore:true
+        }
+    </script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+    </p>
+    <div class='today-news'>
+        <p class='title-border'></p>
+        <h3>今日更新</h3>
+        {loop $alikeArticle $item}
+        <a href='{$item[url]}'>
+            <img src="{$item[thumb]}">
+            <p>{$item[title]}</p>
+        </a>
+        {/loop}
+    </div>
+</div>
+{include mobile.site_footer}
+<a class='up' href='#'></a>
+</body>
+
+
+<script type="text/javascript">
+    $('.content').on('touchstart',function () {
+        var staute = $('#menu').css('display');
+        if(staute === 'block'){
+            $('#menu').hide();
+        }
+    });
+    $('#nav-btn').on('touchend',function  (e) {
+        e.stopPropagation();
+        var staute = $('#menu').css('display');
+        if(staute === 'none'){
+            $('#menu').show();
+        }else{
+            $('#menu').hide();
+        }
+    });
+</script>
+</html>

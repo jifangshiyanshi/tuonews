@@ -1,0 +1,39 @@
+开发规范
+1. css，js文件布局
+2. 选择器的命名规范,main-container-nav
+3. js，尽量选择轻量级的js库，如用zepto替换jquery
+4. js插件用法，编辑器，JDialog， AjaxProxy, AutoSave, JForm, JLazyLoader 后台main.js
+
+框架的使用
+1. 组织结构目录
+2. mvc开发流程,dao层 C_Model(需要熟练服务层的api,数据的便捷操作)
+3. 框架的配置信息
+4. url解析，生命周期
+5. 模板标签的使用
+6. 框架的工具使用
+	缓存，数据过滤，bean,session，utils....,
+7. 调试功能
+8. 核心功能函数
+9. 编码规范，
+	变量命名
+	函数编写
+	查询时要指明字段
+	用子查询来替换关联查询
+	尽量不在for循环中查询数据库
+	
+10. git分支操作规范(为了实现功能的拆分上线)
+	1. 代发开发统一在master分支下，或者自己新建分支下进行，平时开发的时候只要执行 git commit 命名保存你的版本就OK了，不需要每天都 git push 到远程仓库
+	2. 如果单位功能开发完成，或者是你开发的功能需要给团队的其他成员使用，这个时候你可以执行 git push origin master推送到主分支，以便其他成员pull你的代码
+		但是需要留意的是：
+		1) 如果你本身就是在master分支下开发，直接推送就可以了
+		2) 如果你是在特定的其他分支下做开发，比如你在front(前端开发)分支，则你必须先切换到master分支 git checkout master. 然后将你的分支合到master分支 git merge front
+			然后再推送master分支 git push origin master
+			
+	3. 如果你开发的功能线上测试，则需要切换到test分支
+	git checkout test
+	然后合并分支
+	git merge {current_branch}
+	推送到test分支
+	git push origin test
+	
+	特别要留意的是：不允许直接从master分支推送到test分支。或者release分支

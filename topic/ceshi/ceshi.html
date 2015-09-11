@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<div id="editor"></div>
+<!--头部-->
+<script type="text/javascript" src="Ssbxeditor.js"></script>
+<script type="text/javascript">
+    //发布主题
+    function postTheme(){
+        document.getElementById('editor').style.display = 'block';
+        var data = {testid:'test'};
+        var editor = new Ssbxeditor("editor",'','',data);
+        editor.showeditor();
+    }
+    postTheme();
+</script>
+
+</body>
+</html>

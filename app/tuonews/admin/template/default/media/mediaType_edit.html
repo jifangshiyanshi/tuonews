@@ -1,0 +1,79 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 媒体类型列表</a>
+                </li>
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加媒体类型</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="glyphicon glyphicon-edit"></em> 编辑媒体类型</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体类型名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" value="{$item[name]}" required autofocus>
+                            <p class="help-block">输入内容长度为1到10个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体权限模板</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[permission_tpl]" class="form-control" value="{$item[permission_tpl]}" placeholder="媒体权限模板" required>
+                            <p class="help-block">此选项确定了当前类别的媒体用的权限模板，可选参数</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体类型key</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[tkey]" class="form-control" value="{$item[tkey]}" placeholder="媒体类型key" required>
+                            <p class="help-block">媒体类型key, 请保持唯一</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 排序数字</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" class="form-control" value="{$item[sort_num]}" required>
+                            <p class="help-block">请输入三位数以内的数字(包含三位数)</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体类型简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[summary]" class="form-control" placeholder="媒体类型简介">{$item[summary]}</textarea>
+                            <p class="help-block">输入内容长度为1到100个字符之间</p>
+                        </div>
+                    </div>
+
+                    <input type="hidden" value="{$item[id]}" name="id" />
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+{include admin.footer}

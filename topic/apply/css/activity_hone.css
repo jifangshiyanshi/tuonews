@@ -1,0 +1,265 @@
+*{
+	margin:0;
+	padding:0;
+}
+img{
+	border:none;
+}
+ul{
+	list-style:none;
+}
+em {font-style: normal;}
+html,body{
+	width:100%;
+	height:100%;
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+}
+div.oflow{
+	clear:both;
+}
+h3{ font-weight:normal;}
+div.hone_kj{
+	width:100%;
+	min-height:50px;
+}
+div.hone_kj div.kuangjai{
+	width:97%;
+	margin:0 auto;
+	padding-bottom:50px;
+}
+div.hone_kj div.header{
+	width:100%;
+	height:auto;
+	margin:0 auto;
+}
+div.hone_kj div.header img{
+	width:100%;
+	height:auto;
+}
+div.hone_kj div.text_kj1{
+	padding:20px 15px 0 15px;
+	font-size:1.2em;
+	line-height:28px;
+}
+div.hone_kj div.id_title{
+	width:100%;
+	height:35px;
+	position:relative;
+	background:#ff1301;
+	margin:0 auto;
+	font-size:1.2em;
+	color:#fff;
+	line-height:35px;
+	text-indent:1.5em;
+	margin-top:30px;
+	margin-bottom:20px;
+}
+div.hone_kj div.id_title div.id_ico{
+	width:31px;
+	height:17px;
+	position:absolute;
+	bottom:-17px;
+	left:0;
+	background:url(../img/ad_ico.png) no-repeat;
+}
+/*适用客户*/
+div.hone_kj h3.sykh{
+	width:100%;
+	height:30px;
+	margin:30px auto 15px auto;
+	font-size:1.3em;
+	line-height:25px;
+}
+div.hone_kj h3.sykh span{
+	display:inline-block;
+	width:23px;
+	height:23px;
+	background:#ff9900;
+	border-radius:50%;
+	margin-right:5px;
+	float:left;
+}
+div.hone_kj span.sykh_title{
+	display:block;
+	width:100%;
+	height:25px;
+	line-height:25px;
+	text-indent:1.5em;
+	margin:0 auto;
+	font-size:1.2em;
+}
+div.hone_kj span.fanwei{
+	margin:20px 0;
+}
+div.hone_kj div.liuc_kj{
+	width:100%;
+	text-align:center;
+	margin-top:40px;
+}
+div.hone_kj div.liuc_kj h3.liucheng_txt{
+	width:100%;
+	height:25px;
+	text-align:center;
+	font-size:1.3em;
+	line-height:25px;
+	margin-top:1.1em;
+	color:#666666;
+}
+div.hone_kj div.liuc_kj span.lc_img{
+	display:inline-block;
+	width:50px;
+	height:27px;
+	margin:0 auto;
+	margin-top:1.1em;
+	background:url(../img/liucheng.png) no-repeat;
+}
+div.hone_kj div.oform{
+	width:100%;
+	margin:0 auto;
+	margin-top:30px;
+	overflow:hidden;
+	
+}
+div.hone_kj div.oform div.form_title{
+	width:43%;
+	height:27px;
+	background:#ff1301;
+	position:relative;
+	color:#fff;
+	font-size:1.3em;
+	line-height:27px;
+	text-align:center;
+}
+div.hone_kj div.oform div.form_title div.right_ico{
+	width:15px;
+	height:27px;
+	background:url(../img/home_input_ico.png) no-repeat;
+	position:absolute;
+	top:0;
+	right:-15px;
+}
+div.hone_kj div.oform div.oinput{
+	width:100%;
+	padding:10px 0;
+}
+div.hone_kj div.oform div.oinput div.oinput_kj{
+	width:90%;
+	margin:0 auto;
+	margin-top:22px;
+}
+div.hone_kj div.oform div.oinput div.oinput_kj span.tishi{
+	display:block;
+	margin:4px 0;
+	color:#ff1301;
+}
+div.hone_kj div.oform div.oinput div.oinput_kj span.name_span{
+	width:20%;
+	margin-right:2%;
+	margin-left:4.5%;
+	height:42px;
+	float:left;
+	line-height:42px;
+	text-align:right;
+	font-size:1.2em;
+	color:#fff;	
+}
+div.hone_kj div.oform div.oinput div.oinput_kj input{
+	width:100%;
+	height:40px;
+	margin:0 auto;
+	border:1px solid #cccccc;
+	font-size:1.1em;
+	text-indent:0.7em;
+	line-height:40px;
+	border-radius:4px;
+	color:#747f8c;
+	font-family:"微软雅黑";
+}
+/*提交按钮*/
+div.hone_kj div.oform div.oinput div.hone_btn{
+	width:90%;
+	height:40px;
+	background:#ff1301;
+	border-radius:4px;
+	margin:0 auto;
+	margin-top:22px;
+	text-align:center;
+	line-height:40px;
+	color:#fff;
+	font-size:1.15em;
+}
+div.hone_kj div.bottom{
+	width:90%;
+	margin:0 auto;
+	text-align:center;
+}
+div.hone_kj div.bottom span.bottom_txt{
+	display:block;
+	font-size:1.3em;
+	color:#666666;
+	margin:20px 0;
+	text-align:left;
+}
+div.hone_kj div.bottom div.dianhua{
+	width:100%;
+	height:30px;
+	text-align:center;
+}
+div.hone_kj div.bottom div.dianhua h3{
+	height:30px;
+	line-height:30px;
+	font-size:1.8em;
+	color:#ff0000;
+	text-align:left;
+	float:left;
+}
+div.hone_kj div.bottom div.dianhua span{
+	display:inline-block;
+	width:30px;
+	height:30px;
+	float:left;
+	margin-left:8px;
+}
+/*弹窗成功提示*/
+div.ok_tishi{
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.7);
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:99;
+	display:none;
+}
+div.ok_tishi div.tishikj{
+	width:70%;
+	height:160px;
+	background:#fff;
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin-left:-35%;
+	margin-top:-80px;
+	border-radius:4px;
+}
+div.ok_tishi div.tishikj p.tishi_txt{
+	width:100%;
+	font-size:1.1em;
+	margin-top:35px;
+	text-align:center;
+}
+div.ok_tishi div.tishikj div.tj_btn{
+	width:40%;
+	height:35px;
+	margin:0 auto;
+	line-height:35px;
+	font-size:1.2em;
+	color:#fff;
+	background:#ff1301;
+	border-radius:4px;
+	margin-top:20px;
+	text-align:center;
+}

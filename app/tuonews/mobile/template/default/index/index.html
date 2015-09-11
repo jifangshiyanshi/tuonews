@@ -1,0 +1,99 @@
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>驼牛网-产业文化与媒体影响力传播交流平台</title>
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+{res:css reset.css}
+{res:css index.css}
+
+<style>
+.gmu-media-detect{-webkit-transition: width 0.001ms; width: 0; position: absolute; clip: rect(1px, 1px, 1px, 1px);}
+</style>
+{gres:js jquery-1.11.2.min.js}
+</head>
+<body >
+	<header class='clearfix'>
+		<div class='top-title'><span class='logo'>驼牛网</span><span class='detail'>媒体第一开放平台</span></div>
+		<nav>
+			<ul id='menu'>
+                <li class='on'><a href="#">首页</a></li>
+                {loop $chanels $item}
+                <li><a href="{$item[url]}">{$item[name]}</a></li>
+                {/loop}
+			</ul>
+		</nav>
+	</header>
+    <div class='focus-img-wraper'>
+		<div class='focus-img'>
+            <a href='{$indexPosition[url]}'>
+				<img src="{$indexPosition[thumb]}">
+				<span class='bg'></span>
+				<span class='text'>{$indexPosition[title]}</span>
+			</a>
+		</div>
+	</div>
+	<div id="indicator">
+		<div id="dotty"></div>
+	</div>
+	<div class='content'>
+		<div class='today-news'>
+            {loop $items $item}
+                <a href='{$item[url]}'>
+                    <div class='msg'>
+                        <p class='type'>{$item[chanel]}</p>
+                        <p class='focus-detail'><span class='time'>BY<span class='name'>{$item[media]}</span></span><span class='author'>{$item[time]}</span></p>
+                    </div>
+                    {if empty($item[thumb])}
+                        <img src="/res/global/images/reception/loading.gif">
+                    {else}
+                        <img src="{$item[thumb]}">
+                    {/if}
+                    <div class='right-side'>
+                        <p class='text'>{$item[title]}</p>
+                    </div>
+                </a>
+            {/loop}
+		</div>
+	</div>
+	<div class='loading-more-wraper'>
+		<p class='loading-more'>加载更多</p>
+	</div>
+    {include mobile.module_index_up}
+    {include mobile.module_index_footer}
+</body>
+{res:js template.js}
+<script id="test" type="text/html">
+{{each data as value}}
+    <a href='{{value.url}}'>
+        <div class='msg'>
+            <p class='type'>{{value.chanel}}</p>
+            <p class='focus-detail'>
+                <span class='time'>BY<span class='name'>{{value.media}}</span></span><span class='author'>{{value.time}}</span></p>
+        </div>
+        <img src="{{value.thumb}}">
+        <div class='right-side'>
+            <p class='text'>{{value.title}}</p>
+        </div>
+    </a>
+{{/each}}
+</script>
+<script type="text/javascript">
+    var pn = 2;
+    $('.loading-more').on('touchend',function (e) {
+        e.preventDefault();
+        $.ajax({url:"{url /mobile_index_indexJson}",type:"get",dataType:"json",data:{page:pn},success:function(data){
+            if (data.state == 1) {
+                pn++;
+                var html = template('test', data);
+                $('.today-news').append(html);
+            } else {
+                $('.loading-more').hide();
+            }
+        }});
+    })
+</script>
+</html>

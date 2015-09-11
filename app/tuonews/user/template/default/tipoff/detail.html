@@ -1,0 +1,34 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include user.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!-- 爆料-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li><a href="{url /user_tipoff_index}">爆料</a></li>
+                    <li class="current"><a href="{url /user_tipoff_lists}">我的爆料</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!-- 爆料 start-->
+                    <div class="tipoff_detail">
+                        <div class="head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>我的爆料 / 爆料详情页</div>
+                        <div class="text">
+                            <!--富文本-->
+                            {$items.content}
+                            <!--富文本-->
+                        </div>
+                    </div>
+                    <!-- 爆料 end-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include user.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

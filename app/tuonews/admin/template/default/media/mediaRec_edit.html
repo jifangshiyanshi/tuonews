@@ -1,0 +1,86 @@
+{include admin.top}
+
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 推荐位列表</a>
+                </li>
+                <li>
+                    <a href="{$add_index}"><em class="glyphicon glyphicon-plus"></em> 添加推荐位</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="fui-new"></em> 编辑推荐位</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 推荐位名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" value="{$item[name]}" required autofocus>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 推荐位置</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[position]" class="form-control" value="{$item[position]}" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">推荐媒体</label>
+                        <div class="col-sm-10">
+                            <div class="container" id="media-list-box">
+                                {loop $medias $value}
+                                <p class="text-info">{$value[name]} <a href="javascript:__medias.remove('{$value[id]}');" class="link del">删除</a></p>
+                                {/loop}
+                            </div>
+                            <input type="hidden" name="data[media_ids]" value="{$item[media_ids]}" id="media-ids">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#addMediaModal" class="btn btn-primary">添加媒体</a>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="id" value="{$item[id]}" />
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 添加媒体模态框 -->
+<div aria-hidden="false" role="dialog" class="modal fade" id="addMediaModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> 添加推荐媒体</h4>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="500" frameborder="0" src="{url /admin_media_select/?mids=$item[media_ids]}"></iframe>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+{include admin.script}
+<script>
+    var __params = {data:{$data}};
+</script>
+{res:js media.js}
+{include admin.footer}

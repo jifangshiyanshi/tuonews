@@ -1,0 +1,88 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 文章列表</a>
+                </li>
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon-plus"></em> 添加文章</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="fui-new"></em> 修改文章</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 文章标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[title]" value="{$item[title]}" class="form-control" max-length="30" placeholder="文章标题" required autofocus>
+                            <p class="help-block">30个汉字以内</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 关键字</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[kwords]" class="form-control" required>{$item[kwords]}</textarea>
+                            <p class="help-block">60个汉字以内,不能包含html代码</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 文章简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[bcontent]" class="form-control" required>{$item[bcontent]}</textarea>
+                            <p class="help-block">60个汉字以内,不能包含html代码</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 文章内容</label>
+                        <div class="col-sm-10">
+                            <textarea id="editor" name="data[content]" style="max-width:900px;height:500px;" required>{$item[content]}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">排序</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" value="{$item[sort_num]}" class="form-control" placeholder="排序"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="hidden" name="id" value="{$item[id]}" />
+                            <a href="{$update_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                            <a href="javascript:window.history.go(-1);" class="btn btn-primary"><i class="glyphicon glyphicon-fast-backward"></i> 返回列表</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+<!-- 引入编辑器 -->
+{cres:js ueditor/tuonews.config.min.js}
+{cres:js ueditor/ueditor.all.min.js}
+
+<!-- 注册全局变量 -->
+<script lang="javascript">
+
+    //实例化编辑器
+    var __UE = UE.getEditor('editor');
+</script>
+
+{include admin.footer}

@@ -1,0 +1,13 @@
+<header class='clearfix'>
+    <a href="{url /mobile_site_m2index/?mediaId=$mediaInfo[id]}">
+        <div class='logo'><img src="{$mediaInfo[logo]}"></div>
+    </a>
+    <nav>
+        <span class='nav-btn' id='nav-btn'></span>
+        <ul id='menu'>
+            {loop $chanel $item}
+            <li><a href="{url /mobile_site_m2chanel/?mediaId=$mediaInfo[id]&id=$item[id]}">{$item[name]}</a></li>
+            {/loop}
+        </ul>
+    </nav>
+</header>

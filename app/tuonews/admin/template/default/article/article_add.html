@@ -1,0 +1,175 @@
+{include admin.top}
+{cres:css global/js/uploadify/uploadify.min.css}
+{cres:css global/js/jcrop/css/jquery.Jcrop.min.css}
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 文章列表</a>
+                </li>
+
+                <li>
+                    <a href="{url /admin_article_check}"><em class="glyphicon glyphicon-eye-open"></em> 审核文章</a>
+                </li>
+
+                <li>
+                    <a href="{url /admin_article_trash}"><em class="glyphicon glyphicon-trash"></em> 回收站</a>
+                </li>
+
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="glyphicon glyphicon-plus"></em> 添加文章</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 文章标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[title]" max-length="30" min-length="5" class="form-control" placeholder="文章标题" id="title" required autofocus>
+                            <p class="help-block">5-30个汉字</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 所属频道</label>
+                        <div class="col-sm-10">
+                            <select name="data[chanel_id]" data-toggle="select" class="form-control select select-default" required>
+                                {loop $topChanels $value}
+                                <option value="" disabled>{$value[name]}</option>
+                                    {loop $value[sub] $val}
+                                    <option value="{$val[id]}">-- {$val[name]}</option>
+                                    {/loop}
+                                {/loop}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">缩略图</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="data[thumb]" id="thumb_src"/>
+                            <input type="file" id="thumb_upload" value="" />
+                            <input type="hidden" id="img" name="img" />
+                            <input type="hidden" id="x" name="x" />
+                            <input type="hidden" id="y" name="y" />
+                            <input type="hidden" id="w" name="w" />
+                            <input type="hidden" id="h" name="h" />
+                            <div class="row container" style="display: none">
+                                <img src="" id="crop_target" />
+                            </div>
+
+                            <div class="row container" id="preview_box" style="margin-top:10px; display: none">
+                                <div>
+                                    <img class="preview" id="preview_1" src="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">关键字</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[kwords]" class="form-control"></textarea>
+                            <p class="help-block">60个汉字以内</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文章简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[bcontent]" class="form-control"></textarea>
+                            <p class="help-block">60个汉字以内</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文章标签</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[tags]" class="form-control" id="article-tag-input" required>
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0);"  data-loading-text="正在获取……"
+                               id="get-tags" data-source="#title">自动获取标签</a>
+                            <p class="help-block">输入英文逗号或者Enter键来结束单个标签输入，最多输入5个标签，不允许输入重复的标签</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文章内容</label>
+                        <div class="col-sm-10">
+                            <textarea id="editor" name="data[content]" style="max-width:900px;height:500px;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="publish-setting">
+                        <label class="col-sm-2 control-label">发布设置</label>
+                        <div class="col-sm-10">
+                            <label class="radio">
+                                <input type="radio" data-toggle="radio" name="publish" value="0" checked />
+                                立即发布
+                            </label>
+                            <label class="radio">
+                                <input type="radio" data-toggle="radio" name="publish" value="1" />
+                                定时发布
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: none" id="publish-time-box">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 发布时间</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span id="basic-addon1" class="input-group-addon fui-calendar"></span>
+                                <input type="text" aria-describedby="basic-addon1" name="publish_time" class="form-control" placeholder="发布时间" id="publish-time" />
+                            </div>
+                            <p class="help-block">请至少延后15分钟发布，因为系统的误差最大为15分钟</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 文章作者</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[author]" value="{$loginUser[name]}" class="form-control" placeholder="文章作者" max-length="10" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$insert_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                            <a href="javascript:window.history.go(-1);" class="btn btn-primary"><i class="glyphicon glyphicon-fast-backward"></i> 返回列表</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+<!-- 引入编辑器 -->
+{cres:js ueditor/tuonews.config.min.js}
+{cres:js ueditor/ueditor.all.min.js}
+
+{gres:js jcrop/js/jquery.Jcrop.min.js}
+{gres:js uploadify/jquery.uploadify.min.js}
+<!-- 注册全局变量 -->
+<script lang="javascript">
+
+    //实例化编辑器
+    var __UE = UE.getEditor('editor');
+    var __params = {
+        userid : '{$userid}',
+        uploader : '{url /image_upload_index}',
+        cropUrl : '{url /image_upload_crop}'
+    };
+
+</script>
+{gres:js UploadCrop.js}
+{res:js article.js}
+
+{include admin.footer}

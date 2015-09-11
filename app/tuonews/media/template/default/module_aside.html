@@ -1,0 +1,14 @@
+<!--media_aside start-->
+<ul class="media_aside">
+    {loop $loginMedia[menus] $value}
+    <li class="item">
+        <div class="item_head"><span class="icon {$value[icon]}"></span>{$value[name]}</div>
+        <ul class="sublist">
+            {loop $value[sub] $val}
+            <li {if in_array($currentOpt, $val[opt])} class="current"{/if}><a href="{$val[url]}">{$val[name]}</a></li>
+            {/loop}
+        </ul>
+    </li>
+    {/loop}
+</ul>
+<!--media_aside end-->

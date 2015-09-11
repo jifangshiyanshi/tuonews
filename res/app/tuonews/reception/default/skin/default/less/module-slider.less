@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/*slider*/
+.banner {
+  @height: 348px;
+  @width: 621px;
+  position: relative;
+  height: @height;
+  overflow: hidden;
+
+  .sliderBox {
+    width: @width;
+  }
+  .slider  {
+    >li{
+      .size(@width,@height);
+      position: relative;
+      a,img{
+        display: block;
+        .size(@width,290px);
+      }
+      p{
+        &:extend(.text-overflow);
+        position: absolute;
+        left: 0;
+        bottom: 74px;
+        width: @width;
+        color: #fff;
+        line-height: 70px;
+        font-size: 30px;
+        text-indent: 20px;
+      }
+    }
+  }
+
+  /*控制器按钮*/
+  .control {
+    .clearfix();
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 9;
+    width: @width+1;
+    background: #000;
+    padding: 2px 2px;
+  }
+  .control li {
+    &:extend(.fl);
+    position: relative;
+    margin: 0 1px;
+    cursor: pointer;
+    >img {
+      .size(152px,69px);
+      .opacity(0.3);
+    }
+    >p {
+      .size(123px,40px);
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      color: #fff;
+      line-height: 20px;
+      overflow: hidden;
+      word-break: break-all;
+    }
+  }
+  .control .current{
+    > img {
+      .opacity(1);
+    }
+    > p {
+      &:extend(.hidden);
+    }
+  }
+  /*左右控制器*/
+  .sliderSwitch {
+  }
+  .sliderSwitch span {
+    .opacity(.3);
+    display: block;
+    position: absolute;
+    top: (@height - 74 - 66) / 2px;
+    z-index: 9;
+    cursor: pointer;
+    &:hover{
+      .opacity(.8);
+    }
+  }
+  .sliderSwitch .preview {
+    &:extend(.icon);
+    &:extend(.icon_banner_prev);
+    left: 0;
+  }
+  .sliderSwitch .next {
+    &:extend(.icon);
+    &:extend(.icon_banner_next);
+    right: 0;
+  }
+}

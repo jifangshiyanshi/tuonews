@@ -1,0 +1,94 @@
+
+{include user.header}
+<!--content start-->
+
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li><a href="">基本配置</a></li>
+                    <li class="current"><a href="">图片设置</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <form class="module_form" action="" method="post">
+                        <div class="input_wrap">
+                            <label class="input_head">是否抓取远程图片：</label>
+                            <label class="checkbox"><input type="radio"/>显示</label>
+                            <label class="checkbox"><input type="radio"/>不显示</label>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head">是否开启图片水印：</label>
+                            <label class="checkbox"><input type="radio"/>显示</label>
+                            <label class="checkbox"><input type="radio"/>不显示</label>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head">水印类型：</label>
+                            <label class="checkbox"><input type="radio"/>图片水印</label>
+                            <label class="checkbox"><input type="radio"/>文字水印</label>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head">图片水印：</label>
+                            <img src="{$appConfigs['res_url']}/res/app/tuonews/user/default/skin/default/images/default_img_132x102.jpg" alt=""/>
+                            <span class="file_upload_box">
+                                <span class="file_upload">上传图片<input type="file"/></span>
+                                <span class="file_upload_tips">支持.jpg .jpeg .bmp .gif格式照片，大小不超过2M。</span>
+                            </span>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="">文字水印：</label>
+                            <input type="text" class="input m_input" id=""/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head">水印位置：</label>
+                            <span class="checkbox_box">
+                                <label class="checkbox"><input type="radio">左上角</label>
+                                <label class="checkbox"><input type="radio">右上角</label>
+                                <label class="checkbox"><input type="radio">左下角</label>
+                                <label class="checkbox"><input type="radio">右下角</label>
+                                <label class="checkbox"><input type="radio">垂直居中</label>
+                                <label class="checkbox"><input type="radio">随机位置</label>
+                            </span>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="article_img_size">内容图片最大宽度：</label>
+                            <input type="text" class="input m_input" id="article_img_size"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="">水印字体：</label>
+                            <span class="checkbox_box">
+                                <label class="checkbox"><input type="radio">新苏鹅卵石体</label>
+                                <label class="checkbox"><input type="radio">毛泽东体</label>
+                                <label class="checkbox"><input type="radio">汉仪秀英字体</label>
+                                <label class="checkbox"><input type="radio">文鼎火柴体</label>
+                                <label class="checkbox"><input type="radio">张海山锐线体简</label>
+                                <label class="checkbox"><input type="radio">液晶体</label>
+                            </span>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="">文章水印字号：</label>
+                            <input type="text" class="input m_input" id=""/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="opacity">水印透明度：</label>
+                            <input type="text" class="input m_input" id="opacity"/>
+                        </div>
+                        <div class="input_nohead_wrap">
+                            <button class="red_btn" type="submit">保存</button>
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

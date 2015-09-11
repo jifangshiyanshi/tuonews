@@ -1,0 +1,128 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li class="active">
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 媒体列表</a>
+                </li>
+                {if $sign !=="apply"}
+                <li>
+                    <a href="{$add_url}"><em class="glyphicon glyphicon glyphicon-plus"></em> 添加媒体</a>
+                </li>
+                {/if}
+            </ul>
+            <!-- 搜索表单 -->
+            <form class="search-form" action="{$index_url}" method="get">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <select name="media_type" data-toggle="select" class="form-control input-sm select select-default">
+                            <option value="" >全部频道</option>
+                            {loop $mediaType $value}
+                                <option value="{$value[id]}" {if $params[media_type] == $value[id]}selected{/if}>{$value[name]}</option>
+                            {/loop}
+                        </select>
+                    </div>
+
+                    <div class="pull-left calendar-addon">
+
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon fui-calendar input-sm"></span>
+                                <input type="text" name="start_time" value="{$params[start_time]}" class="form-control input-sm date" placeholder="开始时间" id="start-time" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon fui-calendar input-sm"></span>
+                                <input type="text" name="end_time" value="{$params[end_time]}" class="form-control input-sm date" placeholder="结束时间" id="end-time" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pull-right sbtn-addon">
+                        <div class="input-group">
+                            <input type="text" name="name" class="form-control input-sm" value="{$params[name]}" placeholder="请输入媒体名称" />
+                            <span class="input-group-addon fui-search input-sm">
+                                <button class="submit" type="submit"></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form><!-- 搜索表单 -->
+            <form id="J_ListForm" role="form" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="20">
+                                <label class="checkbox primary">
+                                    <input type="checkbox" data-toggle="checkbox" id="check-all">
+                                </label>
+                            </th>
+                            <th>媒体名称</th>
+                            <th>媒体类型</th>
+                            <th>申请人/管理员</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if empty($items)}
+                        <tr>
+                            <td class="empty-table-td">{$emptyRecord}</td>
+                        </tr>
+                        {/if}
+
+                        {loop $items $value}
+                        <tr>
+                            <td>
+                                <label class="checkbox default">
+                                    <input type="checkbox" data-toggle="checkbox" name="ids[]" value="{$value[id]}">
+                                    <input type="hidden" name="hids[{$value[id]}]" value="{$value[id]}" />
+                                </label>
+                            </td>
+                            <td>{$value[name]}</td>
+                            <td>
+                                {loop $mediaType $val}
+                                {if $val[id]==$value[media_type]}
+                                    {$val[name]}
+                                {/if}
+                                {/loop}
+                            </td>
+                            <td>{$value[username]}/{$value[nickname]}</td>
+                            <td>{date $value[add_time]}</td>
+                            <td>
+                                <a href="{url /admin_media_edit/?id=$value[id]}" class="btn btn-xs btn-primary">编辑</a>
+                                <a href="{url /admin_media_delete/?id=$value[id]}" class="btn btn-xs btn-danger delone">
+                                    <i class="glyphicon glyphicon-remove"></i> 删除</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+
+            <nav>
+                <ul class="pagination pull-right">
+                    {$pagemenu}
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+{include admin.script}
+
+<script>
+    createDatePicker('start-time',null);
+    createDatePicker('end-time',null);
+</script>
+
+{include admin.footer}

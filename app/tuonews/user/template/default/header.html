@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{if $seoTitle}{$seoTitle}{$title} {else}驼牛网-产业文化与媒体影响力传播交流平台{/if}</title>
+    <meta name="description" content="{$seoDesc}" />
+    <meta name="keywords" content="{$seoKwords}" />
+    <meta name="renderer" content="webkit">
+    {gres:css JDialog-custom.css}
+    {cres:css /app/tuonews/user/default/skin/default/css/tuonews_user_center.min.css}
+    {cres:css /app/tuonews/user/default/skin/default/css/custom_fixed.css}
+    {gres:js jquery-1.11.2.min.js}
+    {gres:js jquery.lazyload.min.js}
+    {gres:js JDialog.js}
+	{gres:js JForm.js}
+    {gres:js AjaxProxy.js}
+    {gres:js AutoSave.js}
+    {cres:js /app/tuonews/user/default/js/common.js}
+    {cres:css global/js/uploadify/uploadify.min.css}
+    {cres:css global/js/jcrop/css/jquery.Jcrop.min.css}
+    <!--[if lt IE 9]>
+    {gres:js html5shiv.js}
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+<header class="header">
+    <div class="header_box">
+        <nav class="head_nav">
+            <ul class="list">
+                <li class="item"><a href="/">首页</a></li>
+                {loop $__chanels $chanelsOne}
+                <li class="item">
+                    <a href="{url /article_article_index/?id=$chanelsOne[id]}">{$chanelsOne[name]}</a>
+                    {if $chanelsOne[sub]}
+                    <ul class="sublist">
+                        {loop $chanelsOne[sub] $value}
+                        <li><a href="{url /article_article_index/?id=$value[id]}">{$value[name]}</a></li>
+                        {/loop}
+                    </ul>
+                    {/if}
+                </li>
+                {/loop}
+                <li class="item">
+                    <a href="{url /article_media_index}">牛媒</a>
+                    <ul class="sublist">
+                        {loop $mediaTypes $value}
+                        <li><a href="{$value[url]}">{$value[name]}</a></li>
+                        {/loop}
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="head_right">
+            <div class="item"><a href="{url /user_article_add}">我要投稿</a></div>
+            <div class="item"><a href="{url /article_artone_service/?id=5}">寻求报道</a></div>
+            <div class="item user_item">
+                <a href="{url /user_ucenter_index}"><?=$loginUser[nickname]?$loginUser[nickname]:$loginUser[username]?></a>
+                <ul class="sublist">
+                    <li><a href="{url /user_message_index}">消息</a></li>
+                    <li><a href="{url /user_article_add}">发稿</a></li>
+                    <li><a href="{url /user_tipoff_index}">爆料</a></li>
+                    <li><a href="{url /user_ucenter_mediaApply}">申请入驻</a></li>
+                    <li><a href="{url /user_login_logout/?op=logout}">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->

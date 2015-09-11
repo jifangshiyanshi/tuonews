@@ -1,0 +1,177 @@
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+}
+
+/* 设置默认字体 */
+body,
+button, input, select, textarea { /* for ie */
+    /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+    font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+    overflow: hidden;
+}
+
+h1 { font-size: 18px; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 16px; }
+h3 { font-size: 14px; }
+h4, h5, h6 { font-size: 100%; }
+
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/* 重置列表元素 */
+ul, ol { list-style: none; }
+
+/* 重置文本格式元素 */
+a { color:#000; text-decoration: none; }
+a:hover { text-decoration: none; }
+
+abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before, q:after { content: ''; }
+
+/* 重置表单元素 */
+legend { color: #000; } /* for ie6 */
+fieldset, img { border: none; } /* img 搭车：让链接里的 img 无边框 */
+/* 注：optgroup 无法扶正 */
+button, input, select, textarea {
+    font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+}
+
+/* 重置表格元素 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 重置 hr */
+hr {
+    border: none;
+    height: 1px;
+}
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html { overflow-y: scroll; }
+
+/* common */
+.hidden {
+    display:none;
+}
+.maxWidth {
+    width:1000px;
+    margin:0 auto;
+}
+input[type="submit"], input[type="button"], input[type="radio"], input[type="checkbox"] {
+    cursor:pointer;
+}
+.fl{
+    float:left;
+    display:inline;
+}
+.fr{
+    float:right;
+    display:inline;
+}
+.hidden {
+    display: none;
+}
+.inlineBlock {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 0;
+    -webkit-text-size-adjust:none;
+}
+.justify_fix{
+    display:inline-block;
+    width:100%;
+    height:0;
+    overflow:hidden;
+}
+.clearfix:after {
+    content:".";
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both;
+}
+.clearfix { *zoom:1; }
+/* pages */
+.sec-con-f {
+    font-size: 14px;
+    margin-top: 20px;background:none; border:none;
+}
+.sec-con-f .page-btn {
+    color: #555;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+    padding: 0 12px;
+    background: #fff;
+    font-family: "微软雅黑";
+    border: 1px solid #dedede;
+}
+.sec-con-f .page-btn:hover {
+    color: #1d95d9;
+}
+.sec-con-f .pagination li a {
+    float: left;
+    display: inline;
+    color: #555;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+    padding: 0 10px;
+    background: #fff;
+    border: 1px solid #dedede;
+    font-family: "微软雅黑";
+}
+.sec-con-f .pagination li a:hover
+{
+    color: #1d95d9;
+}
+.sec-con-f .pagination li input
+{
+    height:20px; line-height:30px; margin:0 5px 0 0; border:1px solid #dedede;
+}
+.sec-con-f .pagination li a.disabled {
+    color: #fff;
+    background: #1d95d9;
+    border-color: #1d95d9;
+}
+.sec-con-f .pagination li a.active {
+    color: #fff;
+    background: #1d95d9;
+    border-color: #1d95d9;
+}
+.sec-con-f .page-text {
+    color: #555;
+    height: 30px;
+    line-height: 30px;
+    width: 48px;
+    font-family: "微软雅黑";
+    text-align: center;
+    background: #fff;
+    border: 1px solid #dedede;
+}
+.sec-con-f .page-sub {
+    color: #fff;
+    height: 32px;
+    line-height: 32px;
+    width: 60px;
+    text-align: center;
+    margin-left: 10px;
+    border: none;
+    font-family: "微软雅黑";
+    background: #1d95d9;
+}

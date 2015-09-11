@@ -1,0 +1,34 @@
+
+<!--footer start-->
+<footer class="footer">
+    <div class="footer_wrap">
+        <div class="footer_left">
+            <a href="{url /site_index_index/?media_id=$loginMedia[id]}">
+                <span class="icon icon_footer_logo"><img width="120px" src="{if $loginMedia[logo]}{$loginMedia[logo]}{else}/res/global/images/default8.png{/if}"/></span>
+            </a>
+        </div>
+        <div class="footer_right">
+            <div class="friendship">
+                <div class="head">友情链接</div>
+                <ul class="list">
+                    {loop $friendLinks $value}
+                    <li class="item"><a href="{$value.url}" class="link" target="_blank">{$value.name}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <nav class="footer_nav">
+                <ul class="list">
+                    {loop $artoneMenu $key $value}
+                    <li  class="item" {if $mid == $value['id']}class="current"{/if} ><a class="link" href="{url /site_service_index/?id=$value[id]&media_id=$loginMedia[id]}">{$value[title]}</a></li>
+                    {/loop}
+                </ul>
+            </nav>
+            <div class="copyright">
+                {if $mediaConfigs[sitecopy]} 版权信息:{$mediaConfigs[sitecopy]}{/if}&nbsp;&nbsp;&nbsp;  {if $mediaConfigs[siteicp]}备案号:{$mediaConfigs[siteicp]}{/if}
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer end-->
+</body>
+</html>

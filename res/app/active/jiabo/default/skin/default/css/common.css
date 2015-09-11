@@ -1,0 +1,108 @@
+body{background: #000;}
+.section1 { background:  url(../images/1.png) 50% no-repeat;}
+.section2 { background:  url(../images/2.png) 50% no-repeat;}
+.section3 { background:  url(../images/3.png) 50% no-repeat;}
+.section4 { background:  url(../images/4.jpg) 50% no-repeat;}
+.section5 { background:  url(../images/5.jpg) 50% no-repeat;}
+.section6 .num{
+    background:  url(../images/num.png) center no-repeat;
+    height: 63px;
+}
+.section6  .form-wrap{
+    background: #0e0e2e url(../images/form-header-pc.png) center top no-repeat;
+    padding-top: 219px;
+    color: #bcc1d8;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 695px;
+    margin: 0 auto;
+}
+
+.form-box{
+    padding: 10px 26px;
+}
+
+@media screen and (max-height: 675px) {
+    .form-box{
+        padding: 0 26px;
+        margin-top: -10px;
+    }
+}
+
+.form-box p{
+    font-size: 13px;
+    margin: 10px 0;
+
+}
+
+.form-box{
+
+}
+.form-box p input{
+    -moz-border-radius: 3px;-khtml-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;  border: none;
+
+}
+.second-p input{
+    width: 28%;
+
+}
+
+.fir-p input{
+    width: 72%;
+}
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 3px 3px 0px 5px;
+    display: none;
+}
+.raido-label-1,.raido-label-2{
+    background: url(../images/raido-pc.png) no-repeat 0 -18px;
+    padding-left: 26px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    width: 34%;
+    text-align: left;
+
+
+}
+.checked {
+    background-position: 0 0px;
+}
+.input-wraper{
+    display: inline-block;
+    width: 40%;
+    text-align: left;
+}
+.checkbox-p{
+    text-align: left;
+}
+.raido-label-2 {
+    background: url(../images/checked-pc.png) no-repeat 0 0;
+    width: 18%;
+    margin: 2px 0;
+}
+.checkbox-p .checked {
+    background-position: 0 -19px;
+}
+
+.amount-1{
+    height: 22px;
+    margin-left: 10px;
+}
+.btn{
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    width: 27%;
+    padding: 2% 0;
+    margin: 1% 0;
+    background-color: #dc6016;
+    margin: 10px auto;
+    display: block;
+}

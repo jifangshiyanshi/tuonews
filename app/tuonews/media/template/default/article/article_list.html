@@ -1,0 +1,75 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li {if $currentOpt=="article@index"} class="current"{/if}><a href="{url /media_article_index}">已发布文章</a></li>
+                    <li {if $currentOpt=="article@checked"}class="current"{/if}><a href="{url /media_article_checked}">已审核文章</a></li>
+                    <li {if $currentOpt=="article@uncheck"}class="current"{/if}><a href="{url /media_article_uncheck}">待审核文章</a></li>
+                    <li {if $currentOpt=="article@aborted"}class="current"{/if}><a href="{url /media_article_aborted}">被下线文章</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <form id="content_add_form" name="content_add_form">
+                    <!--nav list-->
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px;"><input class="select_all" type="checkbox" /></th>
+                                <th style="width: 230px;">文章标题</th>
+                                <th>频道</th>
+                                <th>发布时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {if empty($items)}
+                            <tr>
+                                <td colspan="6">暂时没有数据</td>
+                            </tr>
+                            {/if}
+                            {loop $items $value}
+                            <tr>
+                                <td><input type="checkbox" name="ids[]" value="{$value[id]}" class="select_child"/></td>
+                                <td>{$value[title]}</td>
+                                <td>{$value[chanel]}</td>
+                                <td>{date $value[add_time]}</td>
+                                <td>
+                                    <a href="{url /media_article_edit/?id=$value[id]}">编辑</a>
+                                    {if $loginMedia[media_type] == 1}
+                                        {if $currentOpt=="article@index"}
+                                            {if $value[sort_num] <= 0}
+                                            <a href="{url /media_article_addtop/?id=$value[id]}" class="ajaxproxy"
+                                               proxy='{"method":"get", "location":"reload"}'>置顶</a>
+                                            {else}
+                                            <span style="color: #999999">已置顶</span>
+                                            {/if}
+                                        {/if}
+                                    {/if}
+                                </td>
+                            </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                    </form>
+                    <div class="table_operation">
+                        {include common.module_page}
+                        <button href="{url /media_article_deletes}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_article_index}"}'>删除文章</button>
+                        <a href="{url /media_article_add}" class="add_red_btn">添加文章</a>
+                    </div>
+                    <!--nav list-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

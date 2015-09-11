@@ -1,0 +1,137 @@
+{include site.header}
+<!-- 新闻内容区 -->
+<div class="content">
+
+<div class="maxWidth">
+
+<div class="clearfix">
+<!-- 新闻左栏 -->
+<div class="l-con fl">
+    <!-- 新闻内容 -->
+    <div class="n-con-box">
+        <div class="nc-head">
+            <h3 class="nc-title">{$item['title']}</h3>
+            <div class="nc-relate clearfix">
+                <div class="nc-relate-l fl">
+                    作者：<span><a href="javascript:;">{$item[author]}</a></span>
+                    来源：<span><a href="{url /site_index_index/?media_id=$loginMedia[id]}">{$loginMedia[name]}</a></span>
+                    发布时间：<span>{date $item[add_time] Y-m-d H:i}</span>
+                </div>
+            </div>
+        </div>
+        <div class="nc-content" style="width:600px;">
+            <div class="nc-brief">
+                <p>摘要 : {$item['bcontent']}</p>
+            </div>
+
+            <div class="nc-text" style="overflow: hidden;">
+                {$item['content']}
+            </div>
+        </div>
+        <div class="sec-con-f" style="background:none; border:none;">
+            <ul class="pagination">
+                {$pages}
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
+        <br/>
+        <div class="nc-relate clearfix">
+            <div class="nc-relate-l fl">
+                标签:
+                <span class="nc-tags">
+                    {loop $item[tags] $val}
+                    <a href="javascript:void(0);">{$val[name]}</a>
+                    {/loop}
+                </span>
+            </div>
+        </div>
+        <style>
+            .nc-relate-r .special{
+                color:#D854D7;
+                font-weight:bold;
+                cursor:pointer;
+            }
+            .n-con-box .nc-footer{
+                margin-top:0px;
+            }
+            .n-con-box .nc-footer .nc-link{
+                float:left;
+            }
+            .nc-footer .nc-link p{
+                float:left;
+            }
+            #spr{
+                float:right;margin-left:10px;
+            }
+        </style>
+        <div class="nc-footer clearfix">
+            <div class="nc-link">
+                {if $prev_article[0]['title']}
+                <p>上一篇：<a href="/newsdetail-{$prev_article[0]['id']}/">{$prev_article[0]['title']}</a></p>
+                {/if}
+                {if $next_article[0]['title']}
+                <p id="spr">下一篇：<a href="/newsdetail-{$next_article[0]['id']}/">{$next_article[0]['title']}</a></p>
+                {/if}
+            </div>
+        </div>
+    </div>
+
+    <!-- 新闻评论 -->
+    <!--<div class="nc-comment-box">-->
+        <!--<div class="box-title">-->
+            <!--<h3>精彩评论</h3>-->
+        <!--</div>-->
+        <!--<div class="comment-box">-->
+            <!--<div id="SOHUCS" sid="{$item['mid']}|{$item['id']}"></div>-->
+            <!--<script>-->
+                <!--(function(){-->
+                    <!--var appid = 'cyrjjRUet',-->
+                        <!--conf = 'prod_f84baba4e169b7bf6f772865df79220b';-->
+                    <!--var doc = document,-->
+                        <!--s = doc.createElement('script'),-->
+                        <!--h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;-->
+                    <!--s.type = 'text/javascript';-->
+                    <!--s.charset = 'utf-8';-->
+                    <!--s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;-->
+                    <!--h.insertBefore(s,h.firstChild);-->
+                <!--})()-->
+            <!--</script>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+<!-- 新闻右栏 -->
+<div class="r-con fr">
+    <div class="r-box">
+        <div class="box-title">
+            <h3>热门推荐</h3>
+        </div>
+        <div class="r-hot-box">
+            <ul class="r-hot-con">
+                {loop $hotArticles $v}
+                <li>
+                    <div class="h-photo">
+                        <a href="{url /site_index_detail/?id=$v[id]&media_id=$loginMedia[id]}">
+                            <img alt="{$v['title']}" src="{$v['thumb']}" /></a>
+                    </div>
+                    <div class="h-text">
+                        <h3><a href="{url /site_index_detail/?id=$v[id]&media_id=$loginMedia[id]}">{cut $v['title'] 18 '...'}</a></h3>
+                        <div class="h-relate">
+                            <span class="h-read">阅读(<i>{$v['hits']}</i>)</span>
+                            <span class="h-author">{$v[author]}</span>
+                        </div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+{include site.footer}

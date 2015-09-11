@@ -1,0 +1,43 @@
+<!--media_aside start-->
+<ul class="media_aside">
+    <li class="item">
+        <div class="item_head"><span class="icon icon_sys"></span>系统管理</div>
+        <ul class="sublist">
+            <li{if $action=="config" && $method=="index" || $method=="template"} class="current"{/if}><a href="{url /media_config_index/?media_id=$media_id}">系统配置</a></li>
+            <li{if $action=="config" && $method=="domain"} class="current"{/if}><a href="{url /media_config_domain/?media_id=$media_id}">独立域名绑定</a></li>
+            <li{if $action=="managerrole"} class="current"{/if}><a href="{url /media_managerrole_index/?media_id=$media_id}">角色管理</a></li>
+            <li{if $action=="manager"} class="current"{/if}><a href="{url /media_manager_index/?media_id=$media_id}">媒体管理员</a></li>
+            <li{if $action=="nav"} class="current"{/if}><a href="{url /media_nav_index/?media_id=$media_id}">导航栏管理</a></li>
+            <li{if $action=="friendlink"} class="current"{/if}><a href="{url /media_friendlink_index/?media_id=$media_id}">友情链接管理</a></li>
+        </ul>
+    </li>
+    <li class="item">
+        <div class="item_head"><span class="icon icon_article"></span>文章管理</div>
+        <ul class="sublist">
+            <li{if $action=="article" && $method=="index" || $method=="checked" || $method=="uncheck" || $method=="aborted" } class="current"{/if}><a href="{url /media_article_index/?media_id=$media_id}">文章列表</a></li>
+            <li{if $action=="article" && $method=="add"} class="current"{/if}><a href="{url /media_article_add/?media_id=$media_id}">发表文章</a></li>
+            <li{if $action=="artone"} class="current"{/if}><a href="{url /media_artone_index/?media_id=$media_id}">单文章</a></li>
+        </ul>
+    </li>
+<!--    <li class="item">
+        <div class="item_head"><span class="icon icon_edit"></span>编辑管理</div>
+        <ul class="sublist">
+            <li><a href="/media_config_index/?media_id=$media_id">模块配置????</a></li>
+            <li{if $action=="chanel" && $method=="index"} class="current"{/if}><a href="{url /media_chanel_index/?media_id=$media_id}">分类列表</a></li>
+        </ul>
+    </li>-->
+    <li class="item">
+        <div class="item_head"><span class="icon icon_set"></span>设置管理</div>
+        <ul class="sublist">
+            <li{if $action=="profile"} class="current"{/if}><a href="{url /media_profile_index/?media_id=$media_id}">媒体号配置</a></li>
+            <!--<li><a href="">驼牛认证</a></li>-->
+    </ul>
+    </li>
+    <!--<li class="item">
+        <div class="item_head"><span class="icon icon_other"></span>其他</div>
+        <ul class="sublist">
+            <li{if $action=="message" && $method=="index"} class="current"{/if}><a href="{url /media_message_index/?media_id=$media_id}">消息</a></li>
+        </ul>
+    </li>-->
+</ul>
+<!--media_aside end-->

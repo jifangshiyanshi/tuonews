@@ -1,0 +1,45 @@
+
+<!--footer start-->
+<footer class="footer">
+    <div class="footer_wrap">
+        <div class="footer_left">
+            <a href="/">
+                <span class="icon icon_footer_logo"></span>
+            </a>
+        </div>
+        <div class="footer_right">
+            <div class="friendship">
+                <div class="head">友情链接</div>
+                <ul class="list">
+                    {loop $friendLinks $value}
+                    <li class="item"><a href="{$value.url}" class="link" target="_blank">{$value[name]}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <nav class="footer_nav">
+                <ul class="list">
+                    {loop $footNavis $value}
+                    <li class="item">
+                        <a href="{url /article_artone_service/?id=$value[id]}" class="link">{$value[title]}</a>
+                    </li>
+                    {/loop}
+                </ul>
+            </nav>
+            <div class="copyright">
+                {$appConfigs[copy_right]} {$appConfigs[ipc_beian]}
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?09911ff282f4012ce5a7afd27dd73ecf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<!--footer end-->
+</body>
+</html>

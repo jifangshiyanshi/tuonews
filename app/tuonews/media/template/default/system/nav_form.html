@@ -1,0 +1,62 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li {if $method=="index"}class="current"{/if}><a href="{url /media_nav_index/media_id-$media_id}">顶部导航</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>导航栏列表</div>
+                    <form class="module_form" action="" method="post" id="content_add_form">
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="name">频道名称：</label>
+                            <input type="text" name="data[name]"  class="input" id="name"  value="{$item[name]}" tip-text="频道名称" maxlength="6" required/><span>&nbsp;&nbsp;最多输入6个字符</span>
+                        </div>
+
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_title">seo标题：</label>
+                            <textarea name="data[seo_title]" class="m_textarea textarea"  id="seo_title" maxlength="100" tip-text="seo标题" required >{$item[seo_title]}</textarea>
+                            <p style="margin-left: 110px;">请输入100个以内的字符</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_kword">seo关键字：</label>
+                            <textarea name="data[seo_kword]" class="m_textarea textarea"  id="seo_kword" maxlength="100" tip-text="seo关键字" required >{$item[seo_kword]}</textarea>
+                            <p style="margin-left: 110px;">请输入100个以内的字符</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_desc">seo描述：</label>
+                            <textarea name="data[seo_desc]" class="m_textarea textarea"  id="seo_desc"  maxlength="120" tip-text="seo描述" required >{$item[seo_desc]}</textarea>
+                            <p style="margin-left: 110px;">请输入100个以内的字符</p>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s">排序数字：</label>
+                            <input type="text" name="data[sort_num]" class="input small_input" maxlength="3"  value="{$item[sort_num]}" required dtype="number"/><span>&nbsp;&nbsp;请输入3个以内的字符</span>
+                        </div>
+                        <div class="input_nohead_wrap_s">
+                            {if empty($item)}
+                            <button href="{url /media_nav_insert}"  class=" ajaxproxy red_btn" data-loading-text=""
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_nav_index}"}'>保存</button>
+                            {else}
+                            <input type="hidden" name="edit_id" value="{$item[id]}" />
+                            <button href="{url /media_nav_update}"  class=" ajaxproxy red_btn"
+                                    proxy='{"formId":"content_add_form", "method":"post", "location":"{url /media_nav_index}"}'>保存</button>
+                            {/if}
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

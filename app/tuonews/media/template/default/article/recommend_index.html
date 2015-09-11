@@ -1,0 +1,63 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="{url /media_articleRec_index}">文章推荐位</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <form id="content_add_form" name="content_add_form">
+                    <!--nav list-->
+                    <table class="table_list">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th style="width: 230px;">名称</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {if empty($items)}
+                            <tr>
+                                <td colspan="3">暂时没有数据</td>
+                            </tr>
+                            {/if}
+                            {loop $items $value}
+                            <tr>
+                                <td>{$value[id]}</td>
+                                <td>{$value[name]}</td>
+                                <td>
+                                    {if $value[open]}
+                                    <span style="color:#999999;">已开启</span>
+                                    <a href="{url /media_articleRec_close/?id=$value[id]}" class="ajaxproxy"
+                                       proxy='{"method":"get", "location":"reload"}'>关闭</a>
+                                    <a href="{url /media_articleRec_detail/?id=$value[id]}">管理</a>
+                                    {else}
+                                    <span style="color:#999999;">未开启</span>
+                                    <a href="{url /media_articleRec_open/?id=$value[id]}" class="ajaxproxy"
+                                       proxy='{"method":"get", "location":"reload"}'>开启</a>
+                                    {/if}
+
+                                </td>
+                            </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                    </form>
+
+                </div><!-- /nav list-->
+
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

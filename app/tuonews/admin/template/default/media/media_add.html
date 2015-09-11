@@ -1,0 +1,227 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 媒体列表</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="glyphicon glyphicon-plus"></em> 添加媒体</a>
+                </li>
+
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" placeholder="媒体名称" required autofocus>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 媒体昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[nickname]" class="form-control" placeholder="媒体昵称" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>媒体logo</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="data[logo]" id="thumb_src" value="" required/>
+                            <input type="file" id="thumb_upload" class="btn btn-default btn-wide" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>媒体类型</label>
+                        {loop $mediaType $value}
+                        <label class="radio">
+                            <input type="radio" data-toggle="radio" name="data[media_type]" value="{$value[id]}" {if $value[id]<2}checked{/if} />
+                            {$value[name]}
+                        </label>
+                        {/loop}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>登记人</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[reg_name]" class="form-control" placeholder="登记人" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>登记人身份证号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[reg_id]" class="form-control" placeholder="身份证号码" required>
+                            <p class="help-block">输入内容长度为1到18个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>身份证照片</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="data[id_img]" placeholder="身份证照片" id="id_img" value="" required/>
+                            <input type="file" id="id_img_upload" class="btn btn-default btn-wide" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构全称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[company]" class="form-control" placeholder="组织机构全称" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构代码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[company_code]" class="form-control" placeholder="组织机构代码" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>组织机构代码扫描件</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[company_img]" class="form-control" id="company_img" placeholder="机构扫描件" required>
+                            <input type="file" id="company_img_upload" class="btn btn-default btn-wide" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>公司地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[address]" class="form-control" placeholder="公司地址" required>
+                            <p class="help-block">输入内容长度为1到50个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">固定电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[telephone]" class="form-control" placeholder="固话" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>手机号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[mobile]" class="form-control" placeholder="手机号码" required>
+                            <p class="help-block">输入内容长度为1到11个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>电子邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[email]" class="form-control" placeholder="电子邮箱" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i></i>qq号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[qq]" class="form-control" placeholder="qq">
+                            <p class="help-block">输入内容长度为1到11个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>微博账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[weibo]" class="form-control" placeholder="微博账号" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>微信账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[weixin]" class="form-control" placeholder="微信账号" required>
+                            <p class="help-block">输入内容长度为1到30个字符之间</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i>媒体链接</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[domain]" class="form-control" placeholder="网站地址" required>
+                            <p class="help-block">输入内容长度为1到20个字符之间</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 排序数字</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[sort_num]" class="form-control" placeholder="排序数字" required>
+                            <p class="help-block">请输入三位数以内的数字(包含三位数)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">媒体简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="data[intro]" class="form-control"></textarea>
+                            <p class="help-block">输入内容长度为4到60个字符之间</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$insert_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include admin.script}
+<!-- 引入编辑器 -->
+{cres:js ueditor/tuonews.config.min.js}
+{cres:js ueditor/ueditor.all.min.js}
+
+{gres:js uploadify/jquery.uploadify.min.js}
+<script>
+    //实例化编辑器
+    var __UE = UE.getEditor('editor');
+    var configs ={
+        'onUploadSuccess':function(file,data,response){
+            var dd=eval("("+data+")");
+            $("#thumb_src").val(dd.message);
+        }
+    }
+    var upConfig= $.extend(__global.uploadConfig,configs);
+    $('#thumb_upload').uploadify(upConfig);
+    var configs ={
+        'onUploadSuccess':function(file,data,response){
+            var dd=eval("("+data+")");
+            $("#id_img").val(dd.message);
+        }
+    }
+    var upConfig= $.extend(__global.uploadConfig,configs);
+    $('#id_img_upload').uploadify(upConfig);
+    var configs ={
+        'onUploadSuccess':function(file,data,response){
+            var dd=eval("("+data+")");
+            $("#company_img").val(dd.message);
+        }
+    }
+    var upConfig= $.extend(__global.uploadConfig,configs);
+    $('#company_img_upload').uploadify(upConfig);
+</script>
+
+{include admin.footer}

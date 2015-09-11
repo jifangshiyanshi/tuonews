@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{if $seoTitle}{$seoTitle}{else}驼牛网-产业文化与媒体影响力传播交流平台{/if}</title>
+    <meta name="description" content="{$seoDesc}" />
+    <meta name="keywords" content="{$seoKwords}" />
+    {include site.site}
+    <!--[if lt IE 9]>
+    {gres:js html5shiv.js}
+    <![endif]-->
+</head>
+<body>
+<!-- [if lt IE 8]>
+为了保证用户良好的用户体验,请使用极速模式或者升级浏览器
+<![endif]-->
+<noscript>为了保证用户良好的用户体验,请开启javascript</noscript>
+<!--header start-->
+<header class="header">
+    <div class="top">
+        <div class="top_wrap">
+            <div class="top_text fl">
+                <a class="link" href="{url /site_index_index/?media_id=$loginMedia[id]}">{$mediaConfigs[sitename]}</a> — {$mediaConfigs[sitetitle]}</div>
+            <ul class="control" style="display: none;">
+                <li><a href="{url /user_article_add}">我要投稿</a></li>
+                <li><a href="{url /article_artone_service/?id=5}">寻求报道</a></li>
+                {if !$loginUser}
+                <li class="login" id="login_popup_btn"><a href="{url /user_login_index}">登录</a></li>
+                <li><a href="{url /user_register_index}">立即注册</a></li>
+                {/if}
+                {if $loginUser}
+                <li class="user_item">
+                    <a href="{url /user_ucenter_index}">{expr $loginUser[nickname]?$loginUser[nickname]:$loginUser[username]}</a>
+                    <ul class="sublist">
+                        <li><a href="{url /user_message_index}">消息</a></li>
+                        <li><a href="{url /user_article_add}">发稿</a></li>
+                        <li><a href="{url /user_tipoff_index}">爆料</a></li>
+                        <li><a href="{url /user_ucenter_mediaApply}">申请入驻</a></li>
+                        <li><a href="{url /user_login_logout/?op=logout}">退出</a></li>
+                    </ul>
+                </li>
+                {/if}
+
+            </ul>
+        </div>
+    </div>
+    <div class="head">
+        <div class="maxWidth">
+            <div class="logo fl"><a href="{url /site_index_index/?media_id=$loginMedia[id]}" title="{$mediaConfigs[sitename]}">
+                <img alt="{$mediaConfigs[sitename]}" src="{if $loginMedia[logo]}{$loginMedia[logo]}{else}/res/global/images/default8.png{/if}" /></a></div>
+            <!-- 导航栏 -->
+            <ul class="nav">
+                <li {if empty($chanelId)} class="current" {/if}><a href="{url /site_index_index/?media_id=$loginMedia[id]}">首页</a></li>
+                {loop $chanels $val}
+                <li {if $val[id]== $chanelId} class="current" {/if}><a href="{url /site_article_index/?id=$val[id]&media_id=$loginMedia[id]}">{$val[name]}</a></li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+</header>
+<!--header end-->

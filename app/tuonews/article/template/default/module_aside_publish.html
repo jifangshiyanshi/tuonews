@@ -1,0 +1,33 @@
+<!--aside_publish_user start-->
+<!--判断 文章来源用户类型
+    普通 class="aside_publish aside_publish_user aside_module "
+    公司 class="aside_publish aside_module "
+-->
+<div class="aside_module aside_publish {$imageClass} aside_module"><!--个煤 detail-->
+    <div class="logo">
+        <!--215x126-->
+        <a href="{$mediaInfo[domain]}" target="_blank"><img class="lazy" src="{$appConfigs[image_block]}" data-original="{expr getImageThumb($mediaInfo[logo], '218x128')}" alt="{$mediaInfo[name]}"/></a>
+    </div>
+    <div class="face">
+        <!--215x126-->
+        <a href="{$mediaInfo[domain]}" target="_blank"><img class="lazy" src="{$appConfigs[image_block]}" data-original="{expr getImageThumb($mediaInfo[logo], '218x128')}" alt="{$mediaInfo[name]}"/></a>
+    </div>
+    <div class="title"><a href="{$mediaInfo[domain]}" target="_blank">{$mediaInfo[name]}</a></div>
+    <div class="info">
+        {$mediaInfo[intro]}
+    </div>
+    <div class="operation">
+        <button class="subscribe_btn subscribe_ajax_btn {if $mediaOrdered} subscribe_remove {else} subscribe_add {/if}"
+            data-ajax-data='{"id":{$mediaInfo[id]}}'
+            data-ajax-url="{if $mediaOrdered} {url /article_media_unorder} {else} {url /article_media_order} {/if}">
+            <span class="on">
+                <span class="icon icon_wadd"></span>订阅
+            </span>
+            <span class="off">
+                <span class="icon icon_gminus"></span>取消订阅
+            </span>
+        </button>
+        <a class="company_btn" href="{$mediaInfo[domain]}" target="_blank">进入官网</a>
+    </div>
+</div>
+<!--aside_publish_user start-->

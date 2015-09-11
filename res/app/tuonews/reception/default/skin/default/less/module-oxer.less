@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*aside_oxer*/
+.aside_oxer {
+  &:extend(.aside_module_frame);
+  padding-bottom: 8px;
+  .item {
+    .size(124px,112px);
+    padding: 2px;
+    &:extend(.inline-block);
+    border: 1px solid @grayBorder;
+    margin-bottom: 14px;
+    img {
+      .square(100%);
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">分类列表</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <div class="goback_head"><a href="javascript:history.go(-1)" class="icon icon_go_back"></a>分类列表/新增子频道</div>
+                    <form class="module_form" action="" method="post">
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="title">所属频道：</label>
+                            <select class="select m_select" name="" id="">
+                                <option value="">牛媒</option>
+                            </select>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="name">子频道名称：</label>
+                            <input type="text" class="input m_input" id="name"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="">是否显示：</label>
+                            <label class="checkbox"><input type="radio" checked/>显示</label>
+                            <label class="checkbox"><input type="radio"/>不显示</label>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="num">排序数字：</label>
+                            <input type="text" class="input m_input" id="num"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_title" >SEO标题：</label>
+                            <input type="text" class="input m_input"  id="seo_title"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_key">SEO关键字：</label>
+                            <input type="text" class="input m_input" id="seo_key"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head_s" for="seo_des">SEO描述：</label>
+                            <input type="text" class="input m_input" id="seo_des"/>
+                        </div>
+                        <div class="input_nohead_wrap_s">
+                            <button class="red_btn" type="submit">保存</button>
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

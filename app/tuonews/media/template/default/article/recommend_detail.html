@@ -1,0 +1,104 @@
+{include user.header}
+<!--content start-->
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="{url /media_articleRec_index}">文章推荐位</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <p style="padding-bottom: 10px; font-size: 14px">提示：首页轮播图只显示推荐位前面的5篇文章</p>
+                    <form id="content_add_form" name="content_add_form">
+                        <!--nav list-->
+                        <table class="table_list" id="table_list">
+                            <thead>
+                                <tr>
+                                    <th width="50">文章ID</th>
+                                    <th>文章标题</th>
+                                    <th width="150">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-tbody">
+                                {if empty($items)}
+                                <tr id="empty-tr-data">
+                                    <td colspan="4">暂时没有数据</td>
+                                </tr>
+                                {/if}
+                                {loop $items $value}
+                                <tr id="tr-{$value[id]}">
+                                    <td>
+                                        <input type="hidden" name="aids[]" value="{$value[id]}">
+                                        {$value[id]}
+                                    </td>
+                                    <td style="text-align: left;">{$value[title]}</td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="move-up" data-id="{$value[id]}">上移</a>
+                                        <a href="javascript:void(0);" class="move-down" data-id="{$value[id]}">下移</a>
+                                        <a href="javascript:void(0);" onclick="__recommend.remove(this);" data-id="{$value[id]}">删除</a>
+                                    </td>
+                                </tr>
+                            {/loop}
+                            </tbody>
+                        </table><!-- /nav list-->
+                        <input type="hidden" name="id" value="{$item[id]}">
+                    </form>
+
+                    <div class="table_operation">
+                        <a href="javascript:void(0);" id="add-rec-article" class="add_red_btn">添加文章</a>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<div style="display: none;" id="data-aids">{$item[aids]}</div>
+<div style="display: none;" id="rec-id">{$item[id]}</div>
+<!-- article select template -->
+<script type="text/html" id="article-select-template">
+    <table class="table_list">
+        <thead>
+        <tr>
+            <th width="50">文章ID</th>
+            <th>文章标题</th>
+            <th width="50">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%for (var i = 0; i < item.length; i++) {%>
+        <tr>
+            <td><%=item[i].id%></td>
+            <td style="text-align: left;"><%=item[i].title%></td>
+            <td><a href="javascript:__recommend.add(this);" class="add-article">添加</a></td>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
+</script><!-- / article select template -->
+
+<!-- article tr tempalate -->
+<script type="text/html" id="article-tr-template">
+    <tr id="tr-<%=item.id%>">
+        <td><%=item.id%></td>
+        <td style="text-align: left;"><%=item.title%></td>
+        <td>
+            <a href="javascript:void(0);" class="move-up" data-id="<%=item.id%>">上移</a>
+            <a href="javascript:void(0);" class="move-down" data-id="<%=item.id%>">下移</a>
+            <a href="javascript:void(0);" onclick="__recommend.remove(this);" data-id="<%=item.id%>">删除</a>
+        </td>
+    </tr>
+</script><!-- / article tr template -->
+
+
+{gres:js artTemplate.js}
+{res:js recommend.js}
+<!--content end-->
+{include user.footer}

@@ -1,0 +1,48 @@
+{include user.header}
+<!--content start-->
+
+<section class="content">
+    {include media.module_info_top}
+    <div class="layoutlm">
+        <div class="layout-main">
+            <!--消息-->
+            <div class="user_right_layout function_tab">
+                <ul class="user_right_menu">
+                    <li class="current"><a href="">基本配置</a></li>
+                    <li><a href="">图片设置</a></li>
+                </ul>
+                <div class="user_right_content user_right_content_form">
+                    <!--nav form add-->
+                    <form class="module_form" action="" method="post">
+                        <div class="input_wrap">
+                            <label class="input_head" for="page_num">每页显示数：</label>
+                            <input type="text" class="input" id="page_num" value="20"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="word_num">简介最大字数：</label>
+                            <input type="text" class="input" id="word_num" value="20"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="img_size">推荐位大图尺寸：</label>
+                            <input type="text" class="input" id="img_size" value="120"/>
+                        </div>
+                        <div class="input_wrap">
+                            <label class="input_head" for="article_img_size">文章缩略图尺寸：</label>
+                            <input type="text" class="input" id="article_img_size" value="240×120"/>
+                        </div>
+                        <div class="input_nohead_wrap">
+                            <button class="red_btn" type="submit">保存</button>
+                        </div>
+                    </form>
+                    <!--nav form add-->
+                </div>
+            </div>
+            <!-- function_tab end-->
+        </div>
+        <div class="layout-left">
+            {include media.module_aside}
+        </div>
+    </div>
+</section>
+<!--content end-->
+{include user.footer}

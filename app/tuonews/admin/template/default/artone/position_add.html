@@ -1,0 +1,80 @@
+{include admin.top}
+
+<div class="container-fluid">
+    <div class="row">
+        {include admin.sider}
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ul role="tablist" class="nav nav-pills">
+                <li>
+                    <a href="{$index_url}"><em class="glyphicon glyphicon-th-list"></em> 显示位列表</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);"><em class="glyphicon glyphicon-plus"></em> 添加显示位</a>
+                </li>
+            </ul>
+
+            <div class="container placeholders">
+                <form class="form-horizontal" autocomplete="off" id="content_add_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 显示位名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[name]" class="form-control" max-length="20" placeholder="显示位名称" required autofocus>
+                            <p class="help-block">20个字符之内，不区分中英文</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><i class="glyphicon glyphicon-asterisk"></i> 位置position</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="data[position]" class="form-control" max-length="20" placeholder="位置position" required>
+                            <p class="help-block">用来在前端控制位置数据的调用，20个字符之内，请保持唯一性</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文章集合</label>
+                        <div class="col-sm-10">
+                            <div class="container" id="article-list-box"></div>
+                            <input type="hidden" name="data[aids]" id="art-ids">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#addArticleModal" class="btn btn-primary">添加文章</a>
+                            <p class="help-block">请选择该位置所要显示的单文章集合</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="{$insert_url}"  class="btn btn-inverse ajaxproxy" data-loading-text="正在提交……"
+                               proxy='{"formId":"content_add_form", "method":"post", "location":"{$index_url}", "callbackDelay":"1000"}'>保存修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 添加文章模态框 -->
+<div aria-hidden="false" role="dialog" class="modal fade" id="addArticleModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> 添加单文章</h4>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="500" frameborder="0" src="{url /admin_artone_select}"></iframe>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+{include admin.script}
+<script>
+    var __params = {data:'{$item[aids]}'};
+</script>
+{res:js article.js}
+
+{include admin.footer}
